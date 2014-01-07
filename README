@@ -1,0 +1,6 @@
+Team 865 (Warp7)'s 2014 FRC robot code.
+
+To build, you just need the sunspot frc sdk in your user folder,
+and your .sunspotsdk.properties file configured correctly.
+
+This project was made in IntelliJ IDEA, not sure if other IDEs will work.
