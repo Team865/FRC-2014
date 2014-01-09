@@ -7,4 +7,24 @@ package ca.warp7.frc2014.util;
  * Time: 3:22 PM
  */
 public class RobotInfo {
+    private double data;
+
+    // Syntax:
+    // public static final RobotInfo varname = new RobotInfo(key, data);
+
+    public static void loadPrefsFromFile() {
+        // LATER
+    }
+
+    public RobotInfo(String key, double data) {
+        this.data = data;
+    }
+
+    public double doubleValue() {
+        return data;
+    }
+
+    public int intValue() {
+        return (int) data;
+    }
 }
