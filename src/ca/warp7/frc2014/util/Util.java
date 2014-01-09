@@ -7,4 +7,7 @@ package ca.warp7.frc2014.util;
  * Time: 3:22 PM
  */
 public class Util {
+    public static void testlog() {
+        System.out.println("test");
+    }
 }
