@@ -50,4 +50,5 @@ public class ControllerTwoJoysticks extends Controller {
     public boolean getAction4() {
         return false;
     }
+
 }
