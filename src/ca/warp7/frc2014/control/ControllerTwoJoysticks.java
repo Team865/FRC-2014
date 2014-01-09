@@ -35,19 +35,19 @@ public class ControllerTwoJoysticks extends Controller {
         return joy2.getY();
     }
 
-    public boolean getAction1() {
+    public boolean getPrimaryAction() {
         return false;
     }
 
-    public boolean getAction2() {
+    public boolean getSecondaryAction() {
         return false;
     }
 
-    public boolean getAction3() {
+    public boolean getTertiaryAction() {
         return false;
     }
 
-    public boolean getAction4() {
+    public boolean getQuaternaryAction() {
         return false;
     }
 

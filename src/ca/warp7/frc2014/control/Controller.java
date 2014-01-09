@@ -9,11 +9,11 @@ public abstract class Controller {
 
     public abstract double getSecondaryY();
 
-    public abstract boolean getAction1();
+    public abstract boolean getPrimaryAction();
 
-    public abstract boolean getAction2();
+    public abstract boolean getSecondaryAction();
 
-    public abstract boolean getAction3();
+    public abstract boolean getTertiaryAction();
 
-    public abstract boolean getAction4();
+    public abstract boolean getQuaternaryAction();
 }
