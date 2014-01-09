@@ -12,6 +12,9 @@ public class RobotInfo {
     // Syntax:
     // public static final RobotInfo varname = new RobotInfo(key, data);
 
+    public static final RobotInfo leftJoyPort = new RobotInfo("leftJoyPort", 1);
+    public static final RobotInfo rightJoyPort = new RobotInfo("rightJoyPort", 2);
+
     public static void loadPrefsFromFile() {
         // LATER
     }
