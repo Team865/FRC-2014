@@ -1,7 +1,7 @@
 package ca.warp7.frc2014.hardware;// Time Created: 1/4/14 5:21 PM
 
-public abstract class Part {
-    public Part() {
+abstract class Part {
+    Part() {
         // how do abstraction
     }
 

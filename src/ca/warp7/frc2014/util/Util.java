@@ -6,7 +6,7 @@ package ca.warp7.frc2014.util;
  * Date: 1/9/14
  * Time: 3:22 PM
  */
-public class Util {
+class Util {
     private Util() {
         // Stop an instance of this class from being created
     }

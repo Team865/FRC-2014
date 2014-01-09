@@ -7,7 +7,9 @@ package ca.warp7.frc2014.util;
  * Time: 3:22 PM
  */
 public class RobotInfo {
-    private double data;
+    private final String key;
+    private final double data;
+
 
     // Syntax:
     // public static final RobotInfo varname = new RobotInfo(key, data);
@@ -19,8 +21,10 @@ public class RobotInfo {
         // LATER
     }
 
-    public RobotInfo(String key, double data) {
+    private RobotInfo(String key, double data) {
+        this.key = key;
         this.data = data;
+
     }
 
     public double doubleValue() {
