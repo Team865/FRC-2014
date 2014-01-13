@@ -1,6 +1,6 @@
 package ca.warp7.frc2014.control;// Time Created: 1/4/14 5:28 PM
 
-abstract class Controller {
+public abstract class Controller {
     public abstract double getPrimaryX();
 
     public abstract double getPrimaryY();

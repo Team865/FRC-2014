@@ -1,6 +1,6 @@
 MIDlet-Name: Warp7Robot
 MIDlet-Version: 1.0.0
 MIDlet-Vendor: FIRST
-MIDlet-1: Warp7Robot, , ca.warp7.frc.2014.robot.Warp7Robot
+MIDlet-1: Warp7Robot, , ca.warp7.frc2014.robot.Warp7Robot
 MicroEdition-Profile: IMP-1.0
 MicroEdition-Configuration: CLDC-1.1
