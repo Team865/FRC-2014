@@ -14,8 +14,8 @@ public class ControllerTwoJoysticks extends Controller {
     private final Joystick joy2;
 
     public ControllerTwoJoysticks() {
-        this.joy1 = new Joystick(RobotInfo.leftJoyPort.intValue());
-        this.joy2 = new Joystick(RobotInfo.rightJoyPort.intValue());
+        this.joy1 = new Joystick(RobotInfo.getInt("leftJoyPort"));
+        this.joy2 = new Joystick(RobotInfo.getInt("rightJoyPort"));
 
     }
 

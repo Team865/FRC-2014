@@ -1,5 +1,7 @@
 package ca.warp7.frc2014.util;
 
+import java.util.HashMap;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Ari
@@ -7,9 +9,7 @@ package ca.warp7.frc2014.util;
  * Time: 3:22 PM
  */
 public class RobotInfo {
-    private final String key;
-    private final double data;
-
+    public static HashMap<String, Number> infoMap = new HashMap<String, Number>();
 
     // Syntax:
     // new RobotInfo(key, data);
@@ -23,17 +23,16 @@ public class RobotInfo {
         // LATER
     }
 
-    private RobotInfo(String key, double data) {
-        this.key = key;
-        this.data = data;
-
+    private RobotInfo(String key, Number data) {
+        infoMap.put(key, data);
     }
 
-    public double doubleValue() {
-        return data;
+    public static int getInt(String key) {
+        return (Integer) infoMap.get(key);
     }
 
-    public int intValue() {
-        return (int) data;
+    public static double getDouble(String key) {
+        return (Double) infoMap.get(key);
     }
+
 }
