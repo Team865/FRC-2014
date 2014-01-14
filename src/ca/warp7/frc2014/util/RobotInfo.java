@@ -16,6 +16,7 @@ public class RobotInfo {
 
     public static final RobotInfo leftJoyPort = new RobotInfo("leftJoyPort", 1);
     public static final RobotInfo rightJoyPort = new RobotInfo("rightJoyPort", 2);
+    public static final RobotInfo controller = new RobotInfo("controller", 0);
     public static final RobotInfo leftMotorPort = new RobotInfo("leftMotorPort", 3);
     public static final RobotInfo rightMotorPort = new RobotInfo("rightMotorPort", 4);
 
