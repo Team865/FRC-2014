@@ -9,7 +9,6 @@ package ca.warp7.frc2014.software;
 public class TankDrive extends Subsystem {
 
     public void tick() {
-        // Blah blah
 
     }
 }
