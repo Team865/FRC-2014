@@ -21,7 +21,7 @@ public class Chassis extends Part {
 
     public void setLeftRightPower(double leftPower, double rightPower) {
         leftDrive.set(leftPower);
-        rightDrive.set(rightPower);
+        rightDrive.set(-rightPower);
 
     }
 }
