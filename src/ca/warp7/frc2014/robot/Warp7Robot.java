@@ -11,7 +11,7 @@ class Warp7Robot extends SimpleRobot {
 
     public Warp7Robot() {
         // Adding shit onto the robot
-        if (RobotInfo.controller.getInt() == 0) { //2 Joysticks
+        if (RobotInfo.controller.intValue() == 0) { //2 Joysticks
             Part.controller = new ControllerTwoJoysticks();
         }
 
