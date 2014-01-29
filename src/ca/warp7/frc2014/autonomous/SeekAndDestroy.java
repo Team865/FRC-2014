@@ -13,29 +13,29 @@ import edu.wpi.first.wpilibj.image.NIVision.MeasurementType;
 public class SeekAndDestroy extends Autonomous {
 
     //Camera constants used for distance calculation
-    final int Y_IMAGE_RES = 480;        //X Image resolution in pixels, should be 120, 240 or 480
-    final double VIEW_ANGLE = 49;        //Axis M1013
+    private final int Y_IMAGE_RES = 480;        //X Image resolution in pixels, should be 120, 240 or 480
+    private final double VIEW_ANGLE = 49;        //Axis M1013
     //final double VIEW_ANGLE = 41.7;		//Axis 206 camera
     //final double VIEW_ANGLE = 37.4;  //Axis M1011 camera
     final double PI = 3.141592653;
 
     //Score limits used for target identification
-    final int RECTANGULARITY_LIMIT = 40;
-    final int ASPECT_RATIO_LIMIT = 55;
+    private final int RECTANGULARITY_LIMIT = 40;
+    private final int ASPECT_RATIO_LIMIT = 55;
 
     //Score limits used for hot target determination
-    final int TAPE_WIDTH_LIMIT = 50;
-    final int VERTICAL_SCORE_LIMIT = 50;
-    final int LR_SCORE_LIMIT = 50;
+    private final int TAPE_WIDTH_LIMIT = 50;
+    private final int VERTICAL_SCORE_LIMIT = 50;
+    private final int LR_SCORE_LIMIT = 50;
 
     //Minimum area of particles to be considered
-    final int AREA_MINIMUM = 150;
+    private final int AREA_MINIMUM = 150;
 
     //Maximum number of particles to process
-    final int MAX_PARTICLES = 8;
+    private final int MAX_PARTICLES = 8;
 
     AxisCamera camera;          // the axis camera object (connected to the switch)
-    CriteriaCollection cc;      // the criteria for doing the particle filter operation
+    private CriteriaCollection cc;      // the criteria for doing the particle filter operation
 
     public class Scores {
         double rectangularity;
@@ -53,8 +53,6 @@ public class SeekAndDestroy extends Autonomous {
         double tapeWidthScore;
         double verticalScore;
     }
-
-    ;
 
 
     public SeekAndDestroy() {
@@ -218,7 +216,7 @@ public class SeekAndDestroy extends Autonomous {
      * @param report The Particle Analysis Report for the particle, used for the width, height, and particle number
      * @return The aspect ratio score (0-100)
      */
-    public double scoreAspectRatio(BinaryImage image, ParticleAnalysisReport report, int particleNumber, boolean vertical) throws NIVisionException {
+    double scoreAspectRatio(BinaryImage image, ParticleAnalysisReport report, int particleNumber, boolean vertical) throws NIVisionException {
         double rectLong, rectShort, aspectRatio, idealAspectRatio;
 
         rectLong = NIVision.MeasureParticle(image.image, particleNumber, false, MeasurementType.IMAQ_MT_EQUIVALENT_RECT_LONG_SIDE);
@@ -243,9 +241,9 @@ public class SeekAndDestroy extends Autonomous {
      * @return True if the particle meets all limits, false otherwise
      */
     boolean scoreCompare(Scores scores, boolean vertical) {
-        boolean isTarget = true;
+        boolean isTarget;
 
-        isTarget &= scores.rectangularity > RECTANGULARITY_LIMIT;
+        isTarget = scores.rectangularity > RECTANGULARITY_LIMIT;
         if (vertical) {
             isTarget &= scores.aspectRatioVertical > ASPECT_RATIO_LIMIT;
         } else {
@@ -285,9 +283,9 @@ public class SeekAndDestroy extends Autonomous {
      * Returns True if the target is hot. False if it is not.
      */
     boolean hotOrNot(TargetReport target) {
-        boolean isHot = true;
+        boolean isHot;
 
-        isHot &= target.tapeWidthScore >= TAPE_WIDTH_LIMIT;
+        isHot = target.tapeWidthScore >= TAPE_WIDTH_LIMIT;
         isHot &= target.verticalScore >= VERTICAL_SCORE_LIMIT;
         isHot &= (target.leftScore > LR_SCORE_LIMIT) | (target.rightScore > LR_SCORE_LIMIT);
 

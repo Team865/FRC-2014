@@ -10,8 +10,8 @@ import edu.wpi.first.wpilibj.Talon;
  */
 public class Motor extends Hardware {
 
-    private Talon t;
-    boolean flipped;
+    private final Talon t;
+    private boolean flipped;
 
     public Motor(int pin) {
         this.t = new Talon(1, pin);
@@ -19,14 +19,11 @@ public class Motor extends Hardware {
 
     public Motor(int pin, boolean flipped) {
         this.t = new Talon(1, pin);
+        this.flipped = flipped;
     }
 
     public void stop() {
         t.set(0);
-    }
-
-    public void tick() {
-        //why is this
     }
 
     public void set(double d) { //dem boobies

@@ -13,9 +13,6 @@ import ca.warp7.frc2014.util.Util;
 public class CheesyDrive extends Subsystem {
     private double oldWheel = 0.0;
     private double quickStopAccumulator;
-    private double throttleDeadband = 0.02;
-    private double wheelDeadband = 0.02;
-    private boolean isQuickTurn = false;
 
     public CheesyDrive() {
 
@@ -24,8 +21,10 @@ public class CheesyDrive extends Subsystem {
     public void tick() { // Driving Method
         double wheelNonLinearity, wheel, throttle;
 
-        isQuickTurn = Hardware.controller.getPrimaryAction();
+        boolean isQuickTurn = Hardware.controller.getPrimaryAction();
+        double wheelDeadband = 0.02;
         wheel = handleDeadband(Hardware.controller.getSecondaryX(), wheelDeadband);
+        double throttleDeadband = 0.02;
         throttle = handleDeadband(Hardware.controller.getPrimaryY(), throttleDeadband);
 
 
@@ -62,10 +61,6 @@ public class CheesyDrive extends Subsystem {
             negInertiaScalar = 3.0;
 
         sensitivity = RobotInfo.cheesyMod.getDouble();
-
-        if (Math.abs(throttle) > 0.1) {
-            // sensitivity = 1.0 - (1.0 - sensitivity) / Math.abs(throttle);
-        }
 
         double negInertiaPower = negInertia * negInertiaScalar;
         negInertiaAccumulator += negInertiaPower;
@@ -123,7 +118,7 @@ public class CheesyDrive extends Subsystem {
         Hardware.rightDrive.set(rightPwm);
     }
 
-    public double handleDeadband(double val, double deadband) {
+    double handleDeadband(double val, double deadband) {
         return (Math.abs(val) > Math.abs(deadband)) ? val : 0.0;
     }
 }

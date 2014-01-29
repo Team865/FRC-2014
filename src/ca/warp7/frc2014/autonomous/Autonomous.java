@@ -6,6 +6,6 @@ package ca.warp7.frc2014.autonomous;
  * Date: 1/16/14
  * Time: 4:07 PM
  */
-public abstract class Autonomous {
+abstract class Autonomous {
     public abstract void run();
 }

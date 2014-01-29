@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.Joystick;
  * Time: 12:56 PM
  */
 public class ControllerXbox extends Controller {
-    Joystick con = new Joystick(RobotInfo.xboxPin.getInt());
+    private final Joystick con = new Joystick(RobotInfo.xboxPin.getInt());
 
     public double getPrimaryX() {
         return Util.deadband(con.getRawAxis(1)); //LeftX

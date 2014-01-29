@@ -10,10 +10,8 @@ public abstract class Hardware {
 
     public abstract void stop();
 
-    public abstract void tick();
-
-    public static Motor leftDrive = new Motor(RobotInfo.leftMotorPort.getInt());
-    public static Motor rightDrive = new Motor(RobotInfo.rightMotorPort.getInt(), true);
+    public static final Motor leftDrive = new Motor(RobotInfo.leftMotorPort.getInt());
+    public static final Motor rightDrive = new Motor(RobotInfo.rightMotorPort.getInt(), true);
 
     public static Controller controller;
 }

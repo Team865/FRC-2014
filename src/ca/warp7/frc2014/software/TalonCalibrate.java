@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.Talon;
  * Time: 2:39 PM
  */
 public class TalonCalibrate extends Subsystem {
-    private Talon talon;
+    private final Talon talon;
 
     public TalonCalibrate(Talon talon) {
         this.talon = talon;

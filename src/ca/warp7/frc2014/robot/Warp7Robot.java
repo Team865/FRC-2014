@@ -1,5 +1,6 @@
 package ca.warp7.frc2014.robot;// Time Created: 1/4/14 4:57 PM
 
+import ca.warp7.frc2014.autonomous.SeekAndDestroy;
 import ca.warp7.frc2014.control.ControllerXbox;
 import ca.warp7.frc2014.hardware.Hardware;
 import ca.warp7.frc2014.software.Subsystem;
@@ -8,7 +9,7 @@ import edu.wpi.first.wpilibj.SimpleRobot;
 
 class Warp7Robot extends SimpleRobot {
 
-    boolean autoRan = false;
+    private boolean autoRan = false;
 
     public Warp7Robot() {
         // Adding shit onto the robot
@@ -49,8 +50,7 @@ class Warp7Robot extends SimpleRobot {
 
     public void autonomous() {
         if (!autoRan) {
-            //new SeekAndDestroy().run();
-            //new DontDoThis().run();
+            new SeekAndDestroy().run();
             autoRan = true;
         }
     }
