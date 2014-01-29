@@ -1,25 +1,31 @@
 package ca.warp7.frc2014.robot;// Time Created: 1/4/14 4:57 PM
 
-import ca.warp7.frc2014.control.ControllerTwoJoysticks;
-import ca.warp7.frc2014.hardware.Part;
+import ca.warp7.frc2014.control.ControllerXbox;
+import ca.warp7.frc2014.hardware.Hardware;
 import ca.warp7.frc2014.software.Subsystem;
 import ca.warp7.frc2014.software.TankDrive;
-import ca.warp7.frc2014.util.RobotInfo;
 import edu.wpi.first.wpilibj.SimpleRobot;
 
 class Warp7Robot extends SimpleRobot {
 
+    boolean autoRan = false;
+
     public Warp7Robot() {
         // Adding shit onto the robot
-        if (RobotInfo.controller.intValue() == 0) { //2 Joysticks
-            Part.controller = new ControllerTwoJoysticks();
-        }
+        Hardware.controller = new ControllerXbox();
 
         Subsystem.add(new TankDrive());
+        /*
+        // Calibration routine.
+        //TODO: dynamic subsystem switching
+        Subsystem.add(new TalonCalibrate(Hardware.leftDrive));
+        Subsystem.add(new TalonCalibrate(Hardware.rightDrive));
+        */
     }
 
     public void robotMain() {
         getWatchdog().setEnabled(true);
+
         while (true) {
             if (isDisabled()) {
                 disabled();
@@ -38,5 +44,14 @@ class Warp7Robot extends SimpleRobot {
 
     public void disabled() {
         getWatchdog().setEnabled(false);
+        autoRan = false;
+    }
+
+    public void autonomous() {
+        if (!autoRan) {
+            //new SeekAndDestroy().run();
+            //new DontDoThis().run();
+            autoRan = true;
+        }
     }
 }

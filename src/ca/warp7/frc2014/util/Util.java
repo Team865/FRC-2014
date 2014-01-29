@@ -6,7 +6,7 @@ package ca.warp7.frc2014.util;
  * Date: 1/9/14
  * Time: 3:22 PM
  */
-class Util {
+public class Util {
     private Util() {
         // Stop an instance of this class from being created
     }
@@ -22,5 +22,9 @@ class Util {
 
     public static void log(String string) {
         System.out.println(string);
+    }
+
+    public static double deadband(double rawAxis) {
+        return Math.abs(rawAxis) > Math.abs(RobotInfo.xboxDeadband.getDouble()) ? rawAxis : 0.0; // return rawAxis if it's above .1, otherwise return 0.
     }
 }

@@ -12,13 +12,15 @@ public class RobotInfo {
 
 
     // Syntax:
-    // public static final RobotInfo varname = new RobotInfo(key, data);
+    // public static final RobotInfo key = new RobotInfo(key, data);
 
     public static final RobotInfo leftJoyPort = new RobotInfo("leftJoyPort", 1);
     public static final RobotInfo rightJoyPort = new RobotInfo("rightJoyPort", 2);
-    public static final RobotInfo controller = new RobotInfo("controller", 0);
-    public static final RobotInfo leftMotorPort = new RobotInfo("leftMotorPort", 3);
-    public static final RobotInfo rightMotorPort = new RobotInfo("rightMotorPort", 4);
+    public static final RobotInfo leftMotorPort = new RobotInfo("leftMotorPort", 1);
+    public static final RobotInfo rightMotorPort = new RobotInfo("rightMotorPort", 2);
+    public static final RobotInfo xboxPin = new RobotInfo("xboxPin", 1);
+    public static final RobotInfo xboxDeadband = new RobotInfo("xboxDeadband", 0.1);
+    public static final RobotInfo cheesyMod = new RobotInfo("cheesyMod", 1.2);
 
 
     public static void loadPrefsFromFile() {
@@ -31,11 +33,11 @@ public class RobotInfo {
 
     }
 
-    public double doubleValue() {
+    public double getDouble() {
         return data;
     }
 
-    public int intValue() {
+    public int getInt() {
         return (int) data;
     }
 }

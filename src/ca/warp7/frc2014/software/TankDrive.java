@@ -1,6 +1,6 @@
 package ca.warp7.frc2014.software;
 
-import ca.warp7.frc2014.hardware.Part;
+import ca.warp7.frc2014.hardware.Hardware;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,7 +11,8 @@ import ca.warp7.frc2014.hardware.Part;
 public class TankDrive extends Subsystem {
 
     public void tick() {
-        Part.chassis.setLeftRightPower(Part.controller.getPrimaryY(), Part.controller.getSecondaryY());
+        Hardware.leftDrive.set(Hardware.controller.getPrimaryY());
+        Hardware.rightDrive.set(Hardware.controller.getSecondaryY());
 
     }
 }
