@@ -1,15 +1,9 @@
 package ca.warp7.frc2014.software;
 
-import ca.warp7.frc2014.hardware.Hardware;
+import ca.warp7.frc2014.robot.Warp7Robot;
 import ca.warp7.frc2014.util.RobotInfo;
 import ca.warp7.frc2014.util.Util;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Marcus is dumb
- * Date: 1/29/14
- * Time: 3:22 PM
- */
 public class CheesyDrive extends Subsystem {
     private double oldWheel = 0.0;
     private double quickStopAccumulator;
@@ -18,14 +12,14 @@ public class CheesyDrive extends Subsystem {
 
     }
 
-    public void tick() { // Driving Method
+    public void periodic() { // Driving Method
         double wheelNonLinearity, wheel, throttle;
 
-        boolean isQuickTurn = Hardware.controller.getPrimaryAction();
+        boolean isQuickTurn = Warp7Robot.ds.controller.getPrimaryAction();
         double wheelDeadband = 0.02;
-        wheel = handleDeadband(Hardware.controller.getSecondaryX(), wheelDeadband);
+        wheel = handleDeadband(Warp7Robot.ds.controller.getSecondaryX(), wheelDeadband);
         double throttleDeadband = 0.02;
-        throttle = handleDeadband(Hardware.controller.getPrimaryY(), throttleDeadband);
+        throttle = handleDeadband(Warp7Robot.ds.controller.getPrimaryY(), throttleDeadband);
 
 
         double negInertia = wheel - oldWheel;
@@ -44,7 +38,7 @@ public class CheesyDrive extends Subsystem {
                 / Math.sin(Math.PI / 2.0 * wheelNonLinearity);
 
         double leftPwm, rightPwm, overPower;
-        double sensitivity = 1.7;
+        double sensitivity;
 
         double angularPower;
         double linearPower;
@@ -63,7 +57,7 @@ public class CheesyDrive extends Subsystem {
         sensitivity = RobotInfo.cheesyMod.getDouble();
 
         double negInertiaPower = negInertia * negInertiaScalar;
-        negInertiaAccumulator += negInertiaPower;
+        negInertiaAccumulator += negInertiaPower; // what is this for please help TODO what is this
 
         wheel = wheel + negInertiaAccumulator;
         if (negInertiaAccumulator > 1)
@@ -114,8 +108,8 @@ public class CheesyDrive extends Subsystem {
             rightPwm = -1.0;
         }
 
-        Hardware.leftDrive.set(leftPwm);
-        Hardware.rightDrive.set(rightPwm);
+
+        Warp7Robot.hw.drive.setLRPower(leftPwm, rightPwm);
     }
 
     double handleDeadband(double val, double deadband) {

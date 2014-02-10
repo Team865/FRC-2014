@@ -1,17 +1,15 @@
-package ca.warp7.frc2014.control;
+package ca.warp7.frc2014.driverstation;
 
 import ca.warp7.frc2014.util.RobotInfo;
 import ca.warp7.frc2014.util.Util;
 import edu.wpi.first.wpilibj.Joystick;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Ari
- * Date: 1/29/14
- * Time: 12:56 PM
- */
 public class ControllerXbox extends Controller {
-    private final Joystick con = new Joystick(RobotInfo.xboxPin.getInt());
+    private final Joystick con;
+
+    public ControllerXbox() {
+        con = new Joystick(RobotInfo.xboxPin.getInt()); // Do this? or should put in the var statement above?
+    }
 
     public double getPrimaryX() {
         return Util.deadband(con.getRawAxis(1)); //LeftX

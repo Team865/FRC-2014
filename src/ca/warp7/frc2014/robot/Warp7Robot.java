@@ -1,57 +1,53 @@
 package ca.warp7.frc2014.robot;// Time Created: 1/4/14 4:57 PM
 
-import ca.warp7.frc2014.autonomous.SeekAndDestroy;
-import ca.warp7.frc2014.control.ControllerXbox;
-import ca.warp7.frc2014.hardware.Hardware;
-import ca.warp7.frc2014.software.Subsystem;
-import ca.warp7.frc2014.software.TankDrive;
-import edu.wpi.first.wpilibj.SimpleRobot;
+import ca.warp7.frc2014.autonomous.HotAutoMode;
+import ca.warp7.frc2014.driverstation.ControllerXbox;
+import ca.warp7.frc2014.driverstation.DriverStation;
+import ca.warp7.frc2014.software.CheesyDrive;
+import ca.warp7.frc2014.util.RobotInfo;
+import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Timer;
 
-class Warp7Robot extends SimpleRobot {
+public class Warp7Robot extends IterativeRobot {
 
-    private boolean autoRan = false;
+    private AutoController autoController;
+    private SubsystemController subsystem;
+    public static DriverStation ds;
+    public static HardwareController hw;
 
-    public Warp7Robot() {
+    public void robotInit() {
+        autoController = new AutoController();
+        autoController.addAutoCommand("Hotspot Detect & Drive", HotAutoMode.class);
+
         // Adding shit onto the robot
-        Hardware.controller = new ControllerXbox();
+        ds.controller = new ControllerXbox();
 
-        Subsystem.add(new TankDrive());
+        subsystem = new SubsystemController();
+        subsystem.add(new CheesyDrive());
+
         /*
-        // Calibration routine.
         //TODO: dynamic subsystem switching
         Subsystem.add(new TalonCalibrate(Hardware.leftDrive));
         Subsystem.add(new TalonCalibrate(Hardware.rightDrive));
         */
     }
 
-    public void robotMain() {
-        getWatchdog().setEnabled(true);
-
-        while (true) {
-            if (isDisabled()) {
-                disabled();
-            } else if (isAutonomous()) {
-                autonomous();
-            } else {
-                teleOp();
-            }
-        } // What are the delays for??? Timer.delay(.1); //Wat why do I see this everywhere
+    public void teleopInit() {
+        //TODO: i dunno man
     }
 
-    void teleOp() {
-        getWatchdog().feed();
-        Subsystem.runSubsystems();
+    public void teleopPeriodic() {
+        subsystem.runSubsystemsPeriodic();
+        Timer.delay(.1); // Don't spam packets!
     }
 
-    public void disabled() {
-        getWatchdog().setEnabled(false);
-        autoRan = false;
+    public void disabledInit() {
+        System.out.println("Disabled initializing.");
+        System.out.println("Loading RobotInfo from file.");
+        RobotInfo.readInfoFromFile();
     }
 
-    public void autonomous() {
-        if (!autoRan) {
-            new SeekAndDestroy().run();
-            autoRan = true;
-        }
+    public void disabledPeriodic() {
+        //TODO: Make this let you choose an auton mode from the DS.
     }
 }

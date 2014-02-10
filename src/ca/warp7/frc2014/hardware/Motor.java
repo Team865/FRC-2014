@@ -2,13 +2,7 @@ package ca.warp7.frc2014.hardware;
 
 import edu.wpi.first.wpilibj.Talon;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Marcus is dumb
- * Date: 1/29/14
- * Time: 3:16 PM
- */
-public class Motor extends Hardware {
+public class Motor {
 
     private final Talon t;
     private boolean flipped;

@@ -1,28 +1,24 @@
 package ca.warp7.frc2014.software;
 
-import ca.warp7.frc2014.hardware.Hardware;
+import ca.warp7.frc2014.robot.Warp7Robot;
 import edu.wpi.first.wpilibj.Talon;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Ari
- * Date: 1/29/14
- * Time: 2:39 PM
- */
 public class TalonCalibrate extends Subsystem {
-    private final Talon talon;
+    private Talon talon = null;
 
-    public TalonCalibrate(Talon talon) {
+    public void setTalon(Talon talon) {
         this.talon = talon;
     }
 
-    protected void tick() {
-        if (Hardware.controller.getPrimaryAction()) {
-            talon.set(1);
-        } else if (Hardware.controller.getSecondaryAction()) {
-            talon.set(-1);
-        } else {
-            talon.set(0);
+    public void periodic() {
+        if (talon != null) {
+            if (Warp7Robot.ds.controller.getPrimaryAction()) {
+                talon.set(1);
+            } else if (Warp7Robot.ds.controller.getSecondaryAction()) {
+                talon.set(-1);
+            } else {
+                talon.set(0);
+            }
         }
     }
 }

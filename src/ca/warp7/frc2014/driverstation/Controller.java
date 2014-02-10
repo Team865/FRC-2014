@@ -1,6 +1,8 @@
-package ca.warp7.frc2014.control;// Time Created: 1/4/14 5:28 PM
+package ca.warp7.frc2014.driverstation;// Time Created: 1/4/14 5:28 PM
 
 public abstract class Controller {
+
+    // Don't forget to singleton.
     public abstract double getPrimaryX();
 
     public abstract double getPrimaryY();

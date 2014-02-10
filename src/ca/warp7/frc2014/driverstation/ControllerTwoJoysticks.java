@@ -1,15 +1,11 @@
-package ca.warp7.frc2014.control;
+package ca.warp7.frc2014.driverstation;
 
 import ca.warp7.frc2014.util.RobotInfo;
 import edu.wpi.first.wpilibj.Joystick;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Aidan
- * Date: 1/9/14
- * Time: 3:41 PM
- */
+
 public class ControllerTwoJoysticks extends Controller {
+
     private final Joystick joy1;
     private final Joystick joy2;
 
