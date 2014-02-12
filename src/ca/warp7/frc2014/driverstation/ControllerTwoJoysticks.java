@@ -31,11 +31,11 @@ public class ControllerTwoJoysticks extends Controller {
     }
 
     public boolean getPrimaryAction() {
-        return false;
+        return joy2.getTrigger();
     }
 
     public boolean getSecondaryAction() {
-        return false;
+        return joy1.getTrigger();
     }
 
     public boolean getTertiaryAction() {
