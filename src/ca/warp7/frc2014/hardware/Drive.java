@@ -6,10 +6,10 @@ import edu.wpi.first.wpilibj.Solenoid;
 
 public class Drive {
     private Solenoid shifter = new Solenoid(RobotInfo.shifterPort.getInt());
-    private Motor leftDrive = new Motor(RobotInfo.leftMotorPort.getInt());
-    private Motor rightDrive = new Motor(RobotInfo.rightMotorPort.getInt(), true);
-    private Encoder leftEncoder = new Encoder(RobotInfo.leftEncoderPortA.getInt(), RobotInfo.leftEncoderPortB.getInt());
-    private Encoder rightEncoder = new Encoder(RobotInfo.rightEncoderPortA.getInt(), RobotInfo.rightEncoderPortB.getInt());
+    private final Motor leftDrive = new Motor(RobotInfo.leftMotorPort.getInt());
+    private final Motor rightDrive = new Motor(RobotInfo.rightMotorPort.getInt(), true);
+    private final Encoder leftEncoder = new Encoder(RobotInfo.leftEncoderPortA.getInt(), RobotInfo.leftEncoderPortB.getInt());
+    private final Encoder rightEncoder = new Encoder(RobotInfo.rightEncoderPortA.getInt(), RobotInfo.rightEncoderPortB.getInt());
 
     public void setLRPower(double lPower, double rPower) {
         leftDrive.set(lPower);

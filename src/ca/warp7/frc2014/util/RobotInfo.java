@@ -14,9 +14,9 @@ public class RobotInfo extends RobotInfoHandler {
     public static final RobotInfo shifterPort = new RobotInfo("shifterPort", 3);
 
     public static final RobotInfo leftEncoderPortA = new RobotInfo("leftEncoderPortA", 1);
-    public static final RobotInfo leftEncoderPortB = new RobotInfo("leftEncoderPortB", 1);
-    public static final RobotInfo rightEncoderPortA = new RobotInfo("rightEncoderPortA", 1);
-    public static final RobotInfo rightEncoderPortB = new RobotInfo("rightEncoderPortB", 1);
+    public static final RobotInfo leftEncoderPortB = new RobotInfo("leftEncoderPortB", 2);
+    public static final RobotInfo rightEncoderPortA = new RobotInfo("rightEncoderPortA", 3);
+    public static final RobotInfo rightEncoderPortB = new RobotInfo("rightEncoderPortB", 4);
 
     public static final RobotInfo xboxPin = new RobotInfo("xboxPin", 1);
     public static final RobotInfo xboxDeadband = new RobotInfo("xboxDeadband", 0.1);

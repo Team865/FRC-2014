@@ -74,7 +74,7 @@ public class RobotInfoHandler {
     }
 
     public static class RobotInfo {
-        private String key;
+        private final String key;
         private double data;
 
         RobotInfo(String key, double data) {
