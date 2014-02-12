@@ -31,7 +31,7 @@ public class RobotInfoHandler {
 
         try {
             // Read everything from the file into one string.
-            infoFile = (FileConnection) Connector.open("file:///" + infoList,
+            infoFile = (FileConnection) Connector.open("file:///" + INFO_FILE_PATH,
                     Connector.READ);
             infoStream = infoFile.openDataInputStream();
             while (infoStream.read(buffer) != -1) {
@@ -55,7 +55,8 @@ public class RobotInfoHandler {
                 // Search through the infoList until we find one with the same name.
                 for (int j = 0; j < infoList.size(); j++) {
                     RobotInfo info = (RobotInfo) infoList.elementAt(j);
-                    if (info.getKey().compareTo(line[0]) == 0) {
+                    System.out.println(info.getKey());
+                    if (info.getKey().equals(line[0])) {
                         System.out.println("Setting " + info.getKey() + " to " + Double.parseDouble(line[1]));
                         info.setVal(Double.parseDouble(line[1]));
                         found = true;
@@ -64,10 +65,10 @@ public class RobotInfoHandler {
                 }
 
                 if (!found)
-                    System.out.println("Error: the infoList doesn't exist: " + lines[i]);
+                    System.out.println("Error: the specified RobotInfo doesn't exist: " + lines[i]);
             }
         } catch (IOException e) {
-            System.out.println("infos.txt not found. Not overriding infos.");
+            System.out.println("robotInfo.txt not found. Not overriding info.");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -80,6 +81,7 @@ public class RobotInfoHandler {
         RobotInfo(String key, double data) {
             this.key = key;
             this.data = data;
+            infoList.addElement(this);
 
         }
 

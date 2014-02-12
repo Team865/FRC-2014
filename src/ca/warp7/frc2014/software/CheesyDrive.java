@@ -8,6 +8,10 @@ public class CheesyDrive extends Subsystem {
     private double oldWheel = 0.0;
     private double quickStopAccumulator;
 
+    public String getName() {
+        return "Cheesy Drive";
+    }
+
     public CheesyDrive() {
 
     }
@@ -17,7 +21,7 @@ public class CheesyDrive extends Subsystem {
 
         boolean isQuickTurn = Warp7Robot.ds.controller.getPrimaryAction();
         double wheelDeadband = 0.02;
-        wheel = handleDeadband(Warp7Robot.ds.controller.getSecondaryX(), wheelDeadband);
+        wheel = handleDeadband(-Warp7Robot.ds.controller.getSecondaryX(), wheelDeadband);
         double throttleDeadband = 0.02;
         throttle = handleDeadband(Warp7Robot.ds.controller.getPrimaryY(), throttleDeadband);
 
@@ -76,7 +80,6 @@ public class CheesyDrive extends Subsystem {
                         + alpha * Util.limit(wheel, 1.0) * 5;
             }
             overPower = 1.0;
-            sensitivity = 1.0;
             angularPower = wheel;
         } else {
             overPower = 0.0;

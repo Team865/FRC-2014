@@ -5,7 +5,7 @@ import ca.warp7.frc2014.software.Subsystem;
 import java.util.Vector;
 
 public class SubsystemController {
-    private final Vector subsystemList = new Vector();
+    public final Vector subsystemList = new Vector();
 
     public void add(Subsystem s) {
         subsystemList.addElement(s);
@@ -18,7 +18,7 @@ public class SubsystemController {
     public void runSubsystemsPeriodic() {
         for (int i = 0; i < subsystemList.size(); i++) {
             Subsystem s = (Subsystem) subsystemList.elementAt(i);
-            if (s.enabled)
+            if (s.isEnabled())
                 s.periodic();
         }
     }

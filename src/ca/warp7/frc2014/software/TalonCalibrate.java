@@ -4,6 +4,11 @@ import ca.warp7.frc2014.robot.Warp7Robot;
 import edu.wpi.first.wpilibj.Talon;
 
 public class TalonCalibrate extends Subsystem {
+
+    public String getName() {
+        return "Talon Calibration";
+    }
+
     private Talon talon = null;
 
     public void setTalon(Talon talon) {

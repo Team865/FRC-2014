@@ -3,6 +3,7 @@ package ca.warp7.frc2014.robot;// Time Created: 1/4/14 4:57 PM
 import ca.warp7.frc2014.autonomous.HotAutoMode;
 import ca.warp7.frc2014.driverstation.ControllerTwoJoysticks;
 import ca.warp7.frc2014.driverstation.DriverStation;
+import ca.warp7.frc2014.software.CheesyDrive;
 import ca.warp7.frc2014.software.TankDrive;
 import ca.warp7.frc2014.util.RobotInfo;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -10,7 +11,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 public class Warp7Robot extends IterativeRobot {
 
     private AutoController autoController;
-    private SubsystemController subsystem;
+    public static SubsystemController subsystem;
     public static DriverStation ds;
     public static HardwareController hw;
 
@@ -24,7 +25,9 @@ public class Warp7Robot extends IterativeRobot {
         ds.controller = new ControllerTwoJoysticks();
 
         subsystem = new SubsystemController();
-        subsystem.add(new TankDrive());
+        subsystem.add(new TankDrive().setEnabled(false));
+        subsystem.add(new CheesyDrive());
+        getWatchdog().setExpiration(200);
 
         /*
         //TODO: dynamic subsystem switching  (I think this is done?? kinda)
@@ -48,6 +51,7 @@ public class Warp7Robot extends IterativeRobot {
     public void teleopPeriodic() {
         subsystem.runSubsystemsPeriodic();
         getWatchdog().feed();
+
         //Timer.delay(.1); // Don't spam packets!
     }
 
@@ -58,6 +62,8 @@ public class Warp7Robot extends IterativeRobot {
         System.out.println("Loading RobotInfo from file.");
 
         RobotInfo.readInfoFromFile();
+
+        ds.sendSubsystemInfo();
 
     }
 
