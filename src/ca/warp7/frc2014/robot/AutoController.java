@@ -2,7 +2,7 @@ package ca.warp7.frc2014.robot;
 
 import java.util.Vector;
 
-class AutoController {
+public class AutoController {
     private final Vector autoModes = new Vector();
 
     public void addAutoCommand(String name, Class command) {

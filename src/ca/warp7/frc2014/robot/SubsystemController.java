@@ -18,7 +18,8 @@ public class SubsystemController {
     public void runSubsystemsPeriodic() {
         for (int i = 0; i < subsystemList.size(); i++) {
             Subsystem s = (Subsystem) subsystemList.elementAt(i);
-            s.periodic();
+            if (s.enabled)
+                s.periodic();
         }
     }
 }

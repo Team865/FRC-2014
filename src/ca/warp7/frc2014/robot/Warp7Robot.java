@@ -1,12 +1,11 @@
 package ca.warp7.frc2014.robot;// Time Created: 1/4/14 4:57 PM
 
 import ca.warp7.frc2014.autonomous.HotAutoMode;
-import ca.warp7.frc2014.driverstation.ControllerXbox;
+import ca.warp7.frc2014.driverstation.ControllerTwoJoysticks;
 import ca.warp7.frc2014.driverstation.DriverStation;
-import ca.warp7.frc2014.software.CheesyDrive;
+import ca.warp7.frc2014.software.TankDrive;
 import ca.warp7.frc2014.util.RobotInfo;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Timer;
 
 public class Warp7Robot extends IterativeRobot {
 
@@ -22,10 +21,10 @@ public class Warp7Robot extends IterativeRobot {
 
         // Adding shit onto the robot
         ds = new DriverStation();
-        ds.controller = new ControllerXbox();
+        ds.controller = new ControllerTwoJoysticks();
 
         subsystem = new SubsystemController();
-        subsystem.add(new CheesyDrive());
+        subsystem.add(new TankDrive());
 
         /*
         //TODO: dynamic subsystem switching  (I think this is done?? kinda)
@@ -35,10 +34,12 @@ public class Warp7Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
+        getWatchdog().setEnabled(true);
         ds.setMode("Autonomous");
     }
 
     public void teleopInit() {
+        getWatchdog().setEnabled(true);
         //TODO: i dunno man, what would I do here. tell DS we're in tele?
         ds.setMode("Teleop");
 
@@ -46,10 +47,12 @@ public class Warp7Robot extends IterativeRobot {
 
     public void teleopPeriodic() {
         subsystem.runSubsystemsPeriodic();
-        Timer.delay(.1); // Don't spam packets!
+        getWatchdog().feed();
+        //Timer.delay(.1); // Don't spam packets!
     }
 
     public void disabledInit() {
+        getWatchdog().setEnabled(false);
         System.out.println("Disabled initializing.");
         ds.setMode("Disabled");
         System.out.println("Loading RobotInfo from file.");
