@@ -39,11 +39,11 @@ public class ControllerTwoJoysticks extends Controller {
     }
 
     public boolean getTertiaryAction() {
-        return false;
+        return joy1.getRawButton(3);
     }
 
     public boolean getQuaternaryAction() {
-        return false;
+        return joy1.getRawButton(2);
     }
 
 }
