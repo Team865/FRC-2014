@@ -2,7 +2,6 @@ package ca.warp7.frc2014.driverstation;
 
 import ca.warp7.frc2014.robot.Warp7Robot;
 import ca.warp7.frc2014.software.Subsystem;
-import ca.warp7.frc2014.util.Util;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 import java.util.Vector;
@@ -12,7 +11,8 @@ public class DriverStation {
     private NetworkTable table;
 
     public DriverStation() {
-        table = NetworkTable.getTable("ds");
+        table = NetworkTable.getTable("DriverStation");
+
     }
 
     public void setMode(String mode) {
@@ -38,7 +38,6 @@ public class DriverStation {
             if (subtable.containsKey(s.getName())) {
                 s.setEnabled(subtable.getBoolean(s.getName()));
 
-                Util.log(s.getName() + ":" + s.isEnabled());
             }
         }
     }

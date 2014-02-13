@@ -33,6 +33,7 @@ public class Warp7Robot extends IterativeRobot {
         Subsystem.add(new TalonCalibrate(Hardware.leftDrive));
         Subsystem.add(new TalonCalibrate(Hardware.rightDrive));
         */
+        System.out.println("Robot am activate");
     }
 
     public void autonomousInit() {
