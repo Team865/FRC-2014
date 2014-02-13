@@ -18,16 +18,15 @@ public class Warp7Robot extends IterativeRobot {
     public void robotInit() {
         hw = new HardwareController();
         autoController = new AutoController();
-        autoController.addAutoCommand("Hotspot Detect & Drive", HotAutoMode.class);
-
-        // Adding shit onto the robot
         ds = new DriverStation();
-        ds.controller = new ControllerTwoJoysticks();
-
         subsystem = new SubsystemController();
+
+
+        autoController.addAutoCommand("Hot target Detect & Drive", HotAutoMode.class);
+        ds.controller = new ControllerTwoJoysticks();
         subsystem.add(new TankDrive().setEnabled(false));
         subsystem.add(new CheesyDrive());
-        getWatchdog().setExpiration(200);
+        getWatchdog().setExpiration(250);
 
         /*
         //TODO: dynamic subsystem switching  (I think this is done?? kinda)
@@ -43,16 +42,12 @@ public class Warp7Robot extends IterativeRobot {
 
     public void teleopInit() {
         getWatchdog().setEnabled(true);
-        //TODO: i dunno man, what would I do here. tell DS we're in tele?
         ds.setMode("Teleop");
-
     }
 
     public void teleopPeriodic() {
         subsystem.runSubsystemsPeriodic();
         getWatchdog().feed();
-
-        //Timer.delay(.1); // Don't spam packets!
     }
 
     public void disabledInit() {
@@ -62,12 +57,20 @@ public class Warp7Robot extends IterativeRobot {
         System.out.println("Loading RobotInfo from file.");
 
         RobotInfo.readInfoFromFile();
-
-        ds.sendSubsystemInfo();
+        ds.loadSubsystemInfo();
 
     }
 
     public void disabledPeriodic() {
         //TODO: Make this let you choose an auton mode from the DS.
+
+    }
+
+    public void testInit() {
+        teleopInit();
+    }
+
+    public void testPeriodic() {
+        teleopPeriodic();
     }
 }
