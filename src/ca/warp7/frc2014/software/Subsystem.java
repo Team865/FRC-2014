@@ -3,6 +3,10 @@ package ca.warp7.frc2014.software;// Time Created: 1/4/14 5:24 PM
 import ca.warp7.frc2014.robot.Warp7Robot;
 
 public abstract class Subsystem {
+    public Subsystem() {
+        setEnabled(true);
+    }
+
     public abstract void periodic();
 
     public abstract String getName();
@@ -17,5 +21,5 @@ public abstract class Subsystem {
         return this;
     }
 
-    protected boolean enabled = true;
+    protected boolean enabled;
 }

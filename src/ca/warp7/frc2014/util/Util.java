@@ -22,8 +22,8 @@ public class Util {
         return (Math.abs(v) < limit) ? v : limit * (v < 0 ? -1 : 1); //This is used for cheesydrive, if we're gonna use it.
     }
 
-    public static void log(String string) {
-        System.out.println(string);
+    public static void log(String sub, String string) {
+        System.out.println("[" + sub + "] " + string);
     }
 
     public static double deadband(double rawAxis) {

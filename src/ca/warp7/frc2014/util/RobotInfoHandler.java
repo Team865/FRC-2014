@@ -46,7 +46,7 @@ public class RobotInfoHandler {
                 // Extract the key and value.
                 String[] line = Util.split(lines[i], "=");
                 if (line.length != 2) {
-                    System.out.println("Error: invalid info file line: " +
+                    Util.log("RobotInfo", "Error: invalid info file line: " +
                             (lines[i].length() == 0 ? "(empty line)" : lines[i]));
                     continue;
                 }
@@ -55,9 +55,9 @@ public class RobotInfoHandler {
                 // Search through the infoList until we find one with the same name.
                 for (int j = 0; j < infoList.size(); j++) {
                     RobotInfo info = (RobotInfo) infoList.elementAt(j);
-                    System.out.println(info.getKey());
+                    // Util.log("RobotInfo",info.getKey());
                     if (info.getKey().equals(line[0])) {
-                        System.out.println("Setting " + info.getKey() + " to " + Double.parseDouble(line[1]));
+                        Util.log("RobotInfo", "Setting " + info.getKey() + " to " + Double.parseDouble(line[1]));
                         info.setVal(Double.parseDouble(line[1]));
                         found = true;
                         break;
@@ -65,10 +65,10 @@ public class RobotInfoHandler {
                 }
 
                 if (!found)
-                    System.out.println("Error: the specified RobotInfo doesn't exist: " + lines[i]);
+                    Util.log("RobotInfo", "Error: the specified RobotInfo doesn't exist: " + lines[i]);
             }
         } catch (IOException e) {
-            System.out.println("robotInfo.txt not found. Not overriding info.");
+            Util.log("RobotInfo", "robotInfo.txt not found. Not overriding info.");
         } catch (Exception e) {
             e.printStackTrace();
         }

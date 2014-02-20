@@ -1,49 +1,42 @@
 package ca.warp7.frc2014.robot;// Time Created: 1/4/14 4:57 PM
 
-import ca.warp7.frc2014.autonomous.HotAutoMode;
+import ca.warp7.frc2014.autonomous.DetectHotTarget;
 import ca.warp7.frc2014.driverstation.ControllerTwoJoysticks;
 import ca.warp7.frc2014.driverstation.DriverStation;
 import ca.warp7.frc2014.software.CheesyDrive;
 import ca.warp7.frc2014.software.TankDrive;
 import ca.warp7.frc2014.util.RobotInfo;
+import ca.warp7.frc2014.util.Util;
 import edu.wpi.first.wpilibj.IterativeRobot;
 
 public class Warp7Robot extends IterativeRobot {
 
-    private AutoController autoController;
     public static SubsystemController subsystem;
     public static DriverStation ds;
     public static HardwareController hw;
 
     public void robotInit() {
         hw = new HardwareController();
-        autoController = new AutoController();
         ds = new DriverStation();
         subsystem = new SubsystemController();
 
 
-        autoController.addAutoCommand("Hot target Detect & Drive", HotAutoMode.class);
         ds.controller = new ControllerTwoJoysticks();
         subsystem.add(new TankDrive().setEnabled(false));
         subsystem.add(new CheesyDrive());
         getWatchdog().setExpiration(250);
-
-        /*
-        //TODO: dynamic subsystem switching  (I think this is done?? kinda)
-        Subsystem.add(new TalonCalibrate(Hardware.leftDrive));
-        Subsystem.add(new TalonCalibrate(Hardware.rightDrive));
-        */
-        System.out.println("Robot am activate");
+        getWatchdog().setEnabled(true);
+        Util.log("Main", "Robot has booted, ready to go.");
     }
 
     public void autonomousInit() {
-        getWatchdog().setEnabled(true);
         ds.setMode("Autonomous");
+        new DetectHotTarget().run();
     }
 
     public void teleopInit() {
-        getWatchdog().setEnabled(true);
         ds.setMode("Teleop");
+        ds.loadSubsystemInfo();
     }
 
     public void teleopPeriodic() {
@@ -52,10 +45,9 @@ public class Warp7Robot extends IterativeRobot {
     }
 
     public void disabledInit() {
-        getWatchdog().setEnabled(false);
-        System.out.println("Disabled initializing.");
+        Util.log("Main", "Disabled initializing.");
         ds.setMode("Disabled");
-        System.out.println("Loading RobotInfo from file.");
+        Util.log("Main", "Loading RobotInfo from file.");
 
         RobotInfo.readInfoFromFile();
         ds.loadSubsystemInfo();

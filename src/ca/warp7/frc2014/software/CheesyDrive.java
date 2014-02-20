@@ -12,10 +12,6 @@ public class CheesyDrive extends Subsystem {
         return "Cheesy Drive";
     }
 
-    public CheesyDrive() {
-
-    }
-
     public void periodic() { // Driving Method
         double wheelNonLinearity, wheel, throttle;
 
