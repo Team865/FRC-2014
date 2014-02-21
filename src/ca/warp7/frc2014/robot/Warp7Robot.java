@@ -4,6 +4,7 @@ import ca.warp7.frc2014.autonomous.DetectHotTarget;
 import ca.warp7.frc2014.driverstation.ControllerTwoJoysticks;
 import ca.warp7.frc2014.driverstation.DriverStation;
 import ca.warp7.frc2014.software.CheesyDrive;
+import ca.warp7.frc2014.software.MotorTester;
 import ca.warp7.frc2014.software.TankDrive;
 import ca.warp7.frc2014.util.RobotInfo;
 import ca.warp7.frc2014.util.Util;
@@ -24,6 +25,8 @@ public class Warp7Robot extends IterativeRobot {
         ds.controller = new ControllerTwoJoysticks();
         subsystem.add(new TankDrive().setEnabled(false));
         subsystem.add(new CheesyDrive());
+        subsystem.add(new MotorTester());
+
         getWatchdog().setExpiration(250);
         getWatchdog().setEnabled(true);
         Util.log("Main", "Robot has booted, ready to go.");
@@ -32,6 +35,7 @@ public class Warp7Robot extends IterativeRobot {
     public void autonomousInit() {
         ds.setMode("Autonomous");
         new DetectHotTarget().run();
+        getWatchdog().feed();
     }
 
     public void teleopInit() {
@@ -55,7 +59,6 @@ public class Warp7Robot extends IterativeRobot {
     }
 
     public void disabledPeriodic() {
-        //TODO: Make this let you choose an auton mode from the DS.
 
     }
 

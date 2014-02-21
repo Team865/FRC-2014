@@ -21,5 +21,5 @@ public abstract class Subsystem {
         return this;
     }
 
-    protected boolean enabled;
+    private boolean enabled;
 }

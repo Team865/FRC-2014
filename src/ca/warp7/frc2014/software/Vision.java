@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 public class Vision {
     private boolean isHot = false;
-    NetworkTable table;
+    private final NetworkTable table;
 
     public Vision() {
         table = NetworkTable.getTable("Vision");

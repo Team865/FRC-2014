@@ -15,7 +15,7 @@ public class CheesyDrive extends Subsystem {
     public void periodic() { // Driving Method
         double wheelNonLinearity, wheel, throttle;
 
-        boolean isQuickTurn = Warp7Robot.ds.controller.getPrimaryAction();
+        boolean isQuickTurn = Warp7Robot.ds.controller.getButton(1);
         double wheelDeadband = 0.02;
         wheel = handleDeadband(-Warp7Robot.ds.controller.getSecondaryX(), wheelDeadband);
         double throttleDeadband = 0.02;

@@ -30,20 +30,13 @@ public class ControllerTwoJoysticks extends Controller {
         return joy2.getY();
     }
 
-    public boolean getPrimaryAction() {
-        return joy2.getTrigger();
+    public boolean getButton(int i) {
+        return joy1.getRawButton(i);
     }
 
-    public boolean getSecondaryAction() {
-        return joy1.getTrigger();
+    public boolean getSecondaryButton(int i) {
+        return joy2.getRawButton(i);
     }
 
-    public boolean getTertiaryAction() {
-        return joy1.getRawButton(3);
-    }
-
-    public boolean getQuaternaryAction() {
-        return joy1.getRawButton(2);
-    }
 
 }

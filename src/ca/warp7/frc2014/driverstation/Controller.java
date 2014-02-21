@@ -11,11 +11,7 @@ public abstract class Controller {
 
     public abstract double getSecondaryY();
 
-    public abstract boolean getPrimaryAction();
+    public abstract boolean getButton(int i);
 
-    public abstract boolean getSecondaryAction();
-
-    public abstract boolean getTertiaryAction();
-
-    public abstract boolean getQuaternaryAction();
+    public abstract boolean getSecondaryButton(int i);
 }

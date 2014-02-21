@@ -28,19 +28,11 @@ public class ControllerXbox extends Controller {
 
     }
 
-    public boolean getPrimaryAction() {
-        return con.getRawButton(1); //A
+    public boolean getButton(int i) {
+        return con.getRawButton(i);
     }
 
-    public boolean getSecondaryAction() {
-        return con.getRawButton(2); //B
-    }
-
-    public boolean getTertiaryAction() {
-        return con.getRawButton(3); //X
-    }
-
-    public boolean getQuaternaryAction() {
-        return con.getRawButton(4); //Y
+    public boolean getSecondaryButton(int i) {
+        return getButton(i);
     }
 }

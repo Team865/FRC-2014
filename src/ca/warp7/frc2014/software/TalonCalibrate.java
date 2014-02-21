@@ -17,9 +17,9 @@ public class TalonCalibrate extends Subsystem {
 
     public void periodic() {
         if (talon != null) {
-            if (Warp7Robot.ds.controller.getPrimaryAction()) {
+            if (Warp7Robot.ds.controller.getButton(1)) {
                 talon.set(1);
-            } else if (Warp7Robot.ds.controller.getSecondaryAction()) {
+            } else if (Warp7Robot.ds.controller.getButton(2)) {
                 talon.set(-1);
             } else {
                 talon.set(0);

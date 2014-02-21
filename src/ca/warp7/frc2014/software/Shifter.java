@@ -8,10 +8,10 @@ public class Shifter extends Subsystem {
     }
 
     public void periodic() {
-        if (Warp7Robot.ds.controller.getTertiaryAction()) {
+        if (Warp7Robot.ds.controller.getButton(4)) {
             Warp7Robot.hw.drive.shift(true);
         }
-        if (Warp7Robot.ds.controller.getQuaternaryAction()) {
+        if (Warp7Robot.ds.controller.getButton(5)) {
             Warp7Robot.hw.drive.shift(false);
         }
 

@@ -3,17 +3,18 @@ package ca.warp7.frc2014.hardware;
 import ca.warp7.frc2014.robot.Warp7Robot;
 import ca.warp7.frc2014.util.RobotInfo;
 import ca.warp7.frc2014.util.Util;
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.Talon;
 
 public class Drive {
-    private Solenoid shifter = new Solenoid(RobotInfo.shifterPort.getInt());
-    private final Motor leftDrive = new Motor(RobotInfo.leftMotorPort.getInt());
-    private final Motor rightDrive = new Motor(RobotInfo.rightMotorPort.getInt(), true);
+    private final Solenoid shifter = new Solenoid(RobotInfo.shifterPort.getInt());
+    private final Talon leftDrive = new Talon(RobotInfo.leftMotorPort.getInt());
+    private final Talon rightDrive = new Talon(RobotInfo.rightMotorPort.getInt());
     private boolean gear = false;
+
     public void setLRPower(double lPower, double rPower) {
         leftDrive.set(lPower);
-        rightDrive.set(rPower);
+        rightDrive.set(-rPower); //inverted cause other side
     }
 
     public void shift(boolean gear) {
@@ -25,5 +26,10 @@ public class Drive {
 
     public boolean getGear() {
         return gear;
+    }
+
+    public void free() {
+        leftDrive.free();
+        rightDrive.free();
     }
 }
