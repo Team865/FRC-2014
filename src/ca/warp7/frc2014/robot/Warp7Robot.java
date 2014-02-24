@@ -5,7 +5,7 @@ import ca.warp7.frc2014.driverstation.ControllerTwoJoysticks;
 import ca.warp7.frc2014.driverstation.DriverStation;
 import ca.warp7.frc2014.software.CheesyDrive;
 import ca.warp7.frc2014.software.MotorTester;
-import ca.warp7.frc2014.software.TankDrive;
+import ca.warp7.frc2014.software.WingController;
 import ca.warp7.frc2014.util.RobotInfo;
 import ca.warp7.frc2014.util.Util;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -22,9 +22,10 @@ public class Warp7Robot extends IterativeRobot {
         ds = new DriverStation();
         subsystem = new SubsystemController();
 
-
         ds.controller = new ControllerTwoJoysticks();
-        subsystem.add(new TankDrive());
+
+        //subsystem.add(new TankDrive());
+        subsystem.add(new WingController(hw.backWing));
         subsystem.add(new CheesyDrive());
         subsystem.add(new MotorTester());
 

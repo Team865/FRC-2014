@@ -10,7 +10,12 @@ public class HardwareController {
 
     public HardwareController() {
         drive = new Drive();
-        backWing = new Wing(RobotInfo.backWingWristPin.getInt(), RobotInfo.backWingRollerPin.getInt());
+        backWing = new Wing(RobotInfo.backWingWristPin.getInt(),
+                RobotInfo.backWingRollerPin.getInt(),
+                RobotInfo.backWingEncoderPin.getInt(),
+                RobotInfo.backWingP.getDouble(),
+                RobotInfo.backWingI.getDouble(),
+                RobotInfo.backWingD.getDouble());
     }
 
     public void freeAll() {

@@ -1,6 +1,5 @@
 package ca.warp7.frc2014.driverstation;
 
-import ca.warp7.frc2014.util.RobotInfo;
 import ca.warp7.frc2014.util.Util;
 import edu.wpi.first.wpilibj.Joystick;
 
@@ -8,7 +7,7 @@ public class ControllerXbox extends Controller {
     private final Joystick con;
 
     public ControllerXbox() {
-        con = new Joystick(RobotInfo.xboxPin.getInt()); // Do this? or should put in the var statement above?
+        con = new Joystick(1);
     }
 
     public double getPrimaryX() {
