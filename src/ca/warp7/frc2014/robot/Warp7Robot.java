@@ -17,13 +17,14 @@ public class Warp7Robot extends IterativeRobot {
     public static HardwareController hw;
 
     public void robotInit() {
+        RobotInfo.readInfoFromFile();
         hw = new HardwareController();
         ds = new DriverStation();
         subsystem = new SubsystemController();
 
 
         ds.controller = new ControllerTwoJoysticks();
-        subsystem.add(new TankDrive().setEnabled(false));
+        subsystem.add(new TankDrive());
         subsystem.add(new CheesyDrive());
         subsystem.add(new MotorTester());
 

@@ -16,9 +16,9 @@ public class MotorTester extends Subsystem {
             Util.log(getName(), "CALIBRATING MOTOR PIN " + motor.getChannel());
         } else {
             motor = null;
+            this.setEnabled(false);
             Warp7Robot.subsystem.remove(this);        //herpa derpa
         }
-
 
     }
 

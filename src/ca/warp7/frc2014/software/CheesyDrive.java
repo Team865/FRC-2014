@@ -17,9 +17,9 @@ public class CheesyDrive extends Subsystem {
 
         boolean isQuickTurn = Warp7Robot.ds.controller.getButton(1);
         double wheelDeadband = 0.02;
-        wheel = handleDeadband(-Warp7Robot.ds.controller.getSecondaryX(), wheelDeadband);
+        wheel = Util.deadband(-Warp7Robot.ds.controller.getSecondaryX(), wheelDeadband);
         double throttleDeadband = 0.02;
-        throttle = handleDeadband(Warp7Robot.ds.controller.getPrimaryY(), throttleDeadband);
+        throttle = Util.deadband(Warp7Robot.ds.controller.getPrimaryY(), throttleDeadband);
 
 
         double negInertia = wheel - oldWheel;
@@ -60,12 +60,6 @@ public class CheesyDrive extends Subsystem {
         negInertiaAccumulator += negInertiaPower; // what is this for please help TODO what is this
 
         wheel = wheel + negInertiaAccumulator;
-        if (negInertiaAccumulator > 1)
-            negInertiaAccumulator -= 1;
-        else if (negInertiaAccumulator < -1)
-            negInertiaAccumulator += 1;
-        else
-            negInertiaAccumulator = 0;
         linearPower = throttle;
 
         // Quickturn!
@@ -109,9 +103,5 @@ public class CheesyDrive extends Subsystem {
 
 
         Warp7Robot.hw.drive.setLRPower(leftPwm, rightPwm);
-    }
-
-    double handleDeadband(double val, double deadband) {
-        return (Math.abs(val) > Math.abs(deadband)) ? val : 0.0;
     }
 }

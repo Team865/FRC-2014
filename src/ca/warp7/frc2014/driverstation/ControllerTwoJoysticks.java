@@ -37,6 +37,4 @@ public class ControllerTwoJoysticks extends Controller {
     public boolean getSecondaryButton(int i) {
         return joy2.getRawButton(i);
     }
-
-
 }

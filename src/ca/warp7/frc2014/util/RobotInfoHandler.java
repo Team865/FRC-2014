@@ -5,6 +5,7 @@ import com.sun.squawk.microedition.io.FileConnection;
 import javax.microedition.io.Connector;
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Vector;
 
 /**
@@ -33,6 +34,10 @@ public class RobotInfoHandler {
             // Read everything from the file into one string.
             infoFile = (FileConnection) Connector.open("file:///" + INFO_FILE_PATH,
                     Connector.READ);
+            if (!infoFile.exists()) {
+                writeInfoToFile(); //yaaaaaaaaay
+                Util.log("RobotInfo", "File does not exist, creating.");
+            }
             infoStream = infoFile.openDataInputStream();
             while (infoStream.read(buffer) != -1) {
                 content += new String(buffer);
@@ -47,7 +52,7 @@ public class RobotInfoHandler {
                 String[] line = Util.split(lines[i], "=");
                 if (line.length != 2) {
                     Util.log("RobotInfo", "Error: invalid info file line: " +
-                            (lines[i].length() == 0 ? "(empty line)" : lines[i]));
+                            (lines[i].trim().length() == 0 ? "(empty line)" : lines[i]));
                     continue;
                 }
 
@@ -68,21 +73,44 @@ public class RobotInfoHandler {
                     Util.log("RobotInfo", "Error: the specified RobotInfo doesn't exist: " + lines[i]);
             }
         } catch (IOException e) {
-            Util.log("RobotInfo", "robotInfo.txt not found. Not overriding info.");
+            Util.log("RobotInfo", "wat.");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    public static void writeInfoToFile() {
+        // resets all info then writes defaults to a file.
+        FileConnection infoFile;
+        try {
+            infoFile = (FileConnection) Connector.open("file:///" + INFO_FILE_PATH,
+                    Connector.READ_WRITE);
+            if (!infoFile.exists()) {
+                infoFile.create();
+            }
+            OutputStream outStream = infoFile.openOutputStream();
+            // Search through the infoList and write every one.
+            for (int j = 0; j < infoList.size(); j++) {
+                RobotInfo info = (RobotInfo) infoList.elementAt(j);
+                // Util.log("RobotInfo",info.getKey());
+                outStream.write((info.getKey() + "=" + info.getDefault() + "\n").getBytes()); //Convert to byte array
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public static class RobotInfo {
         private final String key;
         private double data;
+        private double def;
 
         RobotInfo(String key, double data) {
             this.key = key;
-            this.data = data;
+            this.def = data;
+            this.data = this.def;
             infoList.addElement(this);
-
         }
 
         public String getKey() {
@@ -99,6 +127,10 @@ public class RobotInfoHandler {
 
         public void setVal(double data) {
             this.data = data;
+        }
+
+        public double getDefault() {
+            return def;
         }
 
         public String toString() {

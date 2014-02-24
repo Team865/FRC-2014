@@ -14,7 +14,7 @@ public class Drive {
 
     public void setLRPower(double lPower, double rPower) {
         leftDrive.set(lPower);
-        rightDrive.set(-rPower); //inverted cause other side
+        rightDrive.set(rPower * -1); //inverted cause other side
     }
 
     public void shift(boolean gear) {

@@ -27,7 +27,11 @@ public class Util {
     }
 
     public static double deadband(double rawAxis) {
-        return Math.abs(rawAxis) > Math.abs(RobotInfo.xboxDeadband.getDouble()) ? rawAxis : 0.0; // return rawAxis if it's above .1, otherwise return 0.
+        return deadband(rawAxis, RobotInfo.xboxDeadband.getDouble());
+    }
+
+    public static double deadband(double rawAxis, double amount) {
+        return Math.abs(rawAxis) > Math.abs(amount) ? rawAxis : 0.0; // return rawAxis if it's above the val, otherwise return 0.
     }
 
     /**
