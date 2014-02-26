@@ -19,7 +19,7 @@ public class CheesyDrive extends SubsystemBase {
         double wheelDeadband = 0.02;
         wheel = Util.deadband(-Warp7Robot.ds.controller.getSecondaryX(), wheelDeadband);
         double throttleDeadband = 0.02;
-        throttle = Util.deadband(Warp7Robot.ds.controller.getPrimaryY(), throttleDeadband);
+        throttle = Util.deadband(-Warp7Robot.ds.controller.getPrimaryY(), throttleDeadband);
 
 
         double negInertia = wheel - oldWheel;

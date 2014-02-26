@@ -2,6 +2,7 @@ package ca.warp7.frc2014.driverstation;
 
 import ca.warp7.frc2014.robot.Warp7Robot;
 import ca.warp7.frc2014.software.SubsystemBase;
+import ca.warp7.frc2014.util.RobotInfo;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 import java.util.Vector;
@@ -12,6 +13,7 @@ public class DriverStation {
 
     public DriverStation() {
         table = NetworkTable.getTable("DriverStation");
+        table.addTableListener(new DriverStationUpdateListener());
 
     }
 
@@ -40,5 +42,12 @@ public class DriverStation {
 
             }
         }
+    }
+
+    public void sendSensorInfo() {
+        Warp7Robot.ds.table.putNumber("backWingEncoder", Warp7Robot.hw.backWing.getWristEncoder().getAverageValue());
+        Warp7Robot.ds.table.putNumber("backWingZeroPoint", RobotInfo.backWingZeroPoint.getDouble());
+        Warp7Robot.ds.table.putBoolean("Gear", Warp7Robot.hw.drive.getGear());
+        Warp7Robot.ds.table.putBoolean("dispence", Warp7Robot.hw.sonar.getDistance() < 50);
     }
 }

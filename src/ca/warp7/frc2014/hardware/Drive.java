@@ -21,7 +21,6 @@ public class Drive {
         shifter.set(!gear);
         this.gear = gear;
         Util.log("Drive", gear ? "High" : "Low");
-        Warp7Robot.ds.table.putBoolean("Gear", gear);
     }
 
     public boolean getGear() {

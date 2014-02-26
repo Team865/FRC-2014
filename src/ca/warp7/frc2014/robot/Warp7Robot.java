@@ -64,7 +64,7 @@ public class Warp7Robot extends IterativeRobot {
     }
 
     public void disabledPeriodic() {
-
+        ds.sendSensorInfo();
     }
 
     public void testInit() {

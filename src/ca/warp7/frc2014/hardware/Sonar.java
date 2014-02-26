@@ -16,7 +16,7 @@ public class Sonar {
     }
 
     public boolean ballDetected() {
-        Warp7Robot.ds.table.putBoolean("dispence", getDistance() < 50);
+
         return getDistance() < 50;
     }
 }

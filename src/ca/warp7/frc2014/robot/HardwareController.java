@@ -20,8 +20,7 @@ public class HardwareController {
                 RobotInfo.backWingP,
                 RobotInfo.backWingI,
                 RobotInfo.backWingD,
-                RobotInfo.backWingZeroPoint,
-                RobotInfo.backWingSetPoint);
+                RobotInfo.backWingZeroPoint);
 
         frontWing = new Wing(RobotInfo.frontWingWristPin.getInt(),
                 RobotInfo.frontWingRollerPin.getInt(),
@@ -29,8 +28,7 @@ public class HardwareController {
                 RobotInfo.frontWingP,
                 RobotInfo.frontWingI,
                 RobotInfo.frontWingD,
-                RobotInfo.frontWingZeroPoint,
-                RobotInfo.frontWingSetPoint);
+                RobotInfo.frontWingZeroPoint);
         sonar = new Sonar();
     }
 
