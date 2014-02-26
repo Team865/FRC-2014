@@ -27,7 +27,7 @@ public class RobotInfoHandler {
     public static void readInfoFromFile() {
         DataInputStream infoStream;
         FileConnection infoFile;
-        byte[] buffer = new byte[255];
+        byte[] buffer = new byte[512];
         String content = "";
 
         try {
@@ -36,7 +36,7 @@ public class RobotInfoHandler {
                     Connector.READ);
             if (!infoFile.exists()) {
                 writeInfoToFile(); //yaaaaaaaaay
-                Util.log("RobotInfo", "File does not exist, creating.");
+                Util.log("InfoValue", "File does not exist, creating.");
             }
             infoStream = infoFile.openDataInputStream();
             while (infoStream.read(buffer) != -1) {
@@ -50,30 +50,27 @@ public class RobotInfoHandler {
             for (int i = 0; i < lines.length; i++) {
                 // Extract the key and value.
                 String[] line = Util.split(lines[i], "=");
-                if (line.length != 2) {
-                    Util.log("RobotInfo", "Error: invalid info file line: " +
-                            (lines[i].trim().length() == 0 ? "(empty line)" : lines[i]));
-                    continue;
-                }
 
                 boolean found = false;
                 // Search through the infoList until we find one with the same name.
                 for (int j = 0; j < infoList.size(); j++) {
-                    RobotInfo info = (RobotInfo) infoList.elementAt(j);
-                    // Util.log("RobotInfo",info.getKey());
+                    InfoValue info = (InfoValue) infoList.elementAt(j);
                     if (info.getKey().equals(line[0])) {
-                        Util.log("RobotInfo", "Setting " + info.getKey() + " to " + Double.parseDouble(line[1]));
+                        Util.log("InfoValue", "Setting " + info.getKey() + " to " + Double.parseDouble(line[1]));
                         info.setVal(Double.parseDouble(line[1]));
                         found = true;
                         break;
                     }
+                    if (line.length < 2) {
+                        found = true; //no error, is blank line.
+                    }
                 }
 
                 if (!found)
-                    Util.log("RobotInfo", "Error: the specified RobotInfo doesn't exist: " + lines[i]);
+                    Util.log("InfoValue", "Error: the specified InfoValue doesn't exist: " + lines[i]);
             }
         } catch (IOException e) {
-            Util.log("RobotInfo", "wat.");
+            Util.log("InfoValue", "wat.");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -91,8 +88,8 @@ public class RobotInfoHandler {
             OutputStream outStream = infoFile.openOutputStream();
             // Search through the infoList and write every one.
             for (int j = 0; j < infoList.size(); j++) {
-                RobotInfo info = (RobotInfo) infoList.elementAt(j);
-                // Util.log("RobotInfo",info.getKey());
+                InfoValue info = (InfoValue) infoList.elementAt(j);
+                // Util.log("InfoValue",info.getKey());
                 outStream.write((info.getKey() + "=" + info.getDefault() + "\n").getBytes()); //Convert to byte array
             }
         } catch (IOException e) {
@@ -101,12 +98,12 @@ public class RobotInfoHandler {
 
     }
 
-    public static class RobotInfo {
+    public static class InfoValue {
         private final String key;
         private double data;
         private double def;
 
-        RobotInfo(String key, double data) {
+        InfoValue(String key, double data) {
             this.key = key;
             this.def = data;
             this.data = this.def;

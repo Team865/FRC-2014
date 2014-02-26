@@ -27,9 +27,4 @@ public class Drive {
     public boolean getGear() {
         return gear;
     }
-
-    public void free() {
-        leftDrive.free();
-        rightDrive.free();
-    }
 }

@@ -4,7 +4,7 @@ import ca.warp7.frc2014.robot.Warp7Robot;
 import ca.warp7.frc2014.util.RobotInfo;
 import ca.warp7.frc2014.util.Util;
 
-public class CheesyDrive extends Subsystem {
+public class CheesyDrive extends SubsystemBase {
     private double oldWheel = 0.0;
     private double quickStopAccumulator;
 
