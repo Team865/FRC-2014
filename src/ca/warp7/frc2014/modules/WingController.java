@@ -30,6 +30,7 @@ public class WingController extends ModuleBase {
                 case WingModes.DROP:
                     setState(WingModes.DROP_KICK);
                     break;
+
                 case WingModes.SHOULD_FLUSH:
                     setState(WingModes.FLUSH);
                     break;
