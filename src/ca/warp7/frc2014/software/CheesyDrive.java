@@ -1,6 +1,6 @@
 package ca.warp7.frc2014.software;
 
-import ca.warp7.frc2014.robot.Robot;
+import ca.warp7.frc2014.robot.Warp7Robot;
 import ca.warp7.frc2014.util.RobotInfo;
 import ca.warp7.frc2014.util.Util;
 
@@ -17,9 +17,9 @@ public class CheesyDrive extends SubsystemBase {
 
         boolean isQuickTurn = Robot.getInstance().ds.controller.getButton(1);
         double wheelDeadband = 0.02;
-        wheel = Util.deadband(-Robot.getInstance().ds.controller.getSecondaryX(), wheelDeadband);
+        wheel = Util.deadband(-Warp7Robot.ds.controller.getSecondaryX(), wheelDeadband);
         double throttleDeadband = 0.02;
-        throttle = Util.deadband(Robot.getInstance().ds.controller.getPrimaryY(), throttleDeadband);
+        throttle = Util.deadband(Warp7Robot.ds.controller.getPrimaryY(), throttleDeadband);
 
 
         double negInertia = wheel - oldWheel;

@@ -6,10 +6,10 @@ public class WingModes {
     }
 
     public static final int HOLD = 0;
-    public static final int FLUSH = 1;
+    public static final int OFF = 1;
     public static final int PICKUP = 2;
     public static final int CATCH = 3;
     public static final int KISS = 4;
-    public static final int DP = 5;
+    public static final int DROP = 5;
 
 }

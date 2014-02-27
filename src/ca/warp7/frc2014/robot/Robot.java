@@ -69,7 +69,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void disabledPeriodic() {
-
+        ds.sendSensorInfo();
     }
 
     public void testInit() {

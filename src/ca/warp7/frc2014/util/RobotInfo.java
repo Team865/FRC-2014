@@ -36,13 +36,11 @@ public class RobotInfo extends RobotInfoHandler {
     public static final InfoValue backWingI = new InfoValue("backWingI", 0.001);
     public static final InfoValue backWingD = new InfoValue("backWingD", 0.0);
     public static final InfoValue backWingZeroPoint = new InfoValue("backWingZeroPoint", 398.0);
-    public static final InfoValue backWingSetPoint = new InfoValue("backWingSetPoint", 0.0);
 
     public static final InfoValue frontWingP = new InfoValue("frontWingP", 0.1);
     public static final InfoValue frontWingI = new InfoValue("frontWingI", 0.001);
     public static final InfoValue frontWingD = new InfoValue("frontWingD", 0.0);
     public static final InfoValue frontWingZeroPoint = new InfoValue("frontWingZeroPoint", 20.0);
-    public static final InfoValue frontWingSetPoint = new InfoValue("frontWingSetPoint", 0.0);
 
     // Prevent instantiation of this class, as it should only be used statically.
     private RobotInfo() {

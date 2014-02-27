@@ -11,14 +11,13 @@ public class Wing {
     private Talon roller;
     private AnalogChannel wristEncoder;
     private PIDController controller;
-    private RobotInfoHandler.InfoValue P, I, D, zeroPoint, setPoint;
+    private RobotInfoHandler.InfoValue P, I, D, zeroPoint;
 
     public Wing(int wristPin, int rollerPin, int wristEncoderPin,
                 RobotInfoHandler.InfoValue P,
                 RobotInfoHandler.InfoValue I,
                 RobotInfoHandler.InfoValue D,
-                RobotInfoHandler.InfoValue zeroPoint,
-                RobotInfoHandler.InfoValue setPoint) {
+                RobotInfoHandler.InfoValue zeroPoint) {
         wrist = new Talon(wristPin);
         roller = new Talon(rollerPin);
         wristEncoder = new AnalogChannel(wristEncoderPin);
@@ -26,7 +25,6 @@ public class Wing {
         this.I = I;
         this.D = D;
         this.zeroPoint = zeroPoint;
-        this.setPoint = setPoint;
         controller = new PIDController(0, 0, 0, wristEncoder, wrist);
         controller.setInputRange(0.0, 970.0);
         controller.setOutputRange(-1.0, 1.0);
@@ -36,7 +34,6 @@ public class Wing {
     public void load() {
         //Robot.getInstance().ds.table.putNumber("zeroPoint", zeroPoint);
         controller.setPID(P.getDouble(), I.getDouble(), D.getDouble());
-        setTargetAngle(setPoint.getDouble());
         Util.log("Wing", "P: " + controller.getP() + "I: " + controller.getI() + "D: " + controller.getD());
     }
 
@@ -45,20 +42,16 @@ public class Wing {
     }
 
     public void setTargetAngle(double angle) {
-        Util.log("Wing", "Angle passed was " + angle);
+        if(!controller.isEnable()) {
+            controller.enable();
+        }
         angle /= 360;
-        Util.log("Wing", "Angle /360 =" + angle);
         angle *= 970;
-        Util.log("Wing", "Angle * 970 = " + angle);
         double num = angle + zeroPoint.getDouble();
 
         num = num % 970;
 
         controller.setSetpoint(num);
-    }
-
-    public void setManualControlled() {
-        controller.disable();
     }
 
     public void rollersUp() {
