@@ -17,5 +17,5 @@ public abstract class Controller {
 
     public abstract int getModeButton();
 
-    public abstract boolean getQuickTurnButton();
+    public abstract boolean getDriveModButton();
 }

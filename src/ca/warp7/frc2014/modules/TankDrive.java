@@ -1,8 +1,8 @@
-package ca.warp7.frc2014.software;
+package ca.warp7.frc2014.modules;
 
 import ca.warp7.frc2014.robot.Robot;
 
-public class TankDrive extends SubsystemBase {
+public class TankDrive extends ModuleBase {
 
     public String getName() {
         return "Tank Drive";

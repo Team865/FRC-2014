@@ -1,10 +1,10 @@
-package ca.warp7.frc2014.software;
+package ca.warp7.frc2014.modules;
 
-import ca.warp7.frc2014.robot.Warp7Robot;
+import ca.warp7.frc2014.robot.Robot;
 import ca.warp7.frc2014.util.RobotInfo;
 import ca.warp7.frc2014.util.Util;
 
-public class CheesyDrive extends SubsystemBase {
+public class CheesyDrive extends ModuleBase {
     private double oldWheel = 0.0;
     private double quickStopAccumulator;
 
@@ -13,13 +13,14 @@ public class CheesyDrive extends SubsystemBase {
     }
 
     public void periodic() { // Driving Method
+        Robot robot = Robot.getInstance();
         double wheelNonLinearity, wheel, throttle;
 
-        boolean isQuickTurn = Robot.getInstance().ds.controller.getButton(1);
+        boolean isQuickTurn = robot.ds.controller.getDriveModButton();
         double wheelDeadband = 0.02;
-        wheel = Util.deadband(-Warp7Robot.ds.controller.getSecondaryX(), wheelDeadband);
+        wheel = Util.deadband(robot.ds.controller.getSecondaryX(), wheelDeadband);
         double throttleDeadband = 0.02;
-        throttle = Util.deadband(Warp7Robot.ds.controller.getPrimaryY(), throttleDeadband);
+        throttle = Util.deadband(robot.ds.controller.getPrimaryY(), throttleDeadband);
 
 
         double negInertia = wheel - oldWheel;
@@ -102,6 +103,6 @@ public class CheesyDrive extends SubsystemBase {
         }
 
 
-        Robot.getInstance().hw.drive.setLRPower(leftPwm, rightPwm);
+        robot.hw.drive.setLRPower(leftPwm, rightPwm);
     }
 }

@@ -3,15 +3,15 @@ package ca.warp7.frc2014.robot;// Time Created: 1/4/14 4:57 PM
 import ca.warp7.frc2014.autonomous.DetectHotTarget;
 import ca.warp7.frc2014.driverstation.ControllerCustomDS;
 import ca.warp7.frc2014.driverstation.DriverStation;
-import ca.warp7.frc2014.software.CheesyDrive;
-import ca.warp7.frc2014.software.WingController;
+import ca.warp7.frc2014.modules.CheesyDrive;
+import ca.warp7.frc2014.modules.WingController;
 import ca.warp7.frc2014.util.RobotInfo;
 import ca.warp7.frc2014.util.Util;
 import edu.wpi.first.wpilibj.IterativeRobot;
 
 public class Robot extends IterativeRobot {
 
-    public SubsystemController subsystem;
+    public ModuleController modules;
     public DriverStation ds;
     public HardwareController hw;
     private static Robot instance;
@@ -23,13 +23,13 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
         hw = new HardwareController();
         ds = new DriverStation();
-        subsystem = new SubsystemController();
+        modules = new ModuleController();
 
         ds.controller = new ControllerCustomDS();
 
-        //subsystem.add(new TankDrive());
-        subsystem.add(new WingController());
-        subsystem.add(new CheesyDrive());
+        //modules.add(new TankDrive());
+        modules.add(new WingController());
+        modules.add(new CheesyDrive());
 
         getWatchdog().setExpiration(250);
         getWatchdog().setEnabled(true);
@@ -45,15 +45,15 @@ public class Robot extends IterativeRobot {
     public void teleopInit() {
         getWatchdog().setEnabled(false);
         ds.setMode("Teleop");
-        ds.loadSubsystemInfo();
-        Util.log("Main", "Subsystem Init");
-        subsystem.runSubsystemsLoad();
+        ds.loadModuleInfo();
+        Util.log("Main", "Module Init");
+        modules.loadModules();
         hw.load();
         hw.backWing.setPIDControlled();
     }
 
     public void teleopPeriodic() {
-        subsystem.runSubsystemsPeriodic();
+        modules.runModulesPeriodic();
         getWatchdog().feed();
     }
 
@@ -63,8 +63,7 @@ public class Robot extends IterativeRobot {
         getWatchdog().setEnabled(false);
         Util.log("Main", "Loading InfoValues from file.");
         RobotInfo.readInfoFromFile();
-        subsystem.runSubsystemsDisabled();
-        ds.loadSubsystemInfo();
+        ds.loadModuleInfo();
 
     }
 

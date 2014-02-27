@@ -7,11 +7,14 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.Talon;
 
 public class Wing {
-    private Talon wrist;
-    private Talon roller;
-    private AnalogChannel wristEncoder;
-    private PIDController controller;
-    private RobotInfoHandler.InfoValue P, I, D, zeroPoint;
+    private final Talon wrist;
+    private final Talon roller;
+    private final AnalogChannel wristEncoder;
+    private final PIDController controller;
+    private final RobotInfoHandler.InfoValue P;
+    private final RobotInfoHandler.InfoValue I;
+    private final RobotInfoHandler.InfoValue D;
+    private final RobotInfoHandler.InfoValue zeroPoint;
 
     public Wing(int wristPin, int rollerPin, int wristEncoderPin,
                 RobotInfoHandler.InfoValue P,
@@ -42,7 +45,7 @@ public class Wing {
     }
 
     public void setTargetAngle(double angle) {
-        if(!controller.isEnable()) {
+        if (!controller.isEnable()) {
             controller.enable();
         }
         angle /= 360;
@@ -66,11 +69,7 @@ public class Wing {
         roller.set(0.0);
     }
 
-    public AnalogChannel getWristEncoder() {
-        return wristEncoder;
-    }
-
-    public Talon getWrist() {
-        return wrist;
+    public double getWristPosition() {
+        return wristEncoder.getAverageValue();
     }
 }

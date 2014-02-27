@@ -1,4 +1,4 @@
-package ca.warp7.frc2014.software;
+package ca.warp7.frc2014.modules;
 
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 

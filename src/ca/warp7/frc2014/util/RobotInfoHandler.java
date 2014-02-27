@@ -76,7 +76,7 @@ public class RobotInfoHandler {
         }
     }
 
-    public static void writeInfoToFile() {
+    private static void writeInfoToFile() {
         // resets all info then writes defaults to a file.
         FileConnection infoFile;
         try {
@@ -101,12 +101,12 @@ public class RobotInfoHandler {
     public static class InfoValue {
         private final String key;
         private double data;
-        private double def;
+        private final double defaultData; //asdfasdfhkjh can't use default fucking java
 
         InfoValue(String key, double data) {
             this.key = key;
-            this.def = data;
-            this.data = this.def;
+            this.defaultData = data;
+            this.data = this.defaultData;
             infoList.addElement(this);
         }
 
@@ -127,7 +127,7 @@ public class RobotInfoHandler {
         }
 
         public double getDefault() {
-            return def;
+            return defaultData;
         }
 
         public String toString() {

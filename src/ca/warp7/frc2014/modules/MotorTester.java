@@ -1,9 +1,9 @@
-package ca.warp7.frc2014.software;
+package ca.warp7.frc2014.modules;
 
 import ca.warp7.frc2014.robot.Robot;
 import edu.wpi.first.wpilibj.Talon;
 
-public class MotorTester extends SubsystemBase {
+public class MotorTester extends ModuleBase {
     private final Talon motor;
 
     public MotorTester() {

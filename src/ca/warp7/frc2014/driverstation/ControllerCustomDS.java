@@ -38,10 +38,6 @@ public class ControllerCustomDS extends Controller {
         return rightJoy.getRawButton(i);
     }
 
-    public boolean getQuickTurnButton() {
-        return rightJoy.getTrigger();
-    }
-
     public int getModeButton() {
         int numModes = 6;
         int offset = 7;
@@ -50,6 +46,10 @@ public class ControllerCustomDS extends Controller {
                 return i;
             }
         }
-        return 0;
+        return -1;
+    }
+
+    public boolean getDriveModButton() {
+        return rightJoy.getTrigger();
     }
 }

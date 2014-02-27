@@ -26,10 +26,6 @@ public class Util {
         System.out.println("[" + sub + "] " + string);
     }
 
-    public static double deadband(double rawAxis) {
-        return deadband(rawAxis, RobotInfo.xboxDeadband.getDouble());
-    }
-
     public static double deadband(double rawAxis, double amount) {
         return Math.abs(rawAxis) > Math.abs(amount) ? rawAxis : 0.0; // return rawAxis if it's above the val, otherwise return 0.
     }

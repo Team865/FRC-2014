@@ -1,6 +1,5 @@
 package ca.warp7.frc2014.hardware;
 
-import ca.warp7.frc2014.robot.Warp7Robot;
 import ca.warp7.frc2014.util.RobotInfo;
 import edu.wpi.first.wpilibj.AnalogChannel;
 
@@ -16,7 +15,7 @@ public class Sonar {
     }
 
     public boolean ballDetected() {
-        Robot.ds.table.putBoolean("dispence", getDistance() < 50);
+
         return getDistance() < 50;
     }
 }

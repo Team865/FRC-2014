@@ -25,11 +25,10 @@ public class RobotInfo extends RobotInfoHandler {
     public static final InfoValue shifterPort = new InfoValue("shifterPort", 3);
 
     //Controller-Specific stuff
-    public static final InfoValue xboxDeadband = new InfoValue("xboxDeadband", 0.1);
     public static final InfoValue leftJoyPort = new InfoValue("leftJoyPort", 1);
     public static final InfoValue rightJoyPort = new InfoValue("rightJoyPort", 2);
 
-    // SubsystemBase-specific tweaking stuff
+    // ModuleBase-specific tweaking stuff
     public static final InfoValue cheesyMod = new InfoValue("cheesyMod", 1.2);
 
     public static final InfoValue backWingP = new InfoValue("backWingP", 0.1);
