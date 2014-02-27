@@ -40,14 +40,23 @@ public class Wing {
         Util.log("Wing", "P: " + controller.getP() + "I: " + controller.getI() + "D: " + controller.getD());
     }
 
-    public void setPIDControlled() {
-        controller.enable();
+    public void disable() {
+        setTargetAngle(0);
+        controller.disable();
+        wrist.set(0);
+        roller.set(0);
+
     }
 
     public void setTargetAngle(double angle) {
         if (!controller.isEnable()) {
             controller.enable();
         }
+
+        while (angle < 0) {
+            angle += 360;
+        }
+
         angle /= 360;
         angle *= 970;
         double num = angle + zeroPoint.getDouble();
