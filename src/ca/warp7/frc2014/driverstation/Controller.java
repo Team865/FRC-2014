@@ -14,4 +14,8 @@ public abstract class Controller {
     public abstract boolean getButton(int i);
 
     public abstract boolean getSecondaryButton(int i);
+
+    public abstract int getModeButton();
+
+    public abstract boolean getQuickTurnButton();
 }

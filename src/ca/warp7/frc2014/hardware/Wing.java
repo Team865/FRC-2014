@@ -34,7 +34,7 @@ public class Wing {
     }
 
     public void load() {
-        //Warp7Robot.ds.table.putNumber("zeroPoint", zeroPoint);
+        //Robot.getInstance().ds.table.putNumber("zeroPoint", zeroPoint);
         controller.setPID(P.getDouble(), I.getDouble(), D.getDouble());
         setTargetAngle(setPoint.getDouble());
         Util.log("Wing", "P: " + controller.getP() + "I: " + controller.getI() + "D: " + controller.getD());

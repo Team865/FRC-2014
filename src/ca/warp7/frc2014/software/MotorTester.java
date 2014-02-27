@@ -1,6 +1,6 @@
 package ca.warp7.frc2014.software;
 
-import ca.warp7.frc2014.robot.Warp7Robot;
+import ca.warp7.frc2014.robot.Robot;
 import edu.wpi.first.wpilibj.Talon;
 
 public class MotorTester extends SubsystemBase {
@@ -11,9 +11,9 @@ public class MotorTester extends SubsystemBase {
     }
 
     public void periodic() {
-        if (Warp7Robot.ds.controller.getButton(1)) {
+        if (Robot.getInstance().ds.controller.getButton(1)) {
             motor.set(1);
-        } else if (Warp7Robot.ds.controller.getButton(2)) {
+        } else if (Robot.getInstance().ds.controller.getButton(2)) {
             motor.set(-1);
         } else {
             motor.set(0);

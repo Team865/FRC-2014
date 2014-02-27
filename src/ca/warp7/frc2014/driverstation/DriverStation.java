@@ -1,6 +1,6 @@
 package ca.warp7.frc2014.driverstation;
 
-import ca.warp7.frc2014.robot.Warp7Robot;
+import ca.warp7.frc2014.robot.Robot;
 import ca.warp7.frc2014.software.SubsystemBase;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
@@ -20,7 +20,7 @@ public class DriverStation {
     }
 
     public void sendSubsystemInfo() {
-        Vector list = Warp7Robot.subsystem.subsystemList;
+        Vector list = Robot.getInstance().subsystem.subsystemList;
         NetworkTable subtable = (NetworkTable) table.getSubTable("Subsystems");
 
         for (int i = 0; i < list.size(); i++) {
@@ -30,7 +30,7 @@ public class DriverStation {
     }
 
     public void loadSubsystemInfo() {
-        Vector list = Warp7Robot.subsystem.subsystemList;
+        Vector list = Robot.getInstance().subsystem.subsystemList;
         NetworkTable subtable = (NetworkTable) table.getSubTable("Subsystems");
 
         for (int i = 0; i < list.size(); i++) {

@@ -7,7 +7,7 @@ public class DriverStationUpdateListener implements ITableListener {
     public void valueChanged(ITable src, String key, Object value, boolean isNew) {
         /*
         if(key == "gear") {
-            Warp7Robot.hw.drive.shift(((Boolean) value).booleanValue());
+            Robot.getInstance().hw.drive.shift(((Boolean) value).booleanValue());
         }
         */
     }

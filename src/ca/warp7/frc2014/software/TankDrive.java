@@ -1,6 +1,6 @@
 package ca.warp7.frc2014.software;
 
-import ca.warp7.frc2014.robot.Warp7Robot;
+import ca.warp7.frc2014.robot.Robot;
 
 public class TankDrive extends SubsystemBase {
 
@@ -9,6 +9,6 @@ public class TankDrive extends SubsystemBase {
     }
 
     public void periodic() {
-        Warp7Robot.hw.drive.setLRPower(Warp7Robot.ds.controller.getPrimaryY(), Warp7Robot.ds.controller.getSecondaryY());
+        Robot.getInstance().hw.drive.setLRPower(Robot.getInstance().ds.controller.getPrimaryY(), Robot.getInstance().ds.controller.getSecondaryY());
     }
 }

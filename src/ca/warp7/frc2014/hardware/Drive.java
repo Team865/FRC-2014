@@ -1,6 +1,6 @@
 package ca.warp7.frc2014.hardware;
 
-import ca.warp7.frc2014.robot.Warp7Robot;
+import ca.warp7.frc2014.robot.Robot;
 import ca.warp7.frc2014.util.RobotInfo;
 import ca.warp7.frc2014.util.Util;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -21,7 +21,7 @@ public class Drive {
         shifter.set(!gear);
         this.gear = gear;
         Util.log("Drive", gear ? "High" : "Low");
-        Warp7Robot.ds.table.putBoolean("Gear", gear);
+        Robot.getInstance().ds.table.putBoolean("Gear", gear);
     }
 
     public boolean getGear() {
