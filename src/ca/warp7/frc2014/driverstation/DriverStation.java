@@ -38,7 +38,6 @@ public class DriverStation {
             ModuleBase s = (ModuleBase) list.elementAt(i);
             if (subtable.containsKey(s.getName())) {
                 s.setEnabled(subtable.getBoolean(s.getName()));
-
             }
         }
     }
