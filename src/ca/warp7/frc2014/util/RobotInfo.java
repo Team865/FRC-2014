@@ -11,10 +11,12 @@ public class RobotInfo extends RobotInfoHandler {
     public static final InfoValue rightMotorPort = new InfoValue("rightMotorPort", 2);
 
     public static final InfoValue backWingWristPin = new InfoValue("backWingWristPin", 3);
-    public static final InfoValue backWingRollerPin = new InfoValue("backWingRollerPin", 4);
+    public static final InfoValue backWingRollerPin1 = new InfoValue("backWingRollerPin", 4);
+    public static final InfoValue backWingRollerPin2 = new InfoValue("backWingRollerPin", 5);
 
-    public static final InfoValue frontWingWristPin = new InfoValue("frontWingWristPin", 5);
-    public static final InfoValue frontWingRollerPin = new InfoValue("frontWingRollerPin", 6);
+    public static final InfoValue frontWingWristPin = new InfoValue("frontWingWristPin", 6);
+    public static final InfoValue frontWingRollerPin1 = new InfoValue("frontWingRollerPin", 7);
+    public static final InfoValue frontWingRollerPin2 = new InfoValue("frontWingRollerPin", 8);
 
     //Analog stuff
     public static final InfoValue backWingEncoderPin = new InfoValue("backWingEncoderPort", 1);
@@ -36,9 +38,9 @@ public class RobotInfo extends RobotInfoHandler {
     public static final InfoValue backWingD = new InfoValue("backWingD", 0.0);
     public static final InfoValue backWingZeroPoint = new InfoValue("backWingZeroPoint", 398.0);
 
-    public static final InfoValue frontWingP = new InfoValue("frontWingP", 0.1);
-    public static final InfoValue frontWingI = new InfoValue("frontWingI", 0.001);
-    public static final InfoValue frontWingD = new InfoValue("frontWingD", 0.0);
+    public static final InfoValue frontWingP = new InfoValue("frontWingP", 0.07);
+    public static final InfoValue frontWingI = new InfoValue("frontWingI", 0.00013);
+    public static final InfoValue frontWingD = new InfoValue("frontWingD", 0.00001);
     public static final InfoValue frontWingZeroPoint = new InfoValue("frontWingZeroPoint", 20.0);
 
     // Prevent instantiation of this class, as it should only be used statically.

@@ -15,7 +15,8 @@ public class HardwareController {
 
         drive = new Drive();
         backWing = new Wing(RobotInfo.backWingWristPin.getInt(),
-                RobotInfo.backWingRollerPin.getInt(),
+                RobotInfo.backWingRollerPin1.getInt(),
+                RobotInfo.backWingRollerPin2.getInt(),
                 RobotInfo.backWingEncoderPin.getInt(),
                 RobotInfo.backWingP,
                 RobotInfo.backWingI,
@@ -23,12 +24,14 @@ public class HardwareController {
                 RobotInfo.backWingZeroPoint);
 
         frontWing = new Wing(RobotInfo.frontWingWristPin.getInt(),
-                RobotInfo.frontWingRollerPin.getInt(),
+                RobotInfo.frontWingRollerPin1.getInt(),
+                RobotInfo.frontWingRollerPin2.getInt(),
                 RobotInfo.frontWingEncoderPin.getInt(),
                 RobotInfo.frontWingP,
                 RobotInfo.frontWingI,
                 RobotInfo.frontWingD,
                 RobotInfo.frontWingZeroPoint);
+
         sonar = new Sonar();
     }
 

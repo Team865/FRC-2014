@@ -15,7 +15,7 @@ public class WingModes {
         I can't use enums
         I can't use HashMaps
         I can't use @Override
-        It makes my cry at night
+        It makes me cry at night
         I can't take this anymore
      */
     public static final int HOLD = 0;

@@ -42,6 +42,10 @@ public class Robot extends IterativeRobot {
         getWatchdog().setEnabled(false);
     }
 
+    public void autonomousPeriodic() {
+        ds.sendSensorInfo();
+    }
+
     public void teleopInit() {
         getWatchdog().setEnabled(false);
         ds.setMode("Teleop");
@@ -49,11 +53,11 @@ public class Robot extends IterativeRobot {
         Util.log("Main", "Module Init");
         modules.loadModules();
         hw.load();
-        hw.backWing.setPIDControlled();
     }
 
     public void teleopPeriodic() {
         modules.runModulesPeriodic();
+        ds.sendSensorInfo();
         getWatchdog().feed();
     }
 
@@ -64,7 +68,6 @@ public class Robot extends IterativeRobot {
         Util.log("Main", "Loading InfoValues from file.");
         RobotInfo.readInfoFromFile();
         ds.loadModuleInfo();
-
     }
 
     public void disabledPeriodic() {
@@ -72,11 +75,11 @@ public class Robot extends IterativeRobot {
     }
 
     public void testInit() {
-        teleopInit();
+        // wat
     }
 
     public void testPeriodic() {
-        teleopPeriodic();
+        ds.sendSensorInfo();
     }
 
     public static Robot getInstance() {

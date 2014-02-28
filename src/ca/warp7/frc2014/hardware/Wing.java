@@ -8,7 +8,8 @@ import edu.wpi.first.wpilibj.Talon;
 
 public class Wing {
     private final Talon wrist;
-    private final Talon roller;
+    private final Talon roller1;
+    private final Talon roller2;
     private final AnalogChannel wristEncoder;
     private final PIDController controller;
     private final RobotInfoHandler.InfoValue P;
@@ -16,13 +17,14 @@ public class Wing {
     private final RobotInfoHandler.InfoValue D;
     private final RobotInfoHandler.InfoValue zeroPoint;
 
-    public Wing(int wristPin, int rollerPin, int wristEncoderPin,
+    public Wing(int wristPin, int rollerPin1, int rollerPin2, int wristEncoderPin,
                 RobotInfoHandler.InfoValue P,
                 RobotInfoHandler.InfoValue I,
                 RobotInfoHandler.InfoValue D,
                 RobotInfoHandler.InfoValue zeroPoint) {
         wrist = new Talon(wristPin);
-        roller = new Talon(rollerPin);
+        roller1 = new Talon(rollerPin1);
+        roller2 = new Talon(rollerPin2);
         wristEncoder = new AnalogChannel(wristEncoderPin);
         this.P = P;
         this.I = I;
@@ -44,7 +46,8 @@ public class Wing {
         setTargetAngle(0);
         controller.disable();
         wrist.set(0);
-        roller.set(0);
+        roller1.set(0);
+        roller2.set(0);
 
     }
 
@@ -67,15 +70,18 @@ public class Wing {
     }
 
     public void rollersUp() {
-        roller.set(1.0);
+        roller1.set(1.0);
+        roller2.set(1.0);
     }
 
     public void rollersDown() {
-        roller.set(-1.0);
+        roller1.set(-1.0);
+        roller2.set(-1.0);
     }
 
     public void rollersOff() {
-        roller.set(0.0);
+        roller1.set(0.0);
+        roller2.set(0.0);
     }
 
     public double getWristPosition() {

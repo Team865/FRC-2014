@@ -14,8 +14,11 @@ public class Sonar {
         return (chan.getVoltage() * 1000) / 4.9;
     }
 
-    public boolean ballDetected() {
+    public boolean ballAbove() {
+        return getDistance() < 80 && !ballHolding();
+    }
 
-        return getDistance() < 50;
+    public boolean ballHolding() {
+        return getDistance() < 20;
     }
 }
