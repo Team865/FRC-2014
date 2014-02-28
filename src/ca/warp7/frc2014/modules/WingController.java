@@ -110,7 +110,7 @@ public class WingController extends ModuleBase {
                     break;
 
                 case WingModes.FLUSH:
-                    //Rollers shouldn't have to move, arms should be flush. [| |]
+                    //Rollers shouldn't have to move, arms should be flushish off i think. [| |]
 
                     robot.hw.backWing.disable();
                     robot.hw.frontWing.disable();
