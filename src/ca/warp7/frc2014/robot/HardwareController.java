@@ -1,5 +1,6 @@
 package ca.warp7.frc2014.robot;
 
+import ca.warp7.frc2014.hardware.Compressor;
 import ca.warp7.frc2014.hardware.Drive;
 import ca.warp7.frc2014.hardware.Sonar;
 import ca.warp7.frc2014.hardware.Wing;
@@ -10,6 +11,7 @@ public class HardwareController {
     public final Wing backWing;
     public final Wing frontWing;
     public final Sonar sonar;
+    public final Compressor comp;
 
     public HardwareController() {
 
@@ -33,6 +35,7 @@ public class HardwareController {
                 RobotInfo.frontWingZeroPoint);
 
         sonar = new Sonar();
+        comp = new Compressor();
     }
 
     public void load() {
