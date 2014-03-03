@@ -18,4 +18,6 @@ public abstract class Controller {
     public abstract int getModeButton();
 
     public abstract boolean getDriveModButton();
+
+    public abstract boolean getFunctionButton();
 }

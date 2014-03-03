@@ -15,6 +15,9 @@ public class WingController extends ModuleBase {
         instance = this;
         robot = Robot.getInstance();
     }
+    public void load() {
+        setState(WingModes.OFF);
+    }
 
     public static WingController getInstance() {
         return instance;
@@ -23,6 +26,7 @@ public class WingController extends ModuleBase {
     public void periodic() {
         int butt = robot.ds.controller.getModeButton();
         if (butt != -1) {
+            //System.out.println(butt);
             setState(butt);
         }
 
@@ -39,26 +43,25 @@ public class WingController extends ModuleBase {
 
                 case WingModes.DROP_KICK:
                 case WingModes.CATCH:
-                    setState(WingModes.SHOULD_FLUSH); //Reset to neutral
-                    break;
-
-                case WingModes.SHOULD_FLUSH:
-                    setState(WingModes.FLUSH);
+                    setState(WingModes.OFF); //Reset to neutral
                     break;
             }
 
             timer = -1;
         }
 
+        /*
         if(STATE == WingModes.CATCH) { // go dowm
-            if(Robot.getInstance().hw.sonar.ballHolding()) {
+            if(robot.hw.sonar.ballHolding()) {
                 this.setState(WingModes.HOLD);
             }
         }
+        */
+        //disabled for testing
 
 
         /*
-        if(Robot.getInstance().hw.sonar.ballAbove()) { // this might make thigns very bad be careful
+        if(robot.hw.sonar.ballAbove()) { // this might make thigns very bad be careful
             this.setState(WingModes.CATCH);
         }
         */
@@ -73,11 +76,11 @@ public class WingController extends ModuleBase {
                 // Rollers go up, arms go up. \[]/
                 Util.log("WingController", "Mode: CATCH");
 
-                robot.hw.backWing.rollersUp();
                 robot.hw.frontWing.rollersUp();
+                robot.hw.backWing.rollersUp();
 
-                robot.hw.frontWing.setTargetAngle(135); // guesstimated #.
-                robot.hw.backWing.setTargetAngle(135);
+                robot.hw.backWing.setTargetAngle(135); // guesstimated #.
+                robot.hw.frontWing.setTargetAngle(135);
                 timer = 120;
                 break;
 
@@ -85,33 +88,34 @@ public class WingController extends ModuleBase {
                 //Rollers shouldn't have to move, arms should be slightly angled in. [\O/]
                 Util.log("WingController", "Mode: HOLD");
 
-                robot.hw.backWing.rollersOff();
                 robot.hw.frontWing.rollersOff();
+                robot.hw.backWing.rollersOff();
 
-                robot.hw.backWing.setTargetAngle(-20); // ALso guesstimated
-                robot.hw.frontWing.setTargetAngle(-20); //halp
+                robot.hw.frontWing.setTargetAngle(90); // ALso guesstimated
+                robot.hw.backWing.setTargetAngle(90); //halp
                 //what am i doing asdfkjahdslkjffzgxkjlv zcx,mcv,lmz7uynhyju n
+                //90 for testing ONLY FOR 0
                 break;
 
             case WingModes.KISS:
-                //Rollers should push ball out, back wing should punt ball out, front roller up.
-                //same as drop but front goes up.
+                //Rollers should push ball out, front wing should punt ball out, back roller up.
+                //same as drop but back goes up.
                 Util.log("WingController", "Mode: KISS");
 
-                robot.hw.frontWing.rollersUp();
-                robot.hw.backWing.rollersOff();
+                robot.hw.backWing.rollersUp();
+                robot.hw.frontWing.rollersOff();
 
-                robot.hw.frontWing.setTargetAngle(180);
-                robot.hw.backWing.setTargetAngle(120);
+                robot.hw.backWing.setTargetAngle(180);
+                robot.hw.frontWing.setTargetAngle(120);
                 //oh baby i didn't code this yet
                 break;
 
             case WingModes.PICKUP:
-                //Front rollers down, back off.
+                //Back rollers down, front off.
                 Util.log("WingController", "Mode: PICKUP");
 
-                robot.hw.frontWing.rollersDown();
-                robot.hw.backWing.rollersOff();
+                robot.hw.backWing.rollersDown();
+                robot.hw.frontWing.rollersOff();
 
                 robot.hw.backWing.setTargetAngle(0);
                 robot.hw.frontWing.setTargetAngle(85);
@@ -121,8 +125,8 @@ public class WingController extends ModuleBase {
                 //Prepare to kick
                 Util.log("WingController", "Mode: DROP");
 
-                robot.hw.frontWing.rollersUp();
-                robot.hw.backWing.rollersOff();
+                robot.hw.backWing.rollersUp();
+                robot.hw.frontWing.rollersOff();
 
                 robot.hw.frontWing.setTargetAngle(100);
                 robot.hw.backWing.setTargetAngle(120);
@@ -139,28 +143,18 @@ public class WingController extends ModuleBase {
                 timer = 30;
                 break;
 
-            case WingModes.FLUSH:
-                //Rollers shouldn't have to move, arms should be flushish off i think. [| |]
-
-                robot.hw.backWing.disable();
-                robot.hw.frontWing.disable();
-                break;
-
-            case WingModes.SHOULD_FLUSH:
+            case WingModes.OFF:
+                /*
                 if (Robot.getInstance().hw.sonar.ballHolding()) { // if ya see dem balls
                     this.setState(WingModes.HOLD); // Grab dem balls
                     break;
                 }
+                */
 
-                Util.log("WingController", "Mode: SHOULD_FLUSH");
+                Util.log("WingController", "Mode: SHOULD_OFF");
                 //redy 4 teh flush
-                robot.hw.backWing.rollersOff();
-                robot.hw.frontWing.rollersOff();
-
-                robot.hw.backWing.setTargetAngle(0);
-                robot.hw.frontWing.setTargetAngle(0);
-
-                timer = 30;
+                robot.hw.frontWing.disable();
+                robot.hw.backWing.disable();
                 break;
         }
     }

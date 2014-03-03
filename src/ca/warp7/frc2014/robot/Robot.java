@@ -4,6 +4,8 @@ import ca.warp7.frc2014.autonomous.DetectHotTarget;
 import ca.warp7.frc2014.driverstation.ControllerCustomDS;
 import ca.warp7.frc2014.driverstation.DriverStation;
 import ca.warp7.frc2014.modules.CheesyDrive;
+import ca.warp7.frc2014.modules.Compressor;
+import ca.warp7.frc2014.modules.Passer;
 import ca.warp7.frc2014.modules.WingController;
 import ca.warp7.frc2014.util.RobotInfo;
 import ca.warp7.frc2014.util.Util;
@@ -20,6 +22,7 @@ public class Robot extends IterativeRobot {
         instance = this;
     }
 
+
     public void robotInit() {
         hw = new HardwareController();
         ds = new DriverStation();
@@ -28,19 +31,19 @@ public class Robot extends IterativeRobot {
         ds.controller = new ControllerCustomDS();
 
         //modules.add(new TankDrive());
-        modules.add(new WingController());
+        //modules.add(new WingController());
+        modules.add(new Passer());
         modules.add(new CheesyDrive());
+        modules.add(new Compressor());
 
+        getWatchdog().setEnabled(false);
 
-        getWatchdog().setExpiration(250);
-        getWatchdog().setEnabled(true);
         Util.log("Main", "Robot has booted, ready to go.");
     }
 
     public void autonomousInit() {
         ds.setMode("Autonomous");
         new DetectHotTarget().run();
-        getWatchdog().setEnabled(false);
     }
 
     public void autonomousPeriodic() {
@@ -48,7 +51,6 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
-        getWatchdog().setEnabled(false);
         ds.setMode("Teleop");
         ds.loadModuleInfo();
         Util.log("Main", "Module Init");
@@ -59,13 +61,12 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         modules.runModulesPeriodic();
         ds.sendSensorInfo();
-        getWatchdog().feed();
     }
+
 
     public void disabledInit() {
         Util.log("Main", "Disabled initializing.");
         ds.setMode("Disabled");
-        getWatchdog().setEnabled(false);
         Util.log("Main", "Loading InfoValues from file.");
         RobotInfo.readInfoFromFile();
         ds.loadModuleInfo();

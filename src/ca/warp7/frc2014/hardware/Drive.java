@@ -8,13 +8,13 @@ import edu.wpi.first.wpilibj.Talon;
 
 public class Drive {
     private final Solenoid shifter = new Solenoid(RobotInfo.shifterPort.getInt());
-    private final Talon leftDrive = new Talon(RobotInfo.leftMotorPort.getInt());
     private final Talon rightDrive = new Talon(RobotInfo.rightMotorPort.getInt());
+    private final Talon leftDrive = new Talon(RobotInfo.leftMotorPort.getInt());
     private boolean gear = false;
 
     public void setLRPower(double lPower, double rPower) {
-        leftDrive.set(lPower);
-        rightDrive.set(rPower * -1); //inverted cause other side
+        rightDrive.set(lPower);
+        leftDrive.set(rPower * -1); //inverted cause other side
     }
 
     public void shift(boolean gear) {

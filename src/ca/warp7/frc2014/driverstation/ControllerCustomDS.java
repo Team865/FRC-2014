@@ -14,6 +14,7 @@ public class ControllerCustomDS extends Controller {
         this.rightJoy = new Joystick(RobotInfo.rightJoyPort.getInt());
     }
 
+
     public double getPrimaryX() {
         return leftJoy.getX();
     }
@@ -40,7 +41,7 @@ public class ControllerCustomDS extends Controller {
 
     public int getModeButton() {
         int numModes = 6;
-        int offset = 7;
+        int offset = 9;
         for (int i = 0; i < numModes; i++) {
             if (rightJoy.getRawButton(i + offset)) {
                 return i;
@@ -50,6 +51,10 @@ public class ControllerCustomDS extends Controller {
     }
 
     public boolean getDriveModButton() {
+        return leftJoy.getTrigger();
+    }
+
+    public boolean getFunctionButton() {
         return rightJoy.getTrigger();
     }
 }

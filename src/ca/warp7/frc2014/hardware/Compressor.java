@@ -4,6 +4,12 @@ public class Compressor {
     private edu.wpi.first.wpilibj.Compressor c;
     public Compressor() {
         c = new edu.wpi.first.wpilibj.Compressor(1, 1);
-        c.start(); // yay complience
+
+    }
+    public void start() {
+        c.start();
+    }
+    public void stop() {
+        c.stop();
     }
 }

@@ -18,7 +18,7 @@ public class CheesyDrive extends ModuleBase {
 
         boolean isQuickTurn = robot.ds.controller.getDriveModButton();
         double wheelDeadband = 0.02;
-        wheel = Util.deadband(robot.ds.controller.getSecondaryX(), wheelDeadband);
+        wheel = Util.deadband(-robot.ds.controller.getSecondaryX(), wheelDeadband);
         double throttleDeadband = 0.02;
         throttle = Util.deadband(robot.ds.controller.getPrimaryY(), throttleDeadband);
 
@@ -38,7 +38,7 @@ public class CheesyDrive extends ModuleBase {
         wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel)
                 / Math.sin(Math.PI / 2.0 * wheelNonLinearity);
 
-        double leftPwm, rightPwm, overPower;
+        double rightPwm, leftPwm, overPower;
         double sensitivity;
 
         double angularPower;
@@ -84,25 +84,25 @@ public class CheesyDrive extends ModuleBase {
                 quickStopAccumulator = 0.0;
         }
 
-        rightPwm = leftPwm = linearPower;
-        leftPwm += angularPower;
-        rightPwm -= angularPower;
+        leftPwm = rightPwm = linearPower;
+        rightPwm += angularPower;
+        leftPwm -= angularPower;
 
-        if (leftPwm > 1.0) {
-            rightPwm -= overPower * (leftPwm - 1.0);
-            leftPwm = 1.0;
-        } else if (rightPwm > 1.0) {
+        if (rightPwm > 1.0) {
             leftPwm -= overPower * (rightPwm - 1.0);
             rightPwm = 1.0;
-        } else if (leftPwm < -1.0) {
-            rightPwm += overPower * (-1.0 - leftPwm);
-            leftPwm = -1.0;
+        } else if (leftPwm > 1.0) {
+            rightPwm -= overPower * (leftPwm - 1.0);
+            leftPwm = 1.0;
         } else if (rightPwm < -1.0) {
             leftPwm += overPower * (-1.0 - rightPwm);
             rightPwm = -1.0;
+        } else if (leftPwm < -1.0) {
+            rightPwm += overPower * (-1.0 - leftPwm);
+            leftPwm = -1.0;
         }
 
 
-        robot.hw.drive.setLRPower(leftPwm, rightPwm);
+        robot.hw.drive.setLRPower(rightPwm, leftPwm);
     }
 }

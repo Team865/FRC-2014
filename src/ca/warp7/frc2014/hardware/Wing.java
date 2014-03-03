@@ -16,6 +16,7 @@ public class Wing {
     private final RobotInfoHandler.InfoValue I;
     private final RobotInfoHandler.InfoValue D;
     private final RobotInfoHandler.InfoValue zeroPoint;
+    private boolean inverted;
 
     public Wing(int wristPin, int rollerPin1, int rollerPin2, int wristEncoderPin,
                 RobotInfoHandler.InfoValue P,
@@ -36,10 +37,14 @@ public class Wing {
         controller.setContinuous(true);
     }
 
+    public void invert() {
+        inverted = true;
+    }
+
     public void load() {
         //Robot.getInstance().ds.table.putNumber("zeroPoint", zeroPoint);
         controller.setPID(P.getDouble(), I.getDouble(), D.getDouble());
-        Util.log("Wing", "P: " + controller.getP() + "I: " + controller.getI() + "D: " + controller.getD());
+        Util.log("Wing " + wrist.getChannel(), "P: " + controller.getP() + "I: " + controller.getI() + "D: " + controller.getD());
     }
 
     public void disable() {
@@ -52,10 +57,14 @@ public class Wing {
     }
 
     public void setTargetAngle(double angle) {
+
         if (!controller.isEnable()) {
             controller.enable();
         }
 
+        if(inverted) {
+            angle *= -1;
+        }
         while (angle < 0) {
             angle += 360;
         }

@@ -11,14 +11,19 @@ public class DetectHotTarget {
         Robot robot = Robot.getInstance();
 
         Vision v = new Vision();
-        v.run();
         Util.log("Vision", v.isHot() ? "Hot" : "Not Hot");
-        // Disable watchdog here, then re-enable after driving.
+
         if (!v.isHot()) { // wait till it is hot
-            Timer.delay(4.5);
+            Timer.delay(2);
         }
-        robot.hw.drive.setLRPower(1, 1);
+
+        robot.hw.drive.setLRPower(-0.5, -0.5);
+
         Timer.delay(2); // How long do we drive??
+        robot.hw.backWing.rollersDown();
+        Timer.delay(0.8);
         robot.hw.drive.setLRPower(0, 0);
+        Timer.delay(3);
+        robot.hw.backWing.rollersOff();
     }
 }
