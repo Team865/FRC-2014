@@ -43,7 +43,7 @@ public class CheesyDrive extends ModuleBase {
         }
 
         double leftPwm, rightPwm, overPower;
-        double sensitivity = 1.7;
+        double sensitivity;
 
         double angularPower;
         double linearPower;
@@ -66,9 +66,11 @@ public class CheesyDrive extends ModuleBase {
             }
             sensitivity = RobotInfo.cheesyLow.getDouble();
 
+            /*
             if (Math.abs(throttle) > 0.1) {
-                // sensitivity = 1.0 - (1.0 - sensitivity) / Math.abs(throttle);
+                 sensitivity = 1.0 - (1.0 - sensitivity) / Math.abs(throttle);
             }
+            */
         }
         double negInertiaPower = negInertia * negInertiaScalar;
         negInertiaAccumulator += negInertiaPower;

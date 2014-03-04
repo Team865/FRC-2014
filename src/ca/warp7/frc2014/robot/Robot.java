@@ -4,6 +4,8 @@ import ca.warp7.frc2014.autonomous.DetectHotTarget;
 import ca.warp7.frc2014.driverstation.DriverStation;
 import ca.warp7.frc2014.modules.CheesyDrive;
 import ca.warp7.frc2014.modules.Compressor;
+import ca.warp7.frc2014.modules.Shifter;
+import ca.warp7.frc2014.modules.WingController;
 import ca.warp7.frc2014.util.RobotInfo;
 import ca.warp7.frc2014.util.Util;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -29,6 +31,8 @@ public class Robot extends IterativeRobot {
         //modules.add(new WingController());
         modules.add(new CheesyDrive());
         modules.add(new Compressor());
+        modules.add(new Shifter());
+        modules.add(new WingController());
 
         getWatchdog().setEnabled(false);
 
@@ -45,7 +49,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
-        ds.setMode("Teleop");
+        ds.setMode("Teleoperated");
         ds.loadModuleInfo();
         Util.log("Main", "Module Init");
         modules.loadModules();

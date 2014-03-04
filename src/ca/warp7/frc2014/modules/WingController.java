@@ -95,7 +95,7 @@ public class WingController extends ModuleBase {
                 robot.hw.frontWing.setTargetAngle(90); // ALso guesstimated
                 robot.hw.backWing.setTargetAngle(90); //halp
                 //what am i doing asdfkjahdslkjffzgxkjlv zcx,mcv,lmz7uynhyju n
-                //90 for testing ONLY FOR 0
+                //90 for testing ONLY FOR 0 THIS SHOULD BE 0 NOT 90 ASTUALLY MAYBE LIKE -20
                 break;
 
             case WingModes.KISS:

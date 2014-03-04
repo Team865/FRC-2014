@@ -28,22 +28,22 @@ public class DriverStation {
 
     public void sendModuleInfo() {
         Vector list = Robot.getInstance().modules.moduleList;
-        NetworkTable subtable = (NetworkTable) table.getSubTable("Modules");
+        NetworkTable modulesTable = (NetworkTable) table.getSubTable("Modules");
 
         for (int i = 0; i < list.size(); i++) {
             ModuleBase s = (ModuleBase) list.elementAt(i);
-            subtable.putBoolean(s.getName(), s.isEnabled());
+            modulesTable.putBoolean(s.getName(), s.isEnabled());
         }
     }
 
     public void loadModuleInfo() {
         Vector list = Robot.getInstance().modules.moduleList;
-        NetworkTable subtable = (NetworkTable) table.getSubTable("Modules");
+        NetworkTable modulesTable = (NetworkTable) table.getSubTable("Modules");
 
         for (int i = 0; i < list.size(); i++) {
             ModuleBase s = (ModuleBase) list.elementAt(i);
-            if (subtable.containsKey(s.getName())) {
-                s.setEnabled(subtable.getBoolean(s.getName()));
+            if (modulesTable.containsKey(s.getName())) {
+                s.setEnabled(modulesTable.getBoolean(s.getName()));
             }
         }
     }

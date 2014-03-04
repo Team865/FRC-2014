@@ -2,12 +2,6 @@ package ca.warp7.frc2014.util;
 
 import java.util.Vector;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Ari
- * Date: 1/9/14
- * Time: 3:22 PM
- */
 public class Util {
     private Util() {
         // Stop an instance of this class from being created
@@ -19,7 +13,7 @@ public class Util {
      * /lib/util/Util.java
      */
     public static double limit(double v, double limit) {
-        return (Math.abs(v) < limit) ? v : limit * (v < 0 ? -1 : 1); //This is used for cheesydrive
+        return (Math.abs(v) < limit) ? v : limit * (v < 0 ? -1 : 1); //This is used for cheesy drive
     }
 
     public static void log(String sub, String string) {

@@ -18,7 +18,7 @@ public class Sonar {
         return getDistance() < 80 && notHoldingBall();
     }
 
-    public boolean notHoldingBall() {
+    boolean notHoldingBall() {
         return getDistance() < 20;
     }
 }

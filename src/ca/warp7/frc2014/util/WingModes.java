@@ -1,9 +1,6 @@
 package ca.warp7.frc2014.util;
 
 public class WingModes {
-    protected WingModes() {
-        //No.
-    }
 
     /*
         A poem.

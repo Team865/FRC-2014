@@ -22,7 +22,7 @@ public class RobotInfoHandler {
 
 
     /**
-     * Reads the infos file and overrides the values in this class for any infos it contains.
+     * Reads the info file and overrides the values in this class for any info it contains.
      */
     public static void readInfoFromFile() {
         DataInputStream infoStream;
