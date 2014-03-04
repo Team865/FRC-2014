@@ -27,8 +27,6 @@ public class Robot extends IterativeRobot {
         ds = new DriverStation();
         modules = new ModuleController();
 
-        //modules.add(new TankDrive());
-        //modules.add(new WingController());
         modules.add(new CheesyDrive());
         modules.add(new Compressor());
         modules.add(new Shifter());
