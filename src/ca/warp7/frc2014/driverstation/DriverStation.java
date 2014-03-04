@@ -52,8 +52,8 @@ public class DriverStation {
         Robot r = Robot.getInstance();
         r.ds.table.putNumber("frontWingEncoder", r.hw.frontWing.getWristPosition());
         r.ds.table.putNumber("backWingEncoder", r.hw.backWing.getWristPosition());
-        //r.ds.table.putBoolean("driveGear", r.hw.drive.getGear());
-        //no shifters :c
+        r.ds.table.putBoolean("highGear", r.hw.drive.isHighGear());
+
         r.ds.table.putNumber("sonarDistance", r.hw.sonar.getDistance());
     }
 
