@@ -19,7 +19,7 @@ public class Util {
      * /lib/util/Util.java
      */
     public static double limit(double v, double limit) {
-        return (Math.abs(v) < limit) ? v : limit * (v < 0 ? -1 : 1); //This is used for cheesydrive, if we're gonna use it.
+        return (Math.abs(v) < limit) ? v : limit * (v < 0 ? -1 : 1); //This is used for cheesydrive
     }
 
     public static void log(String sub, String string) {

@@ -49,19 +49,19 @@ public class RobotInfoHandler {
             String[] lines = Util.split(content, "\n");
             for (int i = 0; i < lines.length; i++) {
                 // Extract the key and value.
-                String[] line = Util.split(lines[i], "=");
+                String[] splitLine = Util.split(lines[i], "=");
 
                 boolean found = false;
                 // Search through the infoList until we find one with the same name.
                 for (int j = 0; j < infoList.size(); j++) {
                     InfoValue info = (InfoValue) infoList.elementAt(j);
-                    if (info.getKey().equals(line[0])) {
-                        Util.log("InfoValue", "Setting " + info.getKey() + " to " + Double.parseDouble(line[1]));
-                        info.setVal(Double.parseDouble(line[1]));
+                    if (info.getKey().equals(splitLine[0])) {
+                        Util.log("InfoValue", "Setting " + info.getKey() + " to " + Double.parseDouble(splitLine[1]));
+                        info.setVal(Double.parseDouble(splitLine[1]));
                         found = true;
                         break;
                     }
-                    if (line.length < 2) {
+                    if (splitLine.length < 2) {
                         found = true; //no error, is blank line.
                     }
                 }

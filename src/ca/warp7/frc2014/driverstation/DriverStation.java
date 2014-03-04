@@ -2,18 +2,24 @@ package ca.warp7.frc2014.driverstation;
 
 import ca.warp7.frc2014.modules.ModuleBase;
 import ca.warp7.frc2014.robot.Robot;
+import ca.warp7.frc2014.util.RobotInfo;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 import java.util.Vector;
 
 public class DriverStation {
-    public Controller controller;
+
+    private final Joystick leftJoy;
+    private final Joystick rightJoy;
     public final NetworkTable table;
 
     public DriverStation() {
         table = NetworkTable.getTable("DriverStation");
         table.addTableListener(new DriverStationUpdateListener());
 
+        leftJoy = new Joystick(RobotInfo.leftJoyPort.getInt());
+        rightJoy = new Joystick(RobotInfo.rightJoyPort.getInt());
     }
 
     public void setMode(String mode) {
@@ -49,5 +55,44 @@ public class DriverStation {
         //r.ds.table.putBoolean("driveGear", r.hw.drive.getGear());
         //no shifters :c
         r.ds.table.putNumber("sonarDistance", r.hw.sonar.getDistance());
+    }
+
+    public boolean isQuickTurn() {
+        return leftJoy.getTrigger();
+    }
+
+    public double getPrimaryX() {
+        return leftJoy.getX();
+    }
+
+    public double getPrimaryY() {
+        return leftJoy.getY();
+    }
+
+    public double getSecondaryX() {
+        return rightJoy.getX();
+    }
+
+    public double getSecondaryY() {
+        return rightJoy.getY();
+    }
+
+    public int getModeButton() {
+        int numModes = 6;
+        int offset = 9;
+        for (int i = 0; i < numModes; i++) {
+            if (rightJoy.getRawButton(i + offset)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public boolean isShiftLow() {
+        return rightJoy.getRawButton(4);
+    }
+
+    public boolean isShiftHigh() {
+        return rightJoy.getRawButton(5);
     }
 }

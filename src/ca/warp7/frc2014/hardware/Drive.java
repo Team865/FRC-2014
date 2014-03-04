@@ -24,7 +24,11 @@ public class Drive {
         Robot.getInstance().ds.table.putBoolean("Gear", gear);
     }
 
-    public boolean getGear() {
+    public boolean isHighGear() {
         return gear;
     }
+    public boolean isLowGear() {
+        return !isHighGear();
+    }
+
 }

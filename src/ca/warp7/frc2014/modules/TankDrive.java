@@ -9,6 +9,8 @@ public class TankDrive extends ModuleBase {
     }
 
     public void periodic() {
-        Robot.getInstance().hw.drive.setLRPower(Robot.getInstance().ds.controller.getPrimaryY(), Robot.getInstance().ds.controller.getSecondaryY());
+        Robot.getInstance().hw.drive.setLRPower(
+                Robot.getInstance().ds.getPrimaryY(),
+                Robot.getInstance().ds.getSecondaryY());
     }
 }

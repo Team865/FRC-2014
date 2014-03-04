@@ -12,8 +12,8 @@ public class Vision {
 
     public boolean isHot() {
         try {
-        return ((int) table.getNumber("BLOB_COUNT") == 1);
-        } catch(Exception e) {
+            return ((int) table.getNumber("BLOB_COUNT") == 1);
+        } catch (Exception e) {
             Util.log("Vision", "RoboRealm not started!");
         }
         return true; // might as well score asap

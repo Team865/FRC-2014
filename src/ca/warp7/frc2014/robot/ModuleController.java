@@ -5,7 +5,7 @@ import ca.warp7.frc2014.modules.ModuleBase;
 import java.util.Vector;
 
 public class ModuleController {
-    public final Vector moduleList = new Vector();
+    public final Vector moduleList = new Vector(); // gotcha
 
     public void add(ModuleBase s) {
         moduleList.addElement(s);

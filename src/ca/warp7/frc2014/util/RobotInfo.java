@@ -32,7 +32,8 @@ public class RobotInfo extends RobotInfoHandler {
     public static final InfoValue rightJoyPort = new InfoValue("rightJoyPort", 2);
 
     // Module-specific tweaking stuff
-    public static final InfoValue cheesyMod = new InfoValue("cheesyMod", 1.2);
+    public static final InfoValue cheesyHigh = new InfoValue("cheesyHigh", .85);
+    public static final InfoValue cheesyLow = new InfoValue("cheesyLow", .75);
 
     public static final InfoValue frontWingP = new InfoValue("frontWingP", 0.1);
     public static final InfoValue frontWingI = new InfoValue("frontWingI", 0.001);

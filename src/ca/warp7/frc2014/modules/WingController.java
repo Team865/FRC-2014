@@ -15,6 +15,7 @@ public class WingController extends ModuleBase {
         instance = this;
         robot = Robot.getInstance();
     }
+
     public void load() {
         setState(WingModes.OFF);
     }
@@ -24,7 +25,7 @@ public class WingController extends ModuleBase {
     } // whoo hooray for the singleton pattern
 
     public void periodic() {
-        int butt = robot.ds.controller.getModeButton();
+        int butt = robot.ds.getModeButton();
         if (butt != -1) {
             //System.out.println(butt);
             setState(butt);
@@ -52,7 +53,7 @@ public class WingController extends ModuleBase {
 
         /*
         if(STATE == WingModes.CATCH) { // go dowm
-            if(robot.hw.sonar.ballHolding()) {
+            if(robot.hw.sonar.notHoldingBall()) {
                 this.setState(WingModes.HOLD);
             }
         }
@@ -145,7 +146,7 @@ public class WingController extends ModuleBase {
 
             case WingModes.OFF:
                 /*
-                if (Robot.getInstance().hw.sonar.ballHolding()) { // if ya see dem balls
+                if (Robot.getInstance().hw.sonar.notHoldingBall()) { // if ya see dem balls
                     this.setState(WingModes.HOLD); // Grab dem balls
                     break;
                 }

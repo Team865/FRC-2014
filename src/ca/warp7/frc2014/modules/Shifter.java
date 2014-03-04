@@ -9,10 +9,10 @@ public class Shifter extends ModuleBase {
     }
 
     public void periodic() {
-        if (Robot.getInstance().ds.controller.getButton(4)) {
+        if (Robot.getInstance().ds.isShiftHigh()) {
             Robot.getInstance().hw.drive.shift(true);
         }
-        if (Robot.getInstance().ds.controller.getButton(5)) {
+        if (Robot.getInstance().ds.isShiftLow()) {
             Robot.getInstance().hw.drive.shift(false);
         }
 

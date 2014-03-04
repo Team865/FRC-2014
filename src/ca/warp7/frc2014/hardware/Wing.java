@@ -62,7 +62,7 @@ public class Wing {
             controller.enable();
         }
 
-        if(inverted) {
+        if (inverted) {
             angle *= -1;
         }
         while (angle < 0) {
