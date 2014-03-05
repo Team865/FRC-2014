@@ -81,9 +81,12 @@ public class DriverStation {
     }
 
     public int getModeButton() {
-        int numModes = 6;
-        int offset = 9;
+        int numModes = 5;
+        int offset = 7;
         for (int i = 0; i < numModes; i++) {
+            if(i + offset == 8) { //fucking button 8 is broken
+                offset++; //TODO GET MOHIT TO FIX THE FUCKIN DRIVERSTATION
+            }
             if (rightJoy.getRawButton(i + offset)) {
                 return i;
             }

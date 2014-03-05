@@ -29,15 +29,21 @@ public class WingController extends ModuleBase {
             //System.out.println(butt);
             setState(butt);
         }
-
-        if (STATE == WingModes.OFF) {
-            if (robot.hw.backWing.isAtSetpoint()) {
+        if (robot.hw.backWing.isAtSetpoint()) {
+            if (STATE == WingModes.OFF) {
                 robot.hw.backWing.disable();
             }
-            if (robot.hw.frontWing.isAtSetpoint()) {
+            if( STATE == WingModes.DROP) {
+                setState(WingModes.DO_DROP);
+            }
+
+        }
+        if (robot.hw.frontWing.isAtSetpoint()) {
+            if (STATE == WingModes.OFF) {
                 robot.hw.frontWing.disable();
             }
         }
+
         /*
         if(STATE == WingModes.CATCH) { // go dowm
             if(robot.hw.sonar.notHoldingBall()) {
@@ -70,28 +76,12 @@ public class WingController extends ModuleBase {
                 robot.hw.frontWing.setTargetAngle(135);
                 break;
 
-            case WingModes.HOLD:
-                //Rollers shouldn't have to move, arms should be slightly angled in. [\O/]
-
-                robot.hw.frontWing.rollersOff();
-                robot.hw.backWing.rollersOff();
-
-                robot.hw.frontWing.setTargetAngle(5); // ALso guesstimated
-                robot.hw.backWing.setTargetAngle(5); //halp
-                //what am i doing asdfkjahdslkjffzgxkjlv zcx,mcv,lmz7uynhyju n
-                //90 for testing ONLY FOR 0 THIS SHOULD BE 0 NOT 90 ASTUALLY MAYBE LIKE -20
-                break;
-
-            case WingModes.KISS:
-                //Rollers should push ball out, front wing should punt ball out, back roller up.
-                //same as drop but back goes up.
-
-                robot.hw.backWing.rollersUp();
+            case WingModes.BACK_PICKUP:
+                robot.hw.backWing.rollersDown();
                 robot.hw.frontWing.rollersOff();
 
-                robot.hw.backWing.setTargetAngle(180);
-                robot.hw.frontWing.setTargetAngle(120);
-                //oh baby i didn't code this yet
+                robot.hw.backWing.setTargetAngle(85);
+                robot.hw.frontWing.setTargetAngle(0);
                 break;
 
             case WingModes.PICKUP:
@@ -104,7 +94,8 @@ public class WingController extends ModuleBase {
                 robot.hw.frontWing.setTargetAngle(85);
                 break;
 
-            case WingModes.DROP:
+
+            case WingModes.DO_DROP:
                 //Prepare to kick
 
                 robot.hw.backWing.rollersUp();
@@ -114,6 +105,7 @@ public class WingController extends ModuleBase {
                 robot.hw.backWing.setTargetAngle(300);
 
                 break;
+            case WingModes.DROP:
             case WingModes.OFF:
                 //redy 4 teh flush
                 robot.hw.frontWing.setTargetAngle(0);

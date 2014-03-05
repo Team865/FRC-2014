@@ -17,11 +17,12 @@ public class WingModes {
         I can't take this anymore
      */
     public static final int OFF = 0;
-    public static final int HOLD = 1;
-    public static final int PICKUP = 2;
+    public static final int PICKUP = 1;
+    public static final int BACK_PICKUP = 2;
     public static final int CATCH = 3;
     public static final int DROP = 4;
-    public static final int KISS = 5;
+    public static final int DO_DROP = 5;
+
 
 
 }

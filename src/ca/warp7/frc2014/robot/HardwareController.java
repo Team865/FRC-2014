@@ -24,7 +24,6 @@ public class HardwareController {
                 RobotInfo.frontWingI,
                 RobotInfo.frontWingD,
                 RobotInfo.frontWingZeroPoint);
-        frontWing.invert();
 
         backWing = new Wing(RobotInfo.backWingWristPin.getInt(),
                 RobotInfo.backWingRollerPin1.getInt(),
