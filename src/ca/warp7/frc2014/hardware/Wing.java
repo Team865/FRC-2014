@@ -35,6 +35,7 @@ public class Wing {
         controller.setInputRange(0.0, 970.0);
         controller.setOutputRange(-1.0, 1.0);
         controller.setContinuous(true);
+        controller.setPercentTolerance(5);
     }
 
     public void invert() {
@@ -73,7 +74,7 @@ public class Wing {
         angle *= 970;
         double num = angle + zeroPoint.getDouble();
 
-        num = num % 970;
+        num %= 970;
 
         controller.setSetpoint(num);
     }
@@ -95,5 +96,8 @@ public class Wing {
 
     public double getWristPosition() {
         return wristEncoder.getAverageValue();
+    }
+    public boolean isAtSetpoint() {
+        return controller.onTarget();
     }
 }

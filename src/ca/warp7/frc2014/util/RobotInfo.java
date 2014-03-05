@@ -25,7 +25,7 @@ public class RobotInfo extends RobotInfoHandler {
     public static final InfoValue sonarPin = new InfoValue("sonarPin", 3);
 
     //Solenoid Breakout
-    public static final InfoValue shifterPort = new InfoValue("shifterPort", 3);
+    public static final InfoValue shifterPort = new InfoValue("shifterPort", 1);
 
     //Controller-Specific stuff
     public static final InfoValue leftJoyPort = new InfoValue("leftJoyPort", 1);
@@ -35,14 +35,14 @@ public class RobotInfo extends RobotInfoHandler {
     public static final InfoValue cheesyHigh = new InfoValue("cheesyHigh", .85);
     public static final InfoValue cheesyLow = new InfoValue("cheesyLow", .75);
 
-    public static final InfoValue frontWingP = new InfoValue("frontWingP", 0.1);
-    public static final InfoValue frontWingI = new InfoValue("frontWingI", 0.001);
+    public static final InfoValue frontWingP = new InfoValue("frontWingP", 0.0);
+    public static final InfoValue frontWingI = new InfoValue("frontWingI", 0.00);
     public static final InfoValue frontWingD = new InfoValue("frontWingD", 0.0);
     public static final InfoValue frontWingZeroPoint = new InfoValue("frontWingZeroPoint", 398.0);
 
-    public static final InfoValue backWingP = new InfoValue("backWingP", 0.07);
-    public static final InfoValue backWingI = new InfoValue("backWingI", 0.00013);
-    public static final InfoValue backWingD = new InfoValue("backWingD", 0.00001);
+    public static final InfoValue backWingP = new InfoValue("backWingP", 0.0);
+    public static final InfoValue backWingI = new InfoValue("backWingI", 0.0);
+    public static final InfoValue backWingD = new InfoValue("backWingD", 0.0);
     public static final InfoValue backWingZeroPoint = new InfoValue("backWingZeroPoint", 20.0);
 
     // Prevent instantiation of this class, as it should only be used statically.

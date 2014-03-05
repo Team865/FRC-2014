@@ -22,7 +22,6 @@ public class WingModes {
     public static final int CATCH = 3;
     public static final int DROP = 4;
     public static final int KISS = 5;
-    public static final int DROP_KICK = 6;
 
 
 }

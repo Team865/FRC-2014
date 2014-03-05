@@ -16,7 +16,8 @@ public class HardwareController {
     public HardwareController() {
 
         drive = new Drive();
-        frontWing = new Wing(RobotInfo.frontWingWristPin.getInt(),
+        //TODO: FRNOT AND BACK ARE INVERTED FIX
+        backWing = new Wing(RobotInfo.frontWingWristPin.getInt(),
                 RobotInfo.frontWingRollerPin1.getInt(),
                 RobotInfo.frontWingRollerPin2.getInt(),
                 RobotInfo.frontWingEncoderPin.getInt(),
@@ -24,9 +25,9 @@ public class HardwareController {
                 RobotInfo.frontWingI,
                 RobotInfo.frontWingD,
                 RobotInfo.frontWingZeroPoint);
-        frontWing.invert();
+        backWing.invert();
 
-        backWing = new Wing(RobotInfo.backWingWristPin.getInt(),
+        frontWing = new Wing(RobotInfo.backWingWristPin.getInt(),
                 RobotInfo.backWingRollerPin1.getInt(),
                 RobotInfo.backWingRollerPin2.getInt(),
                 RobotInfo.backWingEncoderPin.getInt(),

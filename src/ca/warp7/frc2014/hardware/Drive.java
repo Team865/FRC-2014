@@ -10,22 +10,20 @@ public class Drive {
     private final Solenoid shifter = new Solenoid(RobotInfo.shifterPort.getInt());
     private final Talon rightDrive = new Talon(RobotInfo.rightMotorPort.getInt());
     private final Talon leftDrive = new Talon(RobotInfo.leftMotorPort.getInt());
-    private boolean gear = false;
 
     public void setLRPower(double lPower, double rPower) {
         rightDrive.set(lPower);
         leftDrive.set(rPower * -1); //inverted cause other side
     }
 
-    public void shift(boolean gear) {
-        shifter.set(!gear);
-        this.gear = gear;
-        Util.log("Drive", gear ? "High" : "Low");
+    public void shift(boolean gear) { // true for low.
+        shifter.set(gear);
+        Util.log("Drive", !gear ? "High" : "Low");
         Robot.getInstance().ds.table.putBoolean("Gear", gear);
     }
 
     public boolean isHighGear() {
-        return gear;
+        return shifter.get();
     }
     public boolean isLowGear() {
         return !isHighGear();

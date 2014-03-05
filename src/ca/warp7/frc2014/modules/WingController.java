@@ -6,8 +6,7 @@ import ca.warp7.frc2014.util.WingModes;
 
 public class WingController extends ModuleBase {
 
-    private int STATE;
-    private int timer = 0;
+    public static int STATE;
     private static WingController instance;
     private final Robot robot;
 
@@ -31,26 +30,14 @@ public class WingController extends ModuleBase {
             setState(butt);
         }
 
-        if (timer > 0) {
-            timer--;
-        }
-
-        if (timer == 0) {
-            switch (STATE) {
-                case WingModes.DROP:
-                case WingModes.KISS:
-                    setState(WingModes.DROP_KICK);
-                    break;
-
-                case WingModes.DROP_KICK:
-                case WingModes.CATCH:
-                    setState(WingModes.OFF); //Reset to neutral
-                    break;
+        if (STATE == WingModes.OFF) {
+            if (robot.hw.backWing.isAtSetpoint()) {
+                robot.hw.backWing.disable();
             }
-
-            timer = -1;
+            if (robot.hw.frontWing.isAtSetpoint()) {
+                robot.hw.frontWing.disable();
+            }
         }
-
         /*
         if(STATE == WingModes.CATCH) { // go dowm
             if(robot.hw.sonar.notHoldingBall()) {
@@ -75,25 +62,22 @@ public class WingController extends ModuleBase {
         switch (state) {
             case WingModes.CATCH:
                 // Rollers go up, arms go up. \[]/
-                Util.log("WingController", "Mode: CATCH");
 
                 robot.hw.frontWing.rollersUp();
                 robot.hw.backWing.rollersUp();
 
                 robot.hw.backWing.setTargetAngle(135); // guesstimated #.
                 robot.hw.frontWing.setTargetAngle(135);
-                timer = 120;
                 break;
 
             case WingModes.HOLD:
                 //Rollers shouldn't have to move, arms should be slightly angled in. [\O/]
-                Util.log("WingController", "Mode: HOLD");
 
                 robot.hw.frontWing.rollersOff();
                 robot.hw.backWing.rollersOff();
 
-                robot.hw.frontWing.setTargetAngle(90); // ALso guesstimated
-                robot.hw.backWing.setTargetAngle(90); //halp
+                robot.hw.frontWing.setTargetAngle(5); // ALso guesstimated
+                robot.hw.backWing.setTargetAngle(5); //halp
                 //what am i doing asdfkjahdslkjffzgxkjlv zcx,mcv,lmz7uynhyju n
                 //90 for testing ONLY FOR 0 THIS SHOULD BE 0 NOT 90 ASTUALLY MAYBE LIKE -20
                 break;
@@ -101,7 +85,6 @@ public class WingController extends ModuleBase {
             case WingModes.KISS:
                 //Rollers should push ball out, front wing should punt ball out, back roller up.
                 //same as drop but back goes up.
-                Util.log("WingController", "Mode: KISS");
 
                 robot.hw.backWing.rollersUp();
                 robot.hw.frontWing.rollersOff();
@@ -113,10 +96,9 @@ public class WingController extends ModuleBase {
 
             case WingModes.PICKUP:
                 //Back rollers down, front off.
-                Util.log("WingController", "Mode: PICKUP");
 
-                robot.hw.backWing.rollersDown();
-                robot.hw.frontWing.rollersOff();
+                robot.hw.backWing.rollersOff();
+                robot.hw.frontWing.rollersDown();
 
                 robot.hw.backWing.setTargetAngle(0);
                 robot.hw.frontWing.setTargetAngle(85);
@@ -124,38 +106,22 @@ public class WingController extends ModuleBase {
 
             case WingModes.DROP:
                 //Prepare to kick
-                Util.log("WingController", "Mode: DROP");
 
                 robot.hw.backWing.rollersUp();
-                robot.hw.frontWing.rollersOff();
+                robot.hw.frontWing.rollersUp();
 
-                robot.hw.frontWing.setTargetAngle(100);
-                robot.hw.backWing.setTargetAngle(120);
-
-                timer = 30;
-                break;
-
-            case WingModes.DROP_KICK:
-                //KICK THE SHIT OUT OF IT
-                Util.log("WingController", "Mode: DROP");
-
+                robot.hw.frontWing.setTargetAngle(85);
                 robot.hw.backWing.setTargetAngle(300);
 
-                timer = 30;
                 break;
-
             case WingModes.OFF:
-                /*
-                if (Robot.getInstance().hw.sonar.notHoldingBall()) { // if ya see dem balls
-                    this.setState(WingModes.HOLD); // Grab dem balls
-                    break;
-                }
-                */
-
-                Util.log("WingController", "Mode: SHOULD_OFF");
                 //redy 4 teh flush
-                robot.hw.frontWing.disable();
-                robot.hw.backWing.disable();
+                robot.hw.frontWing.setTargetAngle(0);
+                robot.hw.backWing.setTargetAngle(0);
+
+                robot.hw.frontWing.rollersOff();
+                robot.hw.backWing.rollersOff();
+
                 break;
         }
     }

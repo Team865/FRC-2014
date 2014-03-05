@@ -16,7 +16,7 @@ public class CheesyDrive extends ModuleBase {
         Robot robot = Robot.getInstance();
         double wheelNonLinearity, wheel, throttle;
 
-        boolean isQuickTurn = robot.ds.isQuickTurn();
+        boolean isQuickTurn = robot.ds.getQuickTurnButton();
         double wheelDeadband = 0.02;
         wheel = Util.deadband(-robot.ds.getSecondaryX(), wheelDeadband);
         double throttleDeadband = 0.02;

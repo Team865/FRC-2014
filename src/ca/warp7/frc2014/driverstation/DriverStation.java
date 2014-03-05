@@ -1,6 +1,7 @@
 package ca.warp7.frc2014.driverstation;
 
 import ca.warp7.frc2014.modules.ModuleBase;
+import ca.warp7.frc2014.modules.WingController;
 import ca.warp7.frc2014.robot.Robot;
 import ca.warp7.frc2014.util.RobotInfo;
 import edu.wpi.first.wpilibj.Joystick;
@@ -53,11 +54,13 @@ public class DriverStation {
         r.ds.table.putNumber("frontWingEncoder", r.hw.frontWing.getWristPosition());
         r.ds.table.putNumber("backWingEncoder", r.hw.backWing.getWristPosition());
         r.ds.table.putBoolean("highGear", r.hw.drive.isHighGear());
+        r.ds.table.putInt("wingMode", WingController.STATE);
 
         r.ds.table.putNumber("sonarDistance", r.hw.sonar.getDistance());
     }
 
-    public boolean isQuickTurn() {
+    //controller stuff
+    public boolean getQuickTurnButton() {
         return leftJoy.getTrigger();
     }
 
@@ -88,11 +91,7 @@ public class DriverStation {
         return -1;
     }
 
-    public boolean isShiftLow() {
-        return rightJoy.getRawButton(4);
-    }
-
-    public boolean isShiftHigh() {
-        return rightJoy.getRawButton(5);
+    public boolean getShiftLowButton() {
+        return rightJoy.getTrigger();
     }
 }
