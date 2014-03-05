@@ -8,12 +8,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Vector;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Ari
- * Date: 1/9/14
- * Time: 3:22 PM
- */
 public class RobotInfoHandler {
 
 
