@@ -15,7 +15,7 @@ public abstract class DriverStationBase {
     public DriverStationBase(ITableListener updateListener, Warp7Robot robot) {
         this.robot = robot;
 
-        table = NetworkTable.getTable("TheBeast");
+        table = NetworkTable.getTable("DriverStation");
         table.addTableListener(updateListener);
     }
 

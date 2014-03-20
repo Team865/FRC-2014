@@ -1,7 +1,7 @@
 package ca.warp7.frc2014.modules;
 
 import ca.warp7.frc2014.TwoChainz;
-import ca.warp7.frc2014.driverstation.TheBeast;
+import ca.warp7.frc2014.driverstation.MohitDriverStation;
 import ca.warp7.frc2014.hardware.Wing;
 import ca.warp7.frc2014.util.WingModes;
 import ca.warp7.robotlib.Warp7Robot;
@@ -30,7 +30,7 @@ public class WingController extends ModuleBase {
     } // whoo hooray for the singleton pattern
 
     public void periodic() {
-        int butt = ((TheBeast)robot.ds).getModeButton();
+        int butt = ((MohitDriverStation)robot.ds).getModeButton();
         if (butt != -1) {
             setState(butt);
         }

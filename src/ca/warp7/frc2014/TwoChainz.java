@@ -1,7 +1,7 @@
 package ca.warp7.frc2014;// Time Created: 1/4/14 4:57 PM
 
 import ca.warp7.frc2014.autonomous.DetectHotTarget;
-import ca.warp7.frc2014.driverstation.TheBeast;
+import ca.warp7.frc2014.driverstation.MohitDriverStation;
 import ca.warp7.frc2014.hardware.CartCompressor;
 import ca.warp7.frc2014.hardware.Drive;
 import ca.warp7.frc2014.hardware.Sonar;
@@ -58,6 +58,6 @@ public class TwoChainz extends Warp7Robot {
     }
 
     public DriverStationBase getDriverStation() {
-        return new TheBeast();
+        return new MohitDriverStation();
     }
 }

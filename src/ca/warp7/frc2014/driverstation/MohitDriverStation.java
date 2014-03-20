@@ -9,7 +9,7 @@ import ca.warp7.robotlib.parents.DriverStationBase;
 import ca.warp7.robotlib.util.RobotInfo;
 import edu.wpi.first.wpilibj.Joystick;
 
-public class TheBeast extends DriverStationBase {
+public class MohitDriverStation extends DriverStationBase {
 
     //best class name NA
     private final Joystick leftJoy;
@@ -19,7 +19,7 @@ public class TheBeast extends DriverStationBase {
     private final Drive drive;
     private final Sonar sonar;
 
-    public TheBeast() {
+    public MohitDriverStation() {
         super(new DriverStationUpdateListener(), TwoChainz.getInstance());
 
         leftJoy = new Joystick(RobotInfo.leftJoyPort.getInt());

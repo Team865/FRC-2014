@@ -1,7 +1,7 @@
 package ca.warp7.frc2014.modules;
 
 import ca.warp7.frc2014.TwoChainz;
-import ca.warp7.frc2014.driverstation.TheBeast;
+import ca.warp7.frc2014.driverstation.MohitDriverStation;
 import ca.warp7.frc2014.hardware.Drive;
 import ca.warp7.robotlib.Warp7Robot;
 import ca.warp7.robotlib.robot.ModuleBase;
@@ -22,11 +22,11 @@ public class CheesyDrive extends ModuleBase {
     public void periodic() { // Driving Method
         double wheelNonLinearity, wheel, throttle;
 
-        boolean isQuickTurn = ((TheBeast) robot.ds).getQuickTurnButton();
+        boolean isQuickTurn = ((MohitDriverStation) robot.ds).getQuickTurnButton();
         double wheelDeadband = 0.02;
-        wheel = Util.deadband(((TheBeast) robot.ds).getSecondaryX(), wheelDeadband);
+        wheel = Util.deadband(((MohitDriverStation) robot.ds).getSecondaryX(), wheelDeadband);
         double throttleDeadband = 0.02;
-        throttle = Util.deadband(((TheBeast) robot.ds).getPrimaryY() * -1, throttleDeadband); // *-1 depends on wiring I think
+        throttle = Util.deadband(((MohitDriverStation) robot.ds).getPrimaryY() * -1, throttleDeadband); // *-1 depends on wiring I think
         double negInertia = wheel - oldWheel;
         oldWheel = wheel;
 
