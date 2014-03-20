@@ -30,7 +30,7 @@ public class RobotInfoHandler {
                     Connector.READ);
             if (!infoFile.exists()) {
                 writeInfoToFile(); //yaaaaaaaaay
-                Util.log("InfoValue", "File does not exist, creating.");
+                Util.log("RobotInfoHandler", "File does not exist, creating.");
             }
             infoStream = infoFile.openDataInputStream();
             while (infoStream.read(buffer) != -1) {
@@ -50,7 +50,7 @@ public class RobotInfoHandler {
                 for (int j = 0; j < infoList.size(); j++) {
                     InfoValue info = (InfoValue) infoList.elementAt(j);
                     if (info.getKey().equals(splitLine[0])) {
-                        Util.log("InfoValue", "Setting " + info.getKey() + " to " + Double.parseDouble(splitLine[1]));
+                        Util.log("RobotInfoHandler", "Setting " + info.getKey() + " to " + Double.parseDouble(splitLine[1]));
                         info.setVal(Double.parseDouble(splitLine[1]));
                         found = true;
                         break;
@@ -61,10 +61,10 @@ public class RobotInfoHandler {
                 }
 
                 if (!found)
-                    Util.log("InfoValue", "Error: the specified InfoValue doesn't exist: " + lines[i]);
+                    Util.log("RobotInfoHandler", "Error: the specified InfoValue doesn't exist: " + lines[i]);
             }
         } catch (IOException e) {
-            Util.log("InfoValue", "wat.");
+            Util.log("RobotInfoHandler", "wat.");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -83,7 +83,7 @@ public class RobotInfoHandler {
             // Search through the infoList and write every one.
             for (int j = 0; j < infoList.size(); j++) {
                 InfoValue info = (InfoValue) infoList.elementAt(j);
-                // Util.log("InfoValue",info.getKey());
+                // right,info.getKey());
                 outStream.write((info.getKey() + "=" + info.getDefault() + "\n").getBytes()); //Convert to byte array
             }
         } catch (IOException e) {

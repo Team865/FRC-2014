@@ -31,7 +31,7 @@ public abstract class Warp7Robot extends IterativeRobot {
         getWatchdog().setEnabled(false);
         loadHardware();
         loadModules();
-        Util.log("Main", robotName + " has booted, ready to go.");
+        Util.log(this, robotName + " has booted, ready to go.");
     }
 
     public void autonomousInit() {
@@ -45,7 +45,7 @@ public abstract class Warp7Robot extends IterativeRobot {
     public void teleopInit() {
         ds.setMode("Teleoperated");
         ds.loadModuleInfo();
-        Util.log("Main", "Module Init");
+        Util.log(this, "Module Init");
         modules.loadModules();
     }
 
@@ -56,13 +56,13 @@ public abstract class Warp7Robot extends IterativeRobot {
 
 
     public void disabledInit() {
-        Util.log("Main", "Disabled initializing.");
+        Util.log(this, "Disabled initializing.");
         ds.setMode("Disabled");
-        Util.log("Main", "Reloading info...");
+        Util.log(this, "Reloading info...");
         RobotInfo.readInfoFromFile();
         ds.loadModuleInfo();
         hw.reloadHardware();
-        Util.log("Main", "Info reloaded.");
+        Util.log(this, "Info reloaded.");
     }
 
     public void disabledPeriodic() {

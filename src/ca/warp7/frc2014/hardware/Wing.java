@@ -50,7 +50,7 @@ public class Wing extends HardwareBase {
         controller.setPercentTolerance(5);
 
         controller.setPID(P.getDouble(), I.getDouble(), D.getDouble());
-        Util.log("Wing " + wrist.getChannel(), "P: " + controller.getP() + "I: " + controller.getI() + "D: " + controller.getD());
+        Util.log(this, "P: " + controller.getP() + "I: " + controller.getI() + "D: " + controller.getD());
     }
 
     public void free() {

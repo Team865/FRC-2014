@@ -16,8 +16,12 @@ public class Util {
         return (Math.abs(v) < limit) ? v : limit * (v < 0 ? -1 : 1); //This is used for cheesy drive
     }
 
-    public static void log(String sub, String string) {
-        System.out.println("[" + sub + "] " + string);
+    public static void log(String caller, String message) {
+        System.out.println("[" + caller + "] " + message);
+
+    }
+    public static void log(Object caller, String message) {
+        log(caller.getClass().getSimpleName(), message);
     }
 
     public static double deadband(double rawAxis, double amount) {

@@ -16,7 +16,7 @@ public class DetectHotTarget {
         Wing backWing = (Wing) robot.hw.getHardware("backWing");
 
         Vision v = new Vision();
-        Util.log("Vision", v.isHot() ? "Hot" : "Not Hot");
+        Util.log(this, v.isHot() ? "Hot" : "Not Hot");
 
         if (!v.isHot()) { // wait till it is hot
             Timer.delay(2);

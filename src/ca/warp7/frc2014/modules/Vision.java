@@ -15,7 +15,7 @@ public class Vision {
         try {
             return ((int) table.getNumber("BLOB_COUNT") == 1);
         } catch (TableKeyNotDefinedException e) {
-            Util.log("Vision", "RoboRealm not started!");
+            Util.log(this, "RoboRealm not started!");
         }
         return true; // might as well score asap
     }
