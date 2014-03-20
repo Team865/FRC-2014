@@ -7,7 +7,7 @@ import java.util.Vector;
 
 public class HardwareController {
 
-    public final Vector hardwareList = new Vector();
+    private final Vector hardwareList = new Vector();
 
     public HardwareController() {
         //prevent instanithing

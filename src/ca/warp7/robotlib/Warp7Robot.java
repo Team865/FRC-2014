@@ -1,6 +1,5 @@
 package ca.warp7.robotlib;
 
-import ca.warp7.frc2014.hardware.Drive;
 import ca.warp7.robotlib.parents.DriverStationBase;
 import ca.warp7.robotlib.robot.HardwareController;
 import ca.warp7.robotlib.robot.ModuleController;
@@ -15,7 +14,7 @@ public abstract class Warp7Robot extends IterativeRobot {
     private static Warp7Robot instance;
     private String robotName; //hue
 
-    public Warp7Robot() {
+    protected Warp7Robot() {
         instance = this;
     }
 
@@ -79,12 +78,12 @@ public abstract class Warp7Robot extends IterativeRobot {
         ds.sendSensorInfo();
     }
 
-    public abstract void loadHardware();
+    protected abstract void loadHardware();
 
-    public abstract void loadModules();
+    protected abstract void loadModules();
 
-    public abstract String getRobotName();
+    protected abstract String getRobotName();
 
-    public abstract DriverStationBase getDriverStation();
+    protected abstract DriverStationBase getDriverStation();
 
 }

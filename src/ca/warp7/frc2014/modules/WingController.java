@@ -30,7 +30,7 @@ public class WingController extends ModuleBase {
     } // whoo hooray for the singleton pattern
 
     public void periodic() {
-        int butt = ((MohitDriverStation)robot.ds).getModeButton();
+        int butt = ((MohitDriverStation) robot.ds).getModeButton();
         if (butt != -1) {
             setState(butt);
         }

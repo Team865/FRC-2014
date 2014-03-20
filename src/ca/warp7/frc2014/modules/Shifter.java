@@ -7,11 +7,14 @@ import ca.warp7.robotlib.robot.ModuleBase;
 
 public class Shifter extends ModuleBase {
 
+    /**
+     * @noinspection EmptyMethod
+     */
     public void load() {
-
+        //herpa
     }
 
     public void periodic() {
-        ((Drive) TwoChainz.getInstance().hw.getHardware("Drive")).shift(((MohitDriverStation)TwoChainz.getInstance().ds).getShiftLowButton());
+        ((Drive) TwoChainz.getInstance().hw.getHardware("Drive")).shift(((MohitDriverStation) TwoChainz.getInstance().ds).getShiftLowButton());
     }
 }

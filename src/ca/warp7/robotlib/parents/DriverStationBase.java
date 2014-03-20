@@ -12,7 +12,7 @@ public abstract class DriverStationBase {
     public final NetworkTable table;
     protected final Warp7Robot robot;
 
-    public DriverStationBase(ITableListener updateListener, Warp7Robot robot) {
+    protected DriverStationBase(ITableListener updateListener, Warp7Robot robot) {
         this.robot = robot;
 
         table = NetworkTable.getTable("DriverStation");

@@ -37,7 +37,7 @@ public class TwoChainz extends Warp7Robot {
                 RobotInfo.frontWingD,
                 RobotInfo.frontWingZeroPoint));
 
-        hw.add(new Wing("frontWing",
+        hw.add(new Wing("backWing",
                 RobotInfo.backWingWristPin,
                 RobotInfo.backWingRollerPin1,
                 RobotInfo.backWingRollerPin2,

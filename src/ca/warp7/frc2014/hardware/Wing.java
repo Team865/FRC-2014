@@ -15,7 +15,6 @@ public class Wing extends HardwareBase {
     private AnalogChannel wristEncoder;
     private PIDController controller;
     private final RobotInfoHandler.InfoValue P, I, D, zeroPoint;
-    private boolean inverted;
 
     public Wing(String name,
                 RobotInfoHandler.InfoValue wristPin,
@@ -39,7 +38,7 @@ public class Wing extends HardwareBase {
         init();
     }
 
-    public void init() {
+    protected void init() {
         wrist = new Talon(wristPin.getInt());
         roller1 = new Talon(rollerPin1.getInt());
         roller2 = new Talon(rollerPin2.getInt());
@@ -89,10 +88,6 @@ public class Wing extends HardwareBase {
 
         if (!controller.isEnable()) {
             controller.enable();
-        }
-
-        if (inverted) {
-            angle *= -1;
         }
         while (angle < 0) {
             angle += 360;

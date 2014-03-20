@@ -2,13 +2,13 @@ package ca.warp7.robotlib.parents;
 
 public abstract class HardwareBase { //weep woop
 
-    public HardwareBase() {
+    protected HardwareBase() {
         // to override name, override getName
     }
 
-    public abstract void init();
+    protected abstract void init();
 
-    public abstract void free();
+    protected abstract void free();
 
     public void reload() {
         free();

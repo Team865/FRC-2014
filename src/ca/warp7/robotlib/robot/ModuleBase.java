@@ -3,7 +3,7 @@ package ca.warp7.robotlib.robot;
 import ca.warp7.robotlib.Warp7Robot;
 
 public abstract class ModuleBase {
-    public ModuleBase() {
+    protected ModuleBase() {
         setEnabled(true);
     }
 
