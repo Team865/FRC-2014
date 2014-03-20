@@ -25,6 +25,7 @@ public class Drive {
     public boolean isHighGear() {
         return shifter.get();
     }
+
     public boolean isLowGear() {
         return !isHighGear();
     }

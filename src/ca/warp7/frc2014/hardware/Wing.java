@@ -79,17 +79,17 @@ public class Wing {
         controller.setSetpoint(num);
     }
 
-    public void rollersUp() {
+    public void startRollersUp() {
         roller1.set(1.0);
         roller2.set(1.0);
     }
 
-    public void rollersDown() {
+    public void startRollersDown() {
         roller1.set(-1.0);
         roller2.set(-1.0);
     }
 
-    public void rollersOff() {
+    public void stopRollers() {
         roller1.set(0.0);
         roller2.set(0.0);
     }
@@ -97,6 +97,7 @@ public class Wing {
     public double getWristPosition() {
         return wristEncoder.getAverageValue();
     }
+
     public boolean isAtSetpoint() {
         return controller.onTarget();
     }

@@ -54,7 +54,7 @@ public class DriverStation {
         r.ds.table.putNumber("frontWingEncoder", r.hw.frontWing.getWristPosition());
         r.ds.table.putNumber("backWingEncoder", r.hw.backWing.getWristPosition());
         r.ds.table.putBoolean("highGear", r.hw.drive.isHighGear());
-        r.ds.table.putInt("wingMode", WingController.STATE);
+        r.ds.table.putNumber("wingMode", WingController.STATE);
 
         r.ds.table.putNumber("sonarDistance", r.hw.sonar.getDistance());
     }
@@ -81,14 +81,14 @@ public class DriverStation {
     }
 
     public int getModeButton() {
-        int numModes = 5;
+        int numModes = 7;
         int offset = 7;
-        for (int i = 0; i < numModes; i++) {
-            if(i + offset == 8) { //fucking button 8 is broken
-                offset++; //TODO GET MOHIT TO FIX THE FUCKIN DRIVERSTATION
-            }
-            if (rightJoy.getRawButton(i + offset)) {
-                return i;
+        for (int i = 2; i < (numModes + offset); i++) {
+            if (rightJoy.getRawButton(i) && !((i > 2) && (i < 7))) {
+                return i; //this allows short circuiting.
+                /* TODO: write a new button mapping system, rewrite
+                   modlues like minecraftforge to
+                   allow dynamic reistration and proper containmenet. */
             }
         }
         return -1;

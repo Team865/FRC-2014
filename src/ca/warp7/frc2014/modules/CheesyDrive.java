@@ -13,14 +13,14 @@ public class CheesyDrive extends ModuleBase {
     }
 
     public void periodic() { // Driving Method
-        Robot robot = Robot.getInstance();
+        Robot robot = Robot.getInstance(); // robot robot robot robot
         double wheelNonLinearity, wheel, throttle;
 
         boolean isQuickTurn = robot.ds.getQuickTurnButton();
         double wheelDeadband = 0.02;
         wheel = Util.deadband(robot.ds.getSecondaryX(), wheelDeadband);
         double throttleDeadband = 0.02;
-        throttle = Util.deadband(- robot.ds.getPrimaryY(), throttleDeadband);
+        throttle = Util.deadband(-robot.ds.getPrimaryY(), throttleDeadband);
         double negInertia = wheel - oldWheel;
         oldWheel = wheel;
 

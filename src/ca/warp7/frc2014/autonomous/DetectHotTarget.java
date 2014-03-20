@@ -20,10 +20,10 @@ public class DetectHotTarget {
         robot.hw.drive.setLRPower(-0.5, -0.5);
 
         Timer.delay(2); // How long do we drive??
-        robot.hw.backWing.rollersDown();
+        robot.hw.backWing.startRollersDown();
         Timer.delay(0.8);
         robot.hw.drive.setLRPower(0, 0);
         Timer.delay(3);
-        robot.hw.backWing.rollersOff();
+        robot.hw.backWing.stopRollers();
     }
 }
