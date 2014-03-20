@@ -6,7 +6,7 @@ import ca.warp7.frc2014.hardware.Sonar;
 import ca.warp7.frc2014.hardware.Wing;
 import ca.warp7.frc2014.modules.WingController;
 import ca.warp7.robotlib.parents.DriverStationBase;
-import ca.warp7.robotlib.util.RobotInfo;
+import ca.warp7.frc2014.util.RobotInfo;
 import edu.wpi.first.wpilibj.Joystick;
 
 public class MohitDriverStation extends DriverStationBase {

@@ -11,7 +11,7 @@ import ca.warp7.frc2014.modules.Shifter;
 import ca.warp7.frc2014.modules.WingController;
 import ca.warp7.robotlib.Warp7Robot;
 import ca.warp7.robotlib.parents.DriverStationBase;
-import ca.warp7.robotlib.util.RobotInfo;
+import ca.warp7.frc2014.util.RobotInfo;
 
 public class TwoChainz extends Warp7Robot {
 

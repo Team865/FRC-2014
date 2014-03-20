@@ -1,7 +1,9 @@
-package ca.warp7.robotlib.util;
+package ca.warp7.frc2014.util;
 
 
-public class RobotInfo extends RobotInfoHandler {
+import ca.warp7.robotlib.util.RobotInfoBase;
+
+public class RobotInfo extends RobotInfoBase {
 
     // Syntax:
     // public static final InfoValue key = new InfoValue(key, data);

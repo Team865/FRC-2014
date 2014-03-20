@@ -5,7 +5,7 @@ import ca.warp7.frc2014.driverstation.MohitDriverStation;
 import ca.warp7.frc2014.hardware.Drive;
 import ca.warp7.robotlib.Warp7Robot;
 import ca.warp7.robotlib.robot.ModuleBase;
-import ca.warp7.robotlib.util.RobotInfo;
+import ca.warp7.frc2014.util.RobotInfo;
 import ca.warp7.robotlib.util.Util;
 
 public class CheesyDrive extends ModuleBase {

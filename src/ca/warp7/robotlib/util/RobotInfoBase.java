@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Vector;
 
-public class RobotInfoHandler {
+public class RobotInfoBase {
 
 
     private static final Vector infoList = new Vector();
@@ -30,7 +30,7 @@ public class RobotInfoHandler {
                     Connector.READ);
             if (!infoFile.exists()) {
                 writeInfoToFile(); //yaaaaaaaaay
-                Util.log("RobotInfoHandler", "File does not exist, creating.");
+                Util.log("RobotInfoBase", "File does not exist, creating.");
             }
             infoStream = infoFile.openDataInputStream();
             while (infoStream.read(buffer) != -1) {
@@ -50,7 +50,7 @@ public class RobotInfoHandler {
                 for (int j = 0; j < infoList.size(); j++) {
                     InfoValue info = (InfoValue) infoList.elementAt(j);
                     if (info.getKey().equals(splitLine[0])) {
-                        Util.log("RobotInfoHandler", "Setting " + info.getKey() + " to " + Double.parseDouble(splitLine[1]));
+                        Util.log("RobotInfoBase", "Setting " + info.getKey() + " to " + Double.parseDouble(splitLine[1]));
                         info.setVal(Double.parseDouble(splitLine[1]));
                         found = true;
                         break;
@@ -61,10 +61,10 @@ public class RobotInfoHandler {
                 }
 
                 if (!found)
-                    Util.log("RobotInfoHandler", "Error: the specified InfoValue doesn't exist: " + lines[i]);
+                    Util.log("RobotInfoBase", "Error: the specified InfoValue doesn't exist: " + lines[i]);
             }
         } catch (IOException e) {
-            Util.log("RobotInfoHandler", "wat.");
+            Util.log("RobotInfoBase", "wat.");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -97,7 +97,7 @@ public class RobotInfoHandler {
         private double data;
         private final double defaultData; //asdfasdfhkjh can't use default fucking java
 
-        InfoValue(String key, double data) {
+        public InfoValue(String key, double data) {
             this.key = key;
             this.defaultData = data;
             this.data = this.defaultData;

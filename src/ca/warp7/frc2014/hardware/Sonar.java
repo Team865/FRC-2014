@@ -1,7 +1,7 @@
 package ca.warp7.frc2014.hardware;
 
 import ca.warp7.robotlib.parents.HardwareBase;
-import ca.warp7.robotlib.util.RobotInfo;
+import ca.warp7.frc2014.util.RobotInfo;
 import edu.wpi.first.wpilibj.AnalogChannel;
 
 public class Sonar extends HardwareBase {

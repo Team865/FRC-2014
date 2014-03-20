@@ -1,7 +1,7 @@
 package ca.warp7.frc2014.hardware;
 
 import ca.warp7.robotlib.parents.HardwareBase;
-import ca.warp7.robotlib.util.RobotInfoHandler;
+import ca.warp7.robotlib.util.RobotInfoBase;
 import ca.warp7.robotlib.util.Util;
 import edu.wpi.first.wpilibj.AnalogChannel;
 import edu.wpi.first.wpilibj.PIDController;
@@ -10,21 +10,21 @@ import edu.wpi.first.wpilibj.Talon;
 public class Wing extends HardwareBase {
     //Pins
     private final String name;
-    private final RobotInfoHandler.InfoValue wristPin, rollerPin1, rollerPin2, wristEncoderPin;
+    private final RobotInfoBase.InfoValue wristPin, rollerPin1, rollerPin2, wristEncoderPin;
     private Talon wrist, roller1, roller2;
     private AnalogChannel wristEncoder;
     private PIDController controller;
-    private final RobotInfoHandler.InfoValue P, I, D, zeroPoint;
+    private final RobotInfoBase.InfoValue P, I, D, zeroPoint;
 
     public Wing(String name,
-                RobotInfoHandler.InfoValue wristPin,
-                RobotInfoHandler.InfoValue rollerPin1,
-                RobotInfoHandler.InfoValue rollerPin2,
-                RobotInfoHandler.InfoValue wristEncoderPin,
-                RobotInfoHandler.InfoValue P,
-                RobotInfoHandler.InfoValue I,
-                RobotInfoHandler.InfoValue D,
-                RobotInfoHandler.InfoValue zeroPoint) {
+                RobotInfoBase.InfoValue wristPin,
+                RobotInfoBase.InfoValue rollerPin1,
+                RobotInfoBase.InfoValue rollerPin2,
+                RobotInfoBase.InfoValue wristEncoderPin,
+                RobotInfoBase.InfoValue P,
+                RobotInfoBase.InfoValue I,
+                RobotInfoBase.InfoValue D,
+                RobotInfoBase.InfoValue zeroPoint) {
         this.name = name;
         this.wristPin = wristPin;
         this.rollerPin1 = rollerPin1;
