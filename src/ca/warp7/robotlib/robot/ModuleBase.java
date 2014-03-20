@@ -1,9 +1,9 @@
-package ca.warp7.frc2014.modules;// Time Created: 1/4/14 5:24 PM
+package ca.warp7.robotlib.robot;
 
-import ca.warp7.frc2014.robot.Robot;
+import ca.warp7.robotlib.Warp7Robot;
 
 public abstract class ModuleBase {
-    ModuleBase() {
+    public ModuleBase() {
         setEnabled(true);
     }
 
@@ -13,7 +13,9 @@ public abstract class ModuleBase {
 
     public abstract void periodic();
 
-    public abstract String getName();
+    public String getName() {
+        return this.getClass().getSimpleName();
+    }
 
     public boolean isEnabled() {
         return enabled;
@@ -21,7 +23,7 @@ public abstract class ModuleBase {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
-        Robot.getInstance().ds.sendModuleInfo();
+        Warp7Robot.getInstance().ds.sendModuleInfo();
     }
 
     private boolean enabled;

@@ -8,7 +8,7 @@ class DriverStationUpdateListener implements ITableListener {
     public void valueChanged(ITable src, String key, Object value, boolean isNew) {
         /*
         if(key == "gear") {
-            Robot.getInstance().hw.drive.shift(((Boolean) value).booleanValue());
+            TwoChainz.getInstance().hw.drive.shift(((Boolean) value).booleanValue());
         }
         */
         if (key.equals("wingMode")) {

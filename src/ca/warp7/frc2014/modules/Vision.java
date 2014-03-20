@@ -1,6 +1,6 @@
 package ca.warp7.frc2014.modules;
 
-import ca.warp7.frc2014.util.Util;
+import ca.warp7.robotlib.util.Util;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.tables.TableKeyNotDefinedException;
 

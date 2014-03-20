@@ -1,13 +1,19 @@
 package ca.warp7.frc2014.hardware;
 
-import ca.warp7.frc2014.util.RobotInfo;
+import ca.warp7.robotlib.parents.HardwareBase;
+import ca.warp7.robotlib.util.RobotInfo;
 import edu.wpi.first.wpilibj.AnalogChannel;
 
-public class Sonar {
-    private final AnalogChannel chan;
+public class Sonar extends HardwareBase {
+    private AnalogChannel chan;
 
-    public Sonar() {
+    public void init() {
         chan = new AnalogChannel(RobotInfo.sonarPin.getInt());
+    }
+
+    public void free() {
+        chan.free();
+        chan = null;
     }
 
     public double getDistance() { //In CM

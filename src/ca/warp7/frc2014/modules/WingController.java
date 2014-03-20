@@ -1,17 +1,24 @@
 package ca.warp7.frc2014.modules;
 
-import ca.warp7.frc2014.robot.Robot;
+import ca.warp7.frc2014.TwoChainz;
+import ca.warp7.frc2014.driverstation.TheBeast;
+import ca.warp7.frc2014.hardware.Wing;
 import ca.warp7.frc2014.util.WingModes;
+import ca.warp7.robotlib.Warp7Robot;
+import ca.warp7.robotlib.robot.ModuleBase;
 
 public class WingController extends ModuleBase {
 
     public static int STATE;
     private static WingController instance;
-    private final Robot robot;
+    private final Warp7Robot robot;
+    private final Wing backWing, frontWing;
 
     public WingController() {
         instance = this;
-        robot = Robot.getInstance();
+        robot = TwoChainz.getInstance();
+        backWing = (Wing) robot.hw.getHardware("backWing");
+        frontWing = (Wing) robot.hw.getHardware("frontWing");
     }
 
     public void load() {
@@ -23,18 +30,18 @@ public class WingController extends ModuleBase {
     } // whoo hooray for the singleton pattern
 
     public void periodic() {
-        int butt = robot.ds.getModeButton();
+        int butt = ((TheBeast)robot.ds).getModeButton();
         if (butt != -1) {
             setState(butt);
         }
-        if (robot.hw.backWing.isAtSetpoint()) {
+        if (backWing.isAtSetpoint()) {
             if (STATE == WingModes.OFF) {
-                robot.hw.backWing.stopRollers();
+                backWing.stopRollers();
             }
         }
-        if (robot.hw.frontWing.isAtSetpoint()) {
+        if (frontWing.isAtSetpoint()) {
             if (STATE == WingModes.OFF) {
-                robot.hw.frontWing.disable();
+                frontWing.disable();
             }
         }
 
@@ -63,68 +70,64 @@ public class WingController extends ModuleBase {
             case WingModes.CATCH:
                 // Rollers go up, arms go up. \[]/
 
-                robot.hw.frontWing.startRollersUp();
-                robot.hw.backWing.startRollersUp();
+                frontWing.startRollersUp();
+                backWing.startRollersUp();
 
-                robot.hw.backWing.setTargetAngle(135); // guesstimated #.
-                robot.hw.frontWing.setTargetAngle(135);
+                backWing.setTargetAngle(135); // guesstimated #.
+                frontWing.setTargetAngle(135);
                 break;
 
             case WingModes.BACK_PICKUP:
-                robot.hw.backWing.startRollersDown();
-                robot.hw.frontWing.stopRollers();
+                backWing.startRollersDown();
+                frontWing.stopRollers();
 
-                robot.hw.backWing.setTargetAngle(80);
-                robot.hw.frontWing.setTargetAngle(0);
+                backWing.setTargetAngle(80);
+                frontWing.setTargetAngle(0);
                 break;
 
             case WingModes.PICKUP:
                 //Back rollers down, front off.
 
-                robot.hw.backWing.stopRollers();
-                robot.hw.frontWing.startRollersDown();
+                backWing.stopRollers();
+                frontWing.startRollersDown();
 
-                robot.hw.backWing.setTargetAngle(0);
-                robot.hw.frontWing.setTargetAngle(85);
+                backWing.setTargetAngle(0);
+                frontWing.setTargetAngle(85);
                 break;
             case WingModes.DROP:
                 //Prepare to kick
 
-                robot.hw.backWing.startRollersUp();
-                robot.hw.frontWing.startRollersUp();
+                backWing.startRollersUp();
+                frontWing.startRollersUp();
 
-                robot.hw.frontWing.setTargetAngle(175);
-                robot.hw.backWing.setTargetAngle(300);
+                frontWing.setTargetAngle(175);
+                backWing.setTargetAngle(300);
                 break;
 
             case WingModes.OFF:
                 //redy 4 teh flush
-                robot.hw.frontWing.setTargetAngle(0);
-                robot.hw.backWing.setTargetAngle(0);
+                frontWing.setTargetAngle(0);
+                backWing.setTargetAngle(0);
 
-                robot.hw.frontWing.stopRollers();
-                robot.hw.backWing.stopRollers();
+                frontWing.stopRollers();
+                backWing.stopRollers();
 
                 break;
 
             case WingModes.GOAL_KICK:
-                robot.hw.backWing.setTargetAngle(22);
-                robot.hw.frontWing.setTargetAngle(141);
+                backWing.setTargetAngle(22);
+                frontWing.setTargetAngle(141);
 
-                robot.hw.frontWing.startRollersDown();
+                frontWing.startRollersDown();
                 break;
 
             case WingModes.SHOOT:
-                robot.hw.frontWing.setTargetAngle(0);
-                robot.hw.backWing.setTargetAngle(0);
+                frontWing.setTargetAngle(0);
+                backWing.setTargetAngle(0);
 
-                robot.hw.backWing.startRollersUp();
-                robot.hw.frontWing.startRollersUp();
+                backWing.startRollersUp();
+                frontWing.startRollersUp();
                 break;
         }
-    }
-
-    public String getName() {
-        return "Wing Controller";
     }
 }

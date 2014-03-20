@@ -1,51 +1,79 @@
 package ca.warp7.frc2014.hardware;
 
-import ca.warp7.frc2014.util.RobotInfoHandler;
-import ca.warp7.frc2014.util.Util;
+import ca.warp7.robotlib.parents.HardwareBase;
+import ca.warp7.robotlib.util.RobotInfoHandler;
+import ca.warp7.robotlib.util.Util;
 import edu.wpi.first.wpilibj.AnalogChannel;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.Talon;
 
-public class Wing {
-    private final Talon wrist;
-    private final Talon roller1;
-    private final Talon roller2;
-    private final AnalogChannel wristEncoder;
-    private final PIDController controller;
-    private final RobotInfoHandler.InfoValue P;
-    private final RobotInfoHandler.InfoValue I;
-    private final RobotInfoHandler.InfoValue D;
-    private final RobotInfoHandler.InfoValue zeroPoint;
+public class Wing extends HardwareBase {
+    //Pins
+    private final String name;
+    private final RobotInfoHandler.InfoValue wristPin, rollerPin1, rollerPin2, wristEncoderPin;
+    private Talon wrist, roller1, roller2;
+    private AnalogChannel wristEncoder;
+    private PIDController controller;
+    private final RobotInfoHandler.InfoValue P, I, D, zeroPoint;
     private boolean inverted;
 
-    public Wing(int wristPin, int rollerPin1, int rollerPin2, int wristEncoderPin,
+    public Wing(String name,
+                RobotInfoHandler.InfoValue wristPin,
+                RobotInfoHandler.InfoValue rollerPin1,
+                RobotInfoHandler.InfoValue rollerPin2,
+                RobotInfoHandler.InfoValue wristEncoderPin,
                 RobotInfoHandler.InfoValue P,
                 RobotInfoHandler.InfoValue I,
                 RobotInfoHandler.InfoValue D,
                 RobotInfoHandler.InfoValue zeroPoint) {
-        wrist = new Talon(wristPin);
-        roller1 = new Talon(rollerPin1);
-        roller2 = new Talon(rollerPin2);
-        wristEncoder = new AnalogChannel(wristEncoderPin);
+        this.name = name;
+        this.wristPin = wristPin;
+        this.rollerPin1 = rollerPin1;
+        this.rollerPin2 = rollerPin2;
+        this.wristEncoderPin = wristEncoderPin;
         this.P = P;
         this.I = I;
         this.D = D;
         this.zeroPoint = zeroPoint;
+
+        init();
+    }
+
+    public void init() {
+        wrist = new Talon(wristPin.getInt());
+        roller1 = new Talon(rollerPin1.getInt());
+        roller2 = new Talon(rollerPin2.getInt());
+        wristEncoder = new AnalogChannel(wristEncoderPin.getInt());
         controller = new PIDController(0, 0, 0, wristEncoder, wrist);
         controller.setInputRange(0.0, 970.0);
         controller.setOutputRange(-1.0, 1.0);
         controller.setContinuous(true);
         controller.setPercentTolerance(5);
-    }
 
-    public void invert() {
-        inverted = true;
-    }
-
-    public void load() {
-        //Robot.getInstance().ds.table.putNumber("zeroPoint", zeroPoint);
         controller.setPID(P.getDouble(), I.getDouble(), D.getDouble());
         Util.log("Wing " + wrist.getChannel(), "P: " + controller.getP() + "I: " + controller.getI() + "D: " + controller.getD());
+    }
+
+    public void free() {
+        //probably not best practice, but it might work
+        wrist.free();
+        wrist = null;
+
+        roller1.free();
+        roller1 = null;
+
+        roller2.free();
+        roller2 = null;
+
+        wristEncoder.free();
+        wristEncoder = null;
+
+        controller.free();
+        controller = null;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void disable() {

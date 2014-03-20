@@ -1,30 +1,36 @@
 package ca.warp7.frc2014.modules;
 
-import ca.warp7.frc2014.robot.Robot;
-import ca.warp7.frc2014.util.RobotInfo;
-import ca.warp7.frc2014.util.Util;
+import ca.warp7.frc2014.TwoChainz;
+import ca.warp7.frc2014.driverstation.TheBeast;
+import ca.warp7.frc2014.hardware.Drive;
+import ca.warp7.robotlib.Warp7Robot;
+import ca.warp7.robotlib.robot.ModuleBase;
+import ca.warp7.robotlib.util.RobotInfo;
+import ca.warp7.robotlib.util.Util;
 
 public class CheesyDrive extends ModuleBase {
     private double oldWheel = 0.0;
     private double quickStopAccumulator;
+    private final Drive drive;
+    private final Warp7Robot robot = TwoChainz.getInstance();
 
-    public String getName() {
-        return "Cheesy Drive";
+    public CheesyDrive() {
+
+        drive = (Drive) robot.hw.getHardware("Drive");
     }
 
     public void periodic() { // Driving Method
-        Robot robot = Robot.getInstance(); // robot robot robot robot
         double wheelNonLinearity, wheel, throttle;
 
-        boolean isQuickTurn = robot.ds.getQuickTurnButton();
+        boolean isQuickTurn = ((TheBeast) robot.ds).getQuickTurnButton();
         double wheelDeadband = 0.02;
-        wheel = Util.deadband(robot.ds.getSecondaryX(), wheelDeadband);
+        wheel = Util.deadband(((TheBeast) robot.ds).getSecondaryX(), wheelDeadband);
         double throttleDeadband = 0.02;
-        throttle = Util.deadband(-robot.ds.getPrimaryY(), throttleDeadband);
+        throttle = Util.deadband(((TheBeast) robot.ds).getPrimaryY() * -1, throttleDeadband); // *-1 depends on wiring I think
         double negInertia = wheel - oldWheel;
         oldWheel = wheel;
 
-        if (robot.hw.drive.isHighGear()) {
+        if (drive.isHighGear()) {
             wheelNonLinearity = 0.6;
             // Apply a sin function that's scaled to make it feel better.
             wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) /
@@ -51,7 +57,7 @@ public class CheesyDrive extends ModuleBase {
         // Negative inertia!
         double negInertiaAccumulator = 0.0;
         double negInertiaScalar;
-        if (robot.hw.drive.isHighGear()) {
+        if (drive.isHighGear()) {
             negInertiaScalar = 5.0;
             sensitivity = RobotInfo.cheesyHigh.getDouble();
         } else {
@@ -117,6 +123,6 @@ public class CheesyDrive extends ModuleBase {
             rightPwm = -1.0;
         }
 
-        robot.hw.drive.setLRPower(rightPwm, leftPwm);
+        drive.setLRPower(rightPwm, leftPwm);
     }
 }

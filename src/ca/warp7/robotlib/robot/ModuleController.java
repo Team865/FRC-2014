@@ -1,11 +1,9 @@
-package ca.warp7.frc2014.robot;
-
-import ca.warp7.frc2014.modules.ModuleBase;
+package ca.warp7.robotlib.robot;
 
 import java.util.Vector;
 
 public class ModuleController {
-    public final Vector moduleList = new Vector(); // gotcha
+    public final Vector moduleList = new Vector(); // see poem in WingModes.class
 
     public void add(ModuleBase s) {
         moduleList.addElement(s);

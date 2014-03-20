@@ -1,14 +1,19 @@
 package ca.warp7.frc2014.autonomous;
 
 
+import ca.warp7.frc2014.TwoChainz;
+import ca.warp7.frc2014.hardware.Drive;
+import ca.warp7.frc2014.hardware.Wing;
 import ca.warp7.frc2014.modules.Vision;
-import ca.warp7.frc2014.robot.Robot;
-import ca.warp7.frc2014.util.Util;
+import ca.warp7.robotlib.Warp7Robot;
+import ca.warp7.robotlib.util.Util;
 import edu.wpi.first.wpilibj.Timer;
 
 public class DetectHotTarget {
     public void run() {
-        Robot robot = Robot.getInstance();
+        Warp7Robot robot = TwoChainz.getInstance();
+        Drive drive = (Drive) robot.hw.getHardware("Drive");
+        Wing backWing = (Wing) robot.hw.getHardware("backWing");
 
         Vision v = new Vision();
         Util.log("Vision", v.isHot() ? "Hot" : "Not Hot");
@@ -17,13 +22,13 @@ public class DetectHotTarget {
             Timer.delay(2);
         }
 
-        robot.hw.drive.setLRPower(-0.5, -0.5);
+        drive.setLRPower(-0.5, -0.5);
 
         Timer.delay(2); // How long do we drive??
-        robot.hw.backWing.startRollersDown();
+        backWing.startRollersDown();
         Timer.delay(0.8);
-        robot.hw.drive.setLRPower(0, 0);
+        drive.setLRPower(0, 0);
         Timer.delay(3);
-        robot.hw.backWing.stopRollers();
+        backWing.stopRollers();
     }
 }

@@ -1,15 +1,33 @@
 package ca.warp7.frc2014.hardware;
 
-import ca.warp7.frc2014.robot.Robot;
-import ca.warp7.frc2014.util.RobotInfo;
-import ca.warp7.frc2014.util.Util;
+import ca.warp7.frc2014.TwoChainz;
+import ca.warp7.robotlib.parents.HardwareBase;
+import ca.warp7.robotlib.util.RobotInfo;
+import ca.warp7.robotlib.util.Util;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
 
-public class Drive {
-    private final Solenoid shifter = new Solenoid(RobotInfo.shifterPort.getInt());
-    private final Talon rightDrive = new Talon(RobotInfo.rightMotorPort.getInt());
-    private final Talon leftDrive = new Talon(RobotInfo.leftMotorPort.getInt());
+public class Drive extends HardwareBase {
+    private Solenoid shifter;
+    private Talon rightDrive;
+    private Talon leftDrive;
+
+    public void init() {
+        shifter = new Solenoid(RobotInfo.shifterPort.getInt());
+        rightDrive = new Talon(RobotInfo.rightMotorPort.getInt());
+        leftDrive = new Talon(RobotInfo.leftMotorPort.getInt());
+    }
+
+    public void free() {
+        shifter.free();
+        shifter = null;
+
+        rightDrive.free();
+        rightDrive = null;
+
+        leftDrive.free();
+        leftDrive = null;
+    }
 
     public void setLRPower(double lPower, double rPower) {
         rightDrive.set(lPower);
@@ -19,7 +37,7 @@ public class Drive {
     public void shift(boolean gear) { // true for low.
         shifter.set(gear);
         Util.log("Drive", !gear ? "High" : "Low");
-        Robot.getInstance().ds.table.putBoolean("Gear", gear);
+        TwoChainz.getInstance().ds.table.putBoolean("Gear", gear);
     }
 
     public boolean isHighGear() {
