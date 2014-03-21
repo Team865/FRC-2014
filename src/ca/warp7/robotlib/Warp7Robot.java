@@ -23,16 +23,24 @@ public abstract class Warp7Robot extends IterativeRobot {
     } //Singleton-ing
 
     public void robotInit() {
+        new RobotInfo();
+
         robotName = getRobotName();
         RobotInfo.readInfoFromFile();
+
         hw = new HardwareController();
         modules = new ModuleController();
-        ds = getDriverStation();
         getWatchdog().setEnabled(false);
+
         loadHardware();
+        hw.initHardware();
         loadModules();
+
+        ds = getDriverStation();
+
         Util.log(this, robotName + " has booted, ready to go.");
     }
+
 
     public void autonomousInit() {
         ds.setMode("Autonomous");
@@ -45,19 +53,23 @@ public abstract class Warp7Robot extends IterativeRobot {
     public void teleopInit() {
         ds.setMode("Teleoperated");
         ds.loadModuleInfo();
-        Util.log(this, "Module Init");
-        modules.loadModules();
+        Util.log(this, "Module threads starting.");
+        modules.startModuleThreads();
     }
 
     public void teleopPeriodic() {
-        modules.runModulesPeriodic();
         ds.sendSensorInfo();
     }
 
 
     public void disabledInit() {
-        Util.log(this, "Disabled initializing.");
+        Util.log(this, "Robot Disabled!");
         ds.setMode("Disabled");
+
+        Util.log(this, "Stopping module threads...");
+        modules.stopModuleThreads();
+        Util.log(this, "Module threads stopped.");
+
         Util.log(this, "Reloading info...");
         RobotInfo.readInfoFromFile();
         ds.loadModuleInfo();
@@ -71,7 +83,7 @@ public abstract class Warp7Robot extends IterativeRobot {
 
     public void testInit() {
         // wat
-        hw.reloadHardware();
+
     }
 
     public void testPeriodic() {

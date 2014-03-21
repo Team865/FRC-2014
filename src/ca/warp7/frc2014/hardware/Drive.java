@@ -30,8 +30,10 @@ public class Drive extends HardwareBase {
     }
 
     public void setLRPower(double lPower, double rPower) {
-        rightDrive.set(lPower);
-        leftDrive.set(rPower * -1); //inverted cause other side
+        synchronized (this) { // so drive doesn't bork
+            rightDrive.set(rPower);
+            leftDrive.set(lPower * -1); //inverted cause other side
+        }
     }
 
     public void shift(boolean gear) { // true for low.

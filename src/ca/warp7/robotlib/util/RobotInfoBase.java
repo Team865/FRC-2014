@@ -10,7 +10,6 @@ import java.util.Vector;
 
 public class RobotInfoBase {
 
-
     private static final Vector infoList = new Vector();
     private static final String INFO_FILE_PATH = "robotInfo.txt";
 
@@ -36,13 +35,15 @@ public class RobotInfoBase {
             while (infoStream.read(buffer) != -1) {
                 content += new String(buffer);
             }
+
+            // Gotta close these cause WPILibJ was (badly) ported from c.
             infoStream.close();
             infoFile.close();
 
             // Extract each line separately.
             String[] lines = Util.split(content, "\n");
             for (int i = 0; i < lines.length; i++) {
-                // Extract the key and value.
+                // Extteract the key and value.
                 String[] splitLine = Util.split(lines[i], "=");
 
                 boolean found = false;
@@ -55,13 +56,14 @@ public class RobotInfoBase {
                         found = true;
                         break;
                     }
+
                     if (splitLine.length < 2) {
                         found = true; //no error, is blank line.
                     }
                 }
 
                 if (!found)
-                    Util.log("RobotInfoBase", "Error: the specified InfoValue doesn't exist: " + lines[i]);
+                    Util.log("RobotInfoBase", "Error: the specified InfoValue doesn't exist: " + splitLine[0]);
             }
         } catch (IOException e) {
             Util.log("RobotInfoBase", "wat.");

@@ -20,8 +20,9 @@ public class Util {
         System.out.println("[" + caller + "] " + message);
 
     }
+
     public static void log(Object caller, String message) {
-        log(caller.getClass().getSimpleName(), message);
+        log(caller.getClass().getName(), message);
     }
 
     public static double deadband(double rawAxis, double amount) {
@@ -48,5 +49,9 @@ public class Util {
         }
 
         return retString;
+    }
+
+    public static String stripClassName(String className) {
+        return className.substring(className.lastIndexOf('.') + 1); //+1 to include the .
     }
 }

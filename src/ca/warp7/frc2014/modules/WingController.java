@@ -5,7 +5,7 @@ import ca.warp7.frc2014.driverstation.MohitDriverStation;
 import ca.warp7.frc2014.hardware.Wing;
 import ca.warp7.frc2014.util.WingModes;
 import ca.warp7.robotlib.Warp7Robot;
-import ca.warp7.robotlib.robot.ModuleBase;
+import ca.warp7.robotlib.parents.ModuleBase;
 
 public class WingController extends ModuleBase {
 
@@ -21,26 +21,26 @@ public class WingController extends ModuleBase {
         frontWing = (Wing) robot.hw.getHardware("frontWing");
     }
 
-    public void load() {
-        setState(WingModes.OFF);
+    public void init() {
+        setState(WingModes.FLUSH);
     }
 
     public static WingController getInstance() {
         return instance;
     } // whoo hooray for the singleton pattern
 
-    public void periodic() {
+    public void doPeriodicTick() {
         int butt = ((MohitDriverStation) robot.ds).getModeButton();
         if (butt != -1) {
             setState(butt);
         }
         if (backWing.isAtSetpoint()) {
-            if (STATE == WingModes.OFF) {
+            if (STATE == WingModes.FLUSH) {
                 backWing.stopRollers();
             }
         }
         if (frontWing.isAtSetpoint()) {
-            if (STATE == WingModes.OFF) {
+            if (STATE == WingModes.FLUSH) {
                 frontWing.disable();
             }
         }
@@ -62,18 +62,16 @@ public class WingController extends ModuleBase {
         */
     }
 
-    public void setState(int state) {
-        STATE = state;
-        robot.ds.table.putNumber("wingMode", STATE);
+    public synchronized void setState(int state) { //synched to stop things from possibly borking
+
 
         switch (state) {
             case WingModes.CATCH:
                 // Rollers go up, arms go up. \[]/
-
                 frontWing.startRollersUp();
                 backWing.startRollersUp();
 
-                backWing.setTargetAngle(135); // guesstimated #.
+                backWing.setTargetAngle(135); // guesstimated #s.
                 frontWing.setTargetAngle(135);
                 break;
 
@@ -87,47 +85,40 @@ public class WingController extends ModuleBase {
 
             case WingModes.PICKUP:
                 //Back rollers down, front off.
-
                 backWing.stopRollers();
                 frontWing.startRollersDown();
 
                 backWing.setTargetAngle(0);
                 frontWing.setTargetAngle(85);
                 break;
-            case WingModes.DROP:
-                //Prepare to kick
 
-                backWing.startRollersUp();
-                frontWing.startRollersUp();
 
-                frontWing.setTargetAngle(175);
-                backWing.setTargetAngle(300);
-                break;
-
-            case WingModes.OFF:
-                //redy 4 teh flush
+            case WingModes.FLUSH:
                 frontWing.setTargetAngle(0);
                 backWing.setTargetAngle(0);
 
                 frontWing.stopRollers();
                 backWing.stopRollers();
-
                 break;
 
-            case WingModes.GOAL_KICK:
+            case WingModes.PREP_KICK:
                 backWing.setTargetAngle(22);
                 frontWing.setTargetAngle(141);
 
-                frontWing.startRollersDown();
+                frontWing.stopRollers();
+                backWing.stopRollers();
                 break;
 
-            case WingModes.SHOOT:
-                frontWing.setTargetAngle(0);
-                backWing.setTargetAngle(0);
-
-                backWing.startRollersUp();
+            case WingModes.DO_KICK:
+                backWing.stopRollers();
                 frontWing.startRollersUp();
+
+                frontWing.setTargetAngle(175);
+                backWing.setTargetAngle(300);
                 break;
         }
+
+        STATE = state;
+        robot.ds.table.putNumber("wingMode", STATE);
     }
 }

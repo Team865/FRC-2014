@@ -1,7 +1,7 @@
 package ca.warp7.frc2014.hardware;
 
+import ca.warp7.frc2014.util.RobotInfo;
 import ca.warp7.robotlib.parents.HardwareBase;
-import ca.warp7.robotlib.util.RobotInfoBase;
 import ca.warp7.robotlib.util.Util;
 import edu.wpi.first.wpilibj.AnalogChannel;
 import edu.wpi.first.wpilibj.PIDController;
@@ -10,21 +10,21 @@ import edu.wpi.first.wpilibj.Talon;
 public class Wing extends HardwareBase {
     //Pins
     private final String name;
-    private final RobotInfoBase.InfoValue wristPin, rollerPin1, rollerPin2, wristEncoderPin;
+    private final RobotInfo.InfoValue wristPin, rollerPin1, rollerPin2, wristEncoderPin;
     private Talon wrist, roller1, roller2;
     private AnalogChannel wristEncoder;
     private PIDController controller;
-    private final RobotInfoBase.InfoValue P, I, D, zeroPoint;
+    private final RobotInfo.InfoValue P, I, D, zeroPoint;
 
     public Wing(String name,
-                RobotInfoBase.InfoValue wristPin,
-                RobotInfoBase.InfoValue rollerPin1,
-                RobotInfoBase.InfoValue rollerPin2,
-                RobotInfoBase.InfoValue wristEncoderPin,
-                RobotInfoBase.InfoValue P,
-                RobotInfoBase.InfoValue I,
-                RobotInfoBase.InfoValue D,
-                RobotInfoBase.InfoValue zeroPoint) {
+                RobotInfo.InfoValue wristPin,
+                RobotInfo.InfoValue rollerPin1,
+                RobotInfo.InfoValue rollerPin2,
+                RobotInfo.InfoValue wristEncoderPin,
+                RobotInfo.InfoValue P,
+                RobotInfo.InfoValue I,
+                RobotInfo.InfoValue D,
+                RobotInfo.InfoValue zeroPoint) {
         this.name = name;
         this.wristPin = wristPin;
         this.rollerPin1 = rollerPin1;
@@ -34,11 +34,10 @@ public class Wing extends HardwareBase {
         this.I = I;
         this.D = D;
         this.zeroPoint = zeroPoint;
-
-        init();
+        Util.log(this, "Constructed successfully");
     }
 
-    protected void init() {
+    public void init() {
         wrist = new Talon(wristPin.getInt());
         roller1 = new Talon(rollerPin1.getInt());
         roller2 = new Talon(rollerPin2.getInt());

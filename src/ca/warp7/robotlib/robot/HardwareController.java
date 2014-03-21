@@ -2,6 +2,7 @@ package ca.warp7.robotlib.robot;
 
 import ca.warp7.robotlib.exceptions.HardwareNotFoundException;
 import ca.warp7.robotlib.parents.HardwareBase;
+import ca.warp7.robotlib.util.Util;
 
 import java.util.Vector;
 
@@ -34,4 +35,10 @@ public class HardwareController {
         throw new HardwareNotFoundException();
     }
 
+    public void initHardware() {
+        for (int i = 0; i < hardwareList.size(); i++) {
+            HardwareBase h = (HardwareBase) hardwareList.elementAt(i);
+            h.init();
+        }
+    }
 }

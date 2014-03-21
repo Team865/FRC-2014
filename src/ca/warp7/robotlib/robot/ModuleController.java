@@ -1,5 +1,7 @@
 package ca.warp7.robotlib.robot;
 
+import ca.warp7.robotlib.parents.ModuleBase;
+
 import java.util.Vector;
 
 public class ModuleController {
@@ -9,19 +11,20 @@ public class ModuleController {
         moduleList.addElement(s);
     }
 
-    public void runModulesPeriodic() {
+    public void startModuleThreads() {
         for (int i = 0; i < moduleList.size(); i++) {
             ModuleBase s = (ModuleBase) moduleList.elementAt(i);
-            if (s.isEnabled())
-                s.periodic();
+            s.setEnabled(true);
+            Thread t = new Thread(s);
+            t.start();
         }
     }
 
-    public void loadModules() {
+    public void stopModuleThreads() {
         for (int i = 0; i < moduleList.size(); i++) {
             ModuleBase s = (ModuleBase) moduleList.elementAt(i);
-            if (s.isEnabled())
-                s.load();
+            s.setEnabled(false);
         }
     }
+
 }

@@ -4,7 +4,7 @@ import ca.warp7.frc2014.TwoChainz;
 import ca.warp7.frc2014.driverstation.MohitDriverStation;
 import ca.warp7.frc2014.hardware.Drive;
 import ca.warp7.robotlib.Warp7Robot;
-import ca.warp7.robotlib.robot.ModuleBase;
+import ca.warp7.robotlib.parents.ModuleBase;
 import ca.warp7.frc2014.util.RobotInfo;
 import ca.warp7.robotlib.util.Util;
 
@@ -19,14 +19,14 @@ public class CheesyDrive extends ModuleBase {
         drive = (Drive) robot.hw.getHardware("Drive");
     }
 
-    public void periodic() { // Driving Method
+    public void doPeriodicTick() { // Driving Method
         double wheelNonLinearity, wheel, throttle;
 
         boolean isQuickTurn = ((MohitDriverStation) robot.ds).getQuickTurnButton();
         double wheelDeadband = 0.02;
-        wheel = Util.deadband(((MohitDriverStation) robot.ds).getSecondaryX(), wheelDeadband);
+        wheel = Util.deadband(-((MohitDriverStation) robot.ds).getSecondaryX(), wheelDeadband);
         double throttleDeadband = 0.02;
-        throttle = Util.deadband(((MohitDriverStation) robot.ds).getPrimaryY() * -1, throttleDeadband); // *-1 depends on wiring I think
+        throttle = Util.deadband(((MohitDriverStation) robot.ds).getPrimaryY(), throttleDeadband); // *-1 depends on wiring I think
         double negInertia = wheel - oldWheel;
         oldWheel = wheel;
 

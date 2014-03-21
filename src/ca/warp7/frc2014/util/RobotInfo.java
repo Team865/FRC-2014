@@ -9,16 +9,19 @@ public class RobotInfo extends RobotInfoBase {
     // public static final InfoValue key = new InfoValue(key, data);
 
     //Motor Pins
+
     public static final InfoValue rightMotorPort = new InfoValue("rightMotorPort", 1);
     public static final InfoValue leftMotorPort = new InfoValue("leftMotorPort", 2);
 
-    public static final InfoValue frontWingWristPin = new InfoValue("frontWingWristPin", 4);
-    public static final InfoValue frontWingRollerPin1 = new InfoValue("frontWingRollerPin", 7);
-    public static final InfoValue frontWingRollerPin2 = new InfoValue("frontWingRollerPin", 8);
+    public static final InfoValue frontWingWristPin = new InfoValue("frontWingWristPin", 6);
+    public static final InfoValue frontWingRollerPin1 = new InfoValue("frontWingRollerPin1", 5);
+    public static final InfoValue frontWingRollerPin2 = new InfoValue("frontWingRollerPin2", 8);
 
-    public static final InfoValue backWingWristPin = new InfoValue("backWingWristPin", 3);
-    public static final InfoValue backWingRollerPin1 = new InfoValue("backWingRollerPin", 5);
-    public static final InfoValue backWingRollerPin2 = new InfoValue("backWingRollerPin", 6);
+    public static final InfoValue backWingWristPin = new InfoValue("backWingWristPin", 7);
+    public static final InfoValue backWingRollerPin1 = new InfoValue("backWingRollerPin1", 3);
+    public static final InfoValue backWingRollerPin2 = new InfoValue("backWingRollerPin2", 4);
+
+    public static final InfoValue shooterWheelPin = new InfoValue("shooterWheelPin", 9);
 
     //Analog stuff
     public static final InfoValue frontWingEncoderPin = new InfoValue("frontWingEncoderPort", 2);
@@ -48,7 +51,7 @@ public class RobotInfo extends RobotInfoBase {
     public static final InfoValue backWingZeroPoint = new InfoValue("backWingZeroPoint", 20.0);
 
     // Prevent instantiation of this class, as it should only be used statically.
-    private RobotInfo() {
+    public RobotInfo() {
 
     }
 }

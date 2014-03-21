@@ -16,13 +16,12 @@ public class WingModes {
         It makes me cry at night
         I can't take this anymore
      */
-    public static final int OFF = 7;
+    public static final int FLUSH = 7;
 
-    public static final int SHOOT = 2;
-    public static final int GOAL_KICK = 8;
+    public static final int PREP_KICK = 8;
     public static final int PICKUP = 9;
     public static final int BACK_PICKUP = 10;
     public static final int CATCH = 11;
-    public static final int DROP = 12;
+    public static final int DO_KICK = 12;
 
 }

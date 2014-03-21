@@ -1,7 +1,6 @@
 package ca.warp7.robotlib.parents;
 
 import ca.warp7.robotlib.Warp7Robot;
-import ca.warp7.robotlib.robot.ModuleBase;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.tables.ITableListener;
 

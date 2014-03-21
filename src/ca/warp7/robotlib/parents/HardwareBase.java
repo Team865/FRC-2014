@@ -1,14 +1,15 @@
 package ca.warp7.robotlib.parents;
 
-public abstract class HardwareBase { //weep woop
+import ca.warp7.robotlib.util.Util;
 
+public abstract class HardwareBase { //weep woop
     protected HardwareBase() {
         // to override name, override getName
     }
 
-    protected abstract void init();
+    public abstract void init();
 
-    protected abstract void free();
+    public abstract void free();
 
     public void reload() {
         free();
@@ -16,6 +17,6 @@ public abstract class HardwareBase { //weep woop
     }
 
     public String getName() {
-        return this.getClass().getSimpleName();
+        return Util.stripClassName(this.getClass().getName());
     }
 }
