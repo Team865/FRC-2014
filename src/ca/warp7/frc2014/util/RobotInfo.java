@@ -25,9 +25,9 @@ public class RobotInfo extends RobotInfoBase {
 
     //Analog stuff
     public static final InfoValue frontWingEncoderPin = new InfoValue("frontWingEncoderPort", 2);
-    public static final InfoValue backWingEncoderPin = new InfoValue("backWingEncoderPort", 1);
+    public static final InfoValue backWingEncoderPin = new InfoValue("backWingEncoderPort", 3);
 
-    public static final InfoValue sonarPin = new InfoValue("sonarPin", 3);
+    public static final InfoValue sonarPin = new InfoValue("sonarPin", 4);
 
     //Solenoid Breakout
     public static final InfoValue shifterPort = new InfoValue("shifterPort", 1);

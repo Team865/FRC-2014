@@ -32,10 +32,14 @@ public class WingController extends ModuleBase {
 
     public void doPeriodicTick() {
         //if we're in low gear, dock.
-        if (((Drive) robot.hw.getHardware("Drive")).isLowGear()) {
+
+        //if (((Drive) robot.hw.getHardware("Drive")).isLowGear()) {
+        if(false) {
             if (STATE != WingModes.SHOULD_OFF && STATE != WingModes.OFF) { // if we haven't turned off already
                 setState(WingModes.SHOULD_OFF); //then turn off
             }
+        } else if(((MohitDriverStation) robot.ds).getKillButton()) { // check if kill button is pressed, if so turn off.
+            setState(WingModes.OFF);
         } else { //if we're in high gear
             int butt = ((MohitDriverStation) robot.ds).getModeButton();
             if (butt != -1) {
@@ -75,7 +79,7 @@ public class WingController extends ModuleBase {
                 backWing.startRollersUp();
 
                 backWing.setTargetAngle(135); // guesstimated #s.
-                frontWing.setTargetAngle(135);
+                frontWing.setTargetAngle(165);
                 break;
 
             case WingModes.BACK_PICKUP:
@@ -88,7 +92,7 @@ public class WingController extends ModuleBase {
 
             case WingModes.PICKUP:
                 //Back rollers down, front off.
-                backWing.stopRollers();
+                backWing.startRollersDown();
                 frontWing.startRollersDown();
 
                 backWing.setTargetAngle(0);
@@ -106,7 +110,7 @@ public class WingController extends ModuleBase {
                 break;
 
             case WingModes.PREP_KICK:
-                frontWing.startRollersDown();
+                frontWing.stopRollers();
                 backWing.stopRollers();
 
                 backWing.setTargetAngle(22);
@@ -115,10 +119,10 @@ public class WingController extends ModuleBase {
 
             case WingModes.DO_KICK:
                 backWing.stopRollers();
-                frontWing.stopRollers();
+                frontWing.startRollersUp();
 
                 frontWing.setTargetAngle(175);
-                backWing.setTargetAngle(300);
+                backWing.setTargetAngle(280);
                 break;
 
             case WingModes.ELEVATOR:

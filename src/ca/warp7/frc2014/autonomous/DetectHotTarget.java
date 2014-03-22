@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.Timer;
 
 public class DetectHotTarget implements Runnable {
     public void run() {
-
+        /*
         Warp7Robot robot = TwoChainz.getInstance();
         Drive drive = (Drive) robot.hw.getHardware("Drive");
         Wing backWing = (Wing) robot.hw.getHardware("backWing");
@@ -36,6 +36,6 @@ public class DetectHotTarget implements Runnable {
 
         Timer.delay(1); // How long do we drive??
         drive.setLRPower(0, 0);
-
+        */
     }
 }

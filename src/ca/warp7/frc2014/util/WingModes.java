@@ -16,7 +16,7 @@ public class WingModes {
         It makes me cry at night
         I can't take this anymore
      */
-    public static final int OFF = -0; //inaccessable with controller buttons
+    public static final int OFF = 0; //inaccessable with controller buttons
     public static final int SHOULD_OFF = -1;
     public static final int FLUSH = 7;
 

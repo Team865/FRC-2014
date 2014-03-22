@@ -80,4 +80,8 @@ public class MohitDriverStation extends DriverStationBase {
     public boolean getShiftLowButton() {
         return rightJoy.getTrigger();
     }
+
+    public boolean getKillButton() {
+        return rightJoy.getRawButton(4);
+    }
 }
