@@ -43,12 +43,12 @@ public class RobotInfo extends RobotInfoBase {
     public static final InfoValue frontWingP = new InfoValue("frontWingP", 0.0);
     public static final InfoValue frontWingI = new InfoValue("frontWingI", 0.00);
     public static final InfoValue frontWingD = new InfoValue("frontWingD", 0.0);
-    public static final InfoValue frontWingZeroPoint = new InfoValue("frontWingZeroPoint", 398.0);
+    public static final InfoValue frontWingZeroPoint = new InfoValue("frontWingZeroPoint", 0.0);
 
     public static final InfoValue backWingP = new InfoValue("backWingP", 0.0);
     public static final InfoValue backWingI = new InfoValue("backWingI", 0.0);
     public static final InfoValue backWingD = new InfoValue("backWingD", 0.0);
-    public static final InfoValue backWingZeroPoint = new InfoValue("backWingZeroPoint", 20.0);
+    public static final InfoValue backWingZeroPoint = new InfoValue("backWingZeroPoint", 0.0);
 
     // Prevent instantiation of this class, as it should only be used statically.
     public RobotInfo() {

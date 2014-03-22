@@ -16,6 +16,8 @@ public class WingModes {
         It makes me cry at night
         I can't take this anymore
      */
+    public static final int OFF = -0; //inaccessable with controller buttons
+    public static final int SHOULD_OFF = -1;
     public static final int FLUSH = 7;
 
     public static final int PREP_KICK = 8;
@@ -23,5 +25,7 @@ public class WingModes {
     public static final int BACK_PICKUP = 10;
     public static final int CATCH = 11;
     public static final int DO_KICK = 12;
+    public static final int ELEVATOR = 2;
+
 
 }

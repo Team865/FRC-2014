@@ -53,11 +53,12 @@ public abstract class Warp7Robot extends IterativeRobot {
     public void teleopInit() {
         ds.setMode("Teleoperated");
         ds.loadModuleInfo();
+        modules.initModules();
         Util.log(this, "Module threads starting.");
-        modules.startModuleThreads();
     }
 
     public void teleopPeriodic() {
+        modules.tickModules();
         ds.sendSensorInfo();
     }
 
@@ -65,10 +66,6 @@ public abstract class Warp7Robot extends IterativeRobot {
     public void disabledInit() {
         Util.log(this, "Robot Disabled!");
         ds.setMode("Disabled");
-
-        Util.log(this, "Stopping module threads...");
-        modules.stopModuleThreads();
-        Util.log(this, "Module threads stopped.");
 
         Util.log(this, "Reloading info...");
         RobotInfo.readInfoFromFile();

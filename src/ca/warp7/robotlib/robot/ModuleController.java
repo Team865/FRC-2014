@@ -11,19 +11,19 @@ public class ModuleController {
         moduleList.addElement(s);
     }
 
-    public void startModuleThreads() {
+    public void tickModules() {
         for (int i = 0; i < moduleList.size(); i++) {
             ModuleBase s = (ModuleBase) moduleList.elementAt(i);
             s.setEnabled(true);
-            Thread t = new Thread(s);
-            t.start();
+            //Thread t = new Thread(s);
+            s.doPeriodicTick();
         }
     }
 
-    public void stopModuleThreads() {
+    public void initModules() {
         for (int i = 0; i < moduleList.size(); i++) {
             ModuleBase s = (ModuleBase) moduleList.elementAt(i);
-            s.setEnabled(false);
+            s.init();
         }
     }
 

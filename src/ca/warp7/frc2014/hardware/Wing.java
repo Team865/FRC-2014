@@ -46,7 +46,7 @@ public class Wing extends HardwareBase {
         controller.setInputRange(0.0, 970.0);
         controller.setOutputRange(-1.0, 1.0);
         controller.setContinuous(true);
-        controller.setPercentTolerance(5);
+        controller.setPercentTolerance(2);
 
         controller.setPID(P.getDouble(), I.getDouble(), D.getDouble());
         Util.log(this, "P: " + controller.getP() + "I: " + controller.getI() + "D: " + controller.getD());

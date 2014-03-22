@@ -1,6 +1,6 @@
 package ca.warp7.robotlib.parents;
 
-public abstract class ModuleBase implements Runnable {// hella threading man
+public abstract class ModuleBase /* implements Runnable  */ {// hella threading man
     //warning: not synchronized to input, bad things may happen
     private boolean enabled;
 
@@ -12,6 +12,8 @@ public abstract class ModuleBase implements Runnable {// hella threading man
 
     }
 
+    /*
+    //Threading Disabled
     public final void run() {
         init();
         while(isEnabled()) {
@@ -23,6 +25,7 @@ public abstract class ModuleBase implements Runnable {// hella threading man
             }
         }
     }
+    */
 
     public abstract void doPeriodicTick();
 

@@ -11,7 +11,17 @@ public class Shooter extends HardwareBase {
     }
 
     public void free() {
-
+        shooterWheel.free();
+        shooterWheel = null;
     }
-    //TODO: Write shooter code
+    public void spinWheelForwards() {
+        shooterWheel.set(1);
+    }
+    public void spinWheelBackwards() {
+        shooterWheel.set(-1);
+    }
+    public void stopWheel() {
+        shooterWheel.set(0);
+    }
+
 }

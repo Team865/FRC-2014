@@ -2,6 +2,7 @@ package ca.warp7.frc2014.modules;
 
 import ca.warp7.frc2014.TwoChainz;
 import ca.warp7.frc2014.driverstation.MohitDriverStation;
+import ca.warp7.frc2014.hardware.Drive;
 import ca.warp7.frc2014.hardware.Wing;
 import ca.warp7.frc2014.util.WingModes;
 import ca.warp7.robotlib.Warp7Robot;
@@ -30,18 +31,21 @@ public class WingController extends ModuleBase {
     } // whoo hooray for the singleton pattern
 
     public void doPeriodicTick() {
-        int butt = ((MohitDriverStation) robot.ds).getModeButton();
-        if (butt != -1) {
-            setState(butt);
-        }
-        if (backWing.isAtSetpoint()) {
-            if (STATE == WingModes.FLUSH) {
-                backWing.stopRollers();
+        //if we're in low gear, dock.
+        if(((Drive) robot.hw.getHardware("Drive")).isLowGear()) {
+            if(STATE != WingModes.SHOULD_OFF && STATE != WingModes.OFF) { // if we haven't turned off already
+                setState(WingModes.SHOULD_OFF); //then turn off
+            }
+        } else { //if we're in high gear
+            int butt = ((MohitDriverStation) robot.ds).getModeButton();
+            if (butt != -1) {
+                setState(butt);
             }
         }
-        if (frontWing.isAtSetpoint()) {
-            if (STATE == WingModes.FLUSH) {
-                frontWing.disable();
+
+        if (backWing.isAtSetpoint() && frontWing.isAtSetpoint()) {
+            if (STATE == WingModes.SHOULD_OFF) {
+                setState(WingModes.OFF);
             }
         }
 
@@ -63,7 +67,6 @@ public class WingController extends ModuleBase {
     }
 
     public synchronized void setState(int state) { //synched to stop things from possibly borking
-
 
         switch (state) {
             case WingModes.CATCH:
@@ -94,28 +97,43 @@ public class WingController extends ModuleBase {
 
 
             case WingModes.FLUSH:
-                frontWing.setTargetAngle(0);
-                backWing.setTargetAngle(0);
-
+            case WingModes.SHOULD_OFF:
                 frontWing.stopRollers();
                 backWing.stopRollers();
+
+                frontWing.setTargetAngle(0);
+                backWing.setTargetAngle(0);
                 break;
 
             case WingModes.PREP_KICK:
+                frontWing.startRollersDown();
+                backWing.stopRollers();
+
                 backWing.setTargetAngle(22);
                 frontWing.setTargetAngle(141);
-
-                frontWing.stopRollers();
-                backWing.stopRollers();
                 break;
 
             case WingModes.DO_KICK:
                 backWing.stopRollers();
-                frontWing.startRollersUp();
+                frontWing.stopRollers();
 
                 frontWing.setTargetAngle(175);
                 backWing.setTargetAngle(300);
                 break;
+
+            case WingModes.ELEVATOR:
+                backWing.startRollersDown();
+                frontWing.startRollersDown();
+
+                frontWing.setTargetAngle(0);
+                backWing.setTargetAngle(0);
+                break;
+
+            case WingModes.OFF:
+                backWing.disable();
+                frontWing.disable();
+                break;
+
         }
 
         STATE = state;

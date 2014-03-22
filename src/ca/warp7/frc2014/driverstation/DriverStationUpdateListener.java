@@ -11,9 +11,11 @@ class DriverStationUpdateListener implements ITableListener {
             TwoChainz.getInstance().hw.drive.shift(((Boolean) value).booleanValue());
         }
         */
+        /*
         if (key.equals("wingMode")) {
             WingController.getInstance().setState(((Double) value).intValue());
         }
+        */
 
     }
 }

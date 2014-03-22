@@ -38,7 +38,7 @@ public class MohitDriverStation extends DriverStationBase {
         robot.ds.table.putNumber("backWingEncoder", backWing.getWristPosition());
         robot.ds.table.putBoolean("highGear", drive.isHighGear());
         robot.ds.table.putNumber("wingMode", WingController.STATE);
-
+        robot.ds.table.putNumber("Button", getModeButton());
         robot.ds.table.putNumber("sonarDistance", sonar.getDistance());
     }
 
