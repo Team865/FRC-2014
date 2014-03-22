@@ -32,8 +32,8 @@ public class WingController extends ModuleBase {
 
     public void doPeriodicTick() {
         //if we're in low gear, dock.
-        if(((Drive) robot.hw.getHardware("Drive")).isLowGear()) {
-            if(STATE != WingModes.SHOULD_OFF && STATE != WingModes.OFF) { // if we haven't turned off already
+        if (((Drive) robot.hw.getHardware("Drive")).isLowGear()) {
+            if (STATE != WingModes.SHOULD_OFF && STATE != WingModes.OFF) { // if we haven't turned off already
                 setState(WingModes.SHOULD_OFF); //then turn off
             }
         } else { //if we're in high gear
@@ -66,7 +66,7 @@ public class WingController extends ModuleBase {
         */
     }
 
-    public synchronized void setState(int state) { //synched to stop things from possibly borking
+    void setState(int state) { //synched to stop things from possibly borking
 
         switch (state) {
             case WingModes.CATCH:

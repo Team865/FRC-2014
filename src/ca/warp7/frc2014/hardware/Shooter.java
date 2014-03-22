@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.Talon;
 
 public class Shooter extends HardwareBase {
     private Talon shooterWheel;
+
     public void init() {
         shooterWheel = new Talon(RobotInfo.shooterWheelPin.getInt());
     }
@@ -14,12 +15,15 @@ public class Shooter extends HardwareBase {
         shooterWheel.free();
         shooterWheel = null;
     }
+
     public void spinWheelForwards() {
         shooterWheel.set(1);
     }
+
     public void spinWheelBackwards() {
         shooterWheel.set(-1);
     }
+
     public void stopWheel() {
         shooterWheel.set(0);
     }

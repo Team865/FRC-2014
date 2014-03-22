@@ -1,9 +1,9 @@
 package ca.warp7.robotlib;
 
+import ca.warp7.frc2014.util.RobotInfo;
 import ca.warp7.robotlib.parents.DriverStationBase;
 import ca.warp7.robotlib.robot.HardwareController;
 import ca.warp7.robotlib.robot.ModuleController;
-import ca.warp7.frc2014.util.RobotInfo;
 import ca.warp7.robotlib.util.Util;
 import edu.wpi.first.wpilibj.IterativeRobot;
 

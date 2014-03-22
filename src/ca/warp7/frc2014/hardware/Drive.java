@@ -1,9 +1,8 @@
 package ca.warp7.frc2014.hardware;
 
 import ca.warp7.frc2014.TwoChainz;
-import ca.warp7.robotlib.parents.HardwareBase;
 import ca.warp7.frc2014.util.RobotInfo;
-import ca.warp7.robotlib.util.Util;
+import ca.warp7.robotlib.parents.HardwareBase;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
 

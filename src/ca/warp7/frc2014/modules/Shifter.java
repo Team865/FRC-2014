@@ -5,7 +5,6 @@ import ca.warp7.frc2014.driverstation.MohitDriverStation;
 import ca.warp7.frc2014.hardware.Drive;
 import ca.warp7.robotlib.Warp7Robot;
 import ca.warp7.robotlib.parents.ModuleBase;
-import ca.warp7.robotlib.util.Util;
 
 public class Shifter extends ModuleBase {
 

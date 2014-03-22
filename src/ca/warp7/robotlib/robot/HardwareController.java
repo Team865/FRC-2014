@@ -2,7 +2,6 @@ package ca.warp7.robotlib.robot;
 
 import ca.warp7.robotlib.exceptions.HardwareNotFoundException;
 import ca.warp7.robotlib.parents.HardwareBase;
-import ca.warp7.robotlib.util.Util;
 
 import java.util.Vector;
 
