@@ -11,6 +11,7 @@ import ca.warp7.frc2014.modules.Shifter;
 import ca.warp7.frc2014.modules.WingController;
 import ca.warp7.frc2014.util.RobotInfo;
 import ca.warp7.robotlib.Warp7Robot;
+import ca.warp7.robotlib.parents.AutoMode;
 import ca.warp7.robotlib.parents.DriverStationBase;
 
 public class TwoChainz extends Warp7Robot {
@@ -19,9 +20,16 @@ public class TwoChainz extends Warp7Robot {
         return "2 Chainz";
     }
 
+    private AutoMode vision = new DetectHotTarget();
+
     public void autonomousInit() {
         super.autonomousInit();
-        new DetectHotTarget().run(); //quick workaround before dynamicism
+        vision.init();
+    }
+
+    public void autonomousPeriodic() {
+        super.autonomousPeriodic();
+        vision.tick();
     }
 
     public void loadHardware() {
