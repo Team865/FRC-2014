@@ -20,8 +20,6 @@ public class DetectHotTarget extends AutoMode {
         server.setPort(1180);
         server.start();
         server.startSamplingCounts();
-
-
     }
 
     public void disable() {

@@ -13,23 +13,39 @@ import ca.warp7.frc2014.util.RobotInfo;
 import ca.warp7.robotlib.Warp7Robot;
 import ca.warp7.robotlib.parents.AutoMode;
 import ca.warp7.robotlib.parents.DriverStationBase;
+import edu.wpi.first.wpilibj.Timer;
 
 public class TwoChainz extends Warp7Robot {
+
+    private AutoMode vision = new DetectHotTarget();
 
     public String getRobotName() {
         return "2 Chainz";
     }
 
-    private AutoMode vision = new DetectHotTarget();
-
     public void autonomousInit() {
         super.autonomousInit();
-        vision.init();
+        //FUCK IT DO IT HERE
+        Warp7Robot robot = TwoChainz.getInstance();
+        Drive drive = (Drive) robot.hw.getHardware("Drive");
+        Wing backWing = (Wing) robot.hw.getHardware("backWing");
+        drive.setLRPower(0.5, 0.5);
+        //NO HOT GOAL FOR NOW.
+        Timer.delay(2.1); // How long do we drive??
+        backWing.startRollersUp();
+        Timer.delay(0.6);
+        drive.setLRPower(0, 0);
+        Timer.delay(3);
+        backWing.stopRollers();
+        drive.setLRPower(-0.5, -0.5);
+        Timer.delay(1); // How long do we drive??
+        drive.setLRPower(0, 0);
+        //vision.init();
     }
 
     public void autonomousPeriodic() {
         super.autonomousPeriodic();
-        vision.tick();
+        //vision.tick();
     }
 
     public void loadHardware() {
