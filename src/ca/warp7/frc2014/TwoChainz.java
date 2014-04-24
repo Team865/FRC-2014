@@ -1,8 +1,5 @@
 package ca.warp7.frc2014;// Time Created: 1/4/14 4:57 PM
 
-import ca.warp7.frc2014.autonomous.Block;
-import ca.warp7.frc2014.autonomous.Mobility;
-import ca.warp7.frc2014.autonomous.NoAuton;
 import ca.warp7.frc2014.autonomous.ScoreLowGoal;
 import ca.warp7.frc2014.driverstation.MohitDriverStation;
 import ca.warp7.frc2014.hardware.CartCompressor;
@@ -11,13 +8,11 @@ import ca.warp7.frc2014.hardware.Sonar;
 import ca.warp7.frc2014.hardware.Wing;
 import ca.warp7.frc2014.modules.CheesyDrive;
 import ca.warp7.frc2014.modules.Shifter;
-import ca.warp7.frc2014.modules.Test;
 import ca.warp7.frc2014.modules.WingController;
 import ca.warp7.frc2014.util.RobotInfo;
 import ca.warp7.robotlib.Warp7Robot;
 import ca.warp7.robotlib.parents.AutoMode;
 import ca.warp7.robotlib.parents.DriverStationBase;
-import edu.wpi.first.wpilibj.Timer;
 
 public class TwoChainz extends Warp7Robot {
 
