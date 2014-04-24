@@ -5,24 +5,32 @@ import ca.warp7.robotlib.parents.AutoMode;
 import ca.warp7.robotlib.util.CheesyVisionServer;
 import ca.warp7.robotlib.util.Util;
 import com.sun.squawk.microedition.io.FileConnection;
+import com.sun.squawk.util.NotImplementedYetException;
 
 import javax.microedition.io.Connector;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-public class DetectHotTarget extends AutoMode {
+
+public class Block extends AutoMode {
     private CheesyVisionServer server;
     String currentDefenseMode;
 
-
     public void init() {
+
+        throw new NotImplementedYetException("Blocking Auton is not implemented!");
+        //ignore dis
+        /*
         server = CheesyVisionServer.getInstance();
         server.setPort(1180);
         server.start();
         server.startSamplingCounts();
+        */
+
     }
 
     public void disable() {
+
         server.stopSamplingCounts();
         server.stop();
     }
@@ -30,12 +38,12 @@ public class DetectHotTarget extends AutoMode {
     public void tick() {
         System.out.println("Current left: " + server.getLeftStatus() + ", current right: " + server.getRightStatus());
         System.out.println("Left count: " + server.getLeftCount() + ", right count: " + server.getRightCount() + ", total: " + server.getTotalCount() + "\n");
-
     }
 
     /**
      * Reads the info file and overrides the values in this class for any info it contains.
      */
+    /*
     public static void readFile(String team) {
         DataInputStream infoStream;
         FileConnection infoFile;
@@ -71,10 +79,11 @@ public class DetectHotTarget extends AutoMode {
                     }
             }
         } catch (IOException e) {
-            Util.log("DetectHotTarget", "wat.");
+            Util.log("Block", "wat.");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+    */
 
 }

@@ -35,7 +35,7 @@ public class Drive extends HardwareBase {
         }
     }
 
-    public void shift(boolean gear) { // true for low.
+    public void shift(boolean gear) { // true for high.
         shifter.set(gear);
         TwoChainz.getInstance().ds.table.putBoolean("Gear", gear);
     }

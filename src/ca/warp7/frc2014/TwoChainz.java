@@ -1,6 +1,9 @@
 package ca.warp7.frc2014;// Time Created: 1/4/14 4:57 PM
 
-import ca.warp7.frc2014.autonomous.DetectHotTarget;
+import ca.warp7.frc2014.autonomous.Block;
+import ca.warp7.frc2014.autonomous.Mobility;
+import ca.warp7.frc2014.autonomous.NoAuton;
+import ca.warp7.frc2014.autonomous.ScoreLowGoal;
 import ca.warp7.frc2014.driverstation.MohitDriverStation;
 import ca.warp7.frc2014.hardware.CartCompressor;
 import ca.warp7.frc2014.hardware.Drive;
@@ -8,6 +11,7 @@ import ca.warp7.frc2014.hardware.Sonar;
 import ca.warp7.frc2014.hardware.Wing;
 import ca.warp7.frc2014.modules.CheesyDrive;
 import ca.warp7.frc2014.modules.Shifter;
+import ca.warp7.frc2014.modules.Test;
 import ca.warp7.frc2014.modules.WingController;
 import ca.warp7.frc2014.util.RobotInfo;
 import ca.warp7.robotlib.Warp7Robot;
@@ -17,35 +21,23 @@ import edu.wpi.first.wpilibj.Timer;
 
 public class TwoChainz extends Warp7Robot {
 
-    private AutoMode vision = new DetectHotTarget();
+    private AutoMode auton = new ScoreLowGoal();
 
     public String getRobotName() {
         return "2 Chainz";
     }
-
     public void autonomousInit() {
         super.autonomousInit();
-        //FUCK IT DO IT HERE
-        Warp7Robot robot = TwoChainz.getInstance();
-        Drive drive = (Drive) robot.hw.getHardware("Drive");
-        Wing backWing = (Wing) robot.hw.getHardware("backWing");
-        drive.setLRPower(0.5, 0.5);
-        //NO HOT GOAL FOR NOW.
-        Timer.delay(2.1); // How long do we drive??
-        backWing.startRollersUp();
-        Timer.delay(0.6);
-        drive.setLRPower(0, 0);
-        Timer.delay(3);
-        backWing.stopRollers();
-        drive.setLRPower(-0.5, -0.5);
-        Timer.delay(1); // How long do we drive??
-        drive.setLRPower(0, 0);
-        //vision.init();
+        auton.init();
     }
 
     public void autonomousPeriodic() {
         super.autonomousPeriodic();
-        //vision.tick();
+        auton.tick();
+    }
+    public void disabledInit() {
+        super.disabledInit();
+        auton.disable();
     }
 
     public void loadHardware() {
@@ -76,6 +68,7 @@ public class TwoChainz extends Warp7Robot {
     }
 
     public void loadModules() {
+//        modules.add(new Test()); // for compressor testing
         modules.add(new CheesyDrive());
         modules.add(new Shifter());
         modules.add(new WingController());
